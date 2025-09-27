@@ -15,7 +15,7 @@ function About() {
                         </p>
 
                         {/* Steps Grid */}
-                        <div className="grid md:grid-cols-4 gap-10">
+                        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
                             {/* Step 1 */}
                             <div className="bg-[#e3f9fe] p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
                                 <div className="flex justify-center mb-6">

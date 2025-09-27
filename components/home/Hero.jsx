@@ -11,7 +11,7 @@ function Hero() {
                       <Sparkles size={15}/>  Notexa – Learn, Share, Earn
                     </span>
 
-                    <h1 className='text-5xl xl:text-7xl text-center font-bold'>
+                    <h1 className='text-5xl md:text-6xl lg:text-7xl text-center font-bold'>
                         Turn Your <span className='text-[#2563EB]'>Notes</span> Into <span className='text-[#08b77d]'>Opportunities</span><br />
                         Sell, Share, and Learn Together
                     </h1>
