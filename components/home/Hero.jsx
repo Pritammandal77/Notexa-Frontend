@@ -28,7 +28,7 @@ function Hero() {
                     </div>
                 </div>
 
-                {/* <div
+                <div
                     className="absolute inset-0 z-0"
                     style={{
                         background: "white",
@@ -39,7 +39,7 @@ function Hero() {
      `,
                         backgroundSize: "32px 32px, 32px 32px, 100% 100%",
                     }}
-                /> */}
+                />
 
             </div>
         </>
