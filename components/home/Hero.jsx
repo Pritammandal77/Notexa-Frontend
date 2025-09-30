@@ -22,7 +22,7 @@ function Hero() {
                         <button className="px-6 py-3 bg-[#2563EB] text-white cursor-pointer font-semibold rounded-lg hover:bg-blue-600 transition">
                             Get Started
                         </button>
-                        <button className="px-6 py-3 bg-gray-400 text-gray-800 cursor-pointer font-semibold rounded-lg hover:bg-gray-500 transition">
+                        <button className="px-6 py-3 bg-[#08b77d] text-white cursor-pointer font-semibold rounded-lg hover:bg-[#058f61] transition">
                             Browse Notes
                         </button>
                     </div>

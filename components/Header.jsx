@@ -10,19 +10,19 @@ function Header() {
                 </div>
                 <div className='hidden xl:inline'>
                     <ul className='flex items-center gap-10'>
-                        <li>
+                        <li className='font-semibold cursor-pointer'>
                             Home
                         </li>
-                        <li>
+                        <li className='font-semibold cursor-pointer'>
                             About
                         </li>
-                        <li>
+                        <li className='font-semibold cursor-pointer'>
                             Buy Notes
                         </li>
-                        <li>
+                        <li className='font-semibold cursor-pointer'>
                             Sell Notes
                         </li>
-                        <li>
+                        <li className='font-semibold cursor-pointer'>
                             Dashboard
                         </li>
                     </ul>

@@ -9,7 +9,7 @@ function About() {
                 <section className="w-full bg-gray-50 py-20">
                     <div className="w-[90%] max-w-7xl mx-auto text-center">
                         {/* Section Heading */}
-                        <h2 className="text-5xl font-bold mb-4 text-gray-900">How It Works</h2>
+                        <h2 className="text-5xl font-bold mb-4 text-gray-900">How It Works ?</h2>
                         <p className="text-gray-600 text-lg mb-16">
                             Simple steps to share, discover, and earn from handwritten notes.
                         </p>
