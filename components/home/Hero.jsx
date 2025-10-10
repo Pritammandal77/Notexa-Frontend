@@ -1,3 +1,5 @@
+"use client";
+
 import { Sparkles } from 'lucide-react';
 import React from 'react';
 
@@ -19,7 +21,9 @@ function Hero() {
                         Join our platform to share your handwritten notes, help others learn, and earn from your knowledge. <br /> Discover valuable notes, connect with students, and make learning rewarding for everyone.
                     </p>
                     <div className="flex justify-center gap-6 mt-8">
-                        <button className="px-6 py-3 bg-[#2563EB] text-white cursor-pointer font-semibold rounded-lg hover:bg-blue-600 transition">
+                        <button className="px-6 py-3 bg-[#2563EB] text-white cursor-pointer font-semibold rounded-lg hover:bg-blue-600 transition"
+                            onClick={() => alert("Hello")}
+                        >
                             Get Started
                         </button>
                         <button className="px-6 py-3 bg-[#08b77d] text-white cursor-pointer font-semibold rounded-lg hover:bg-[#058f61] transition">
@@ -33,8 +37,8 @@ function Hero() {
                     style={{
                         background: "white",
                         backgroundImage: `
-       linear-gradient(to right, rgba(71,85,105,0.3) 1px, transparent 1px),
-       linear-gradient(to bottom, rgba(71,85,105,0.3) 1px, transparent 1px),
+       linear-gradient(to right, rgba(71,85,105,0.3) 0.5px, transparent 0.2px),
+       linear-gradient(to bottom, rgba(71,85,105,0.3) 0.5px, transparent 0.2px),
        radial-gradient(circle at 50% 50%, rgba(139,92,246,0.25) 0%, rgba(139,92,246,0.1) 40%, transparent 80%)
      `,
                         backgroundSize: "32px 32px, 32px 32px, 100% 100%",

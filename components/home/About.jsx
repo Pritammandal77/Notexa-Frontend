@@ -16,6 +16,7 @@ function About() {
 
                         {/* Steps Grid */}
                         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
+
                             {/* Step 1 */}
                             <div className="bg-[#e3f9fe] p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
                                 <div className="flex justify-center mb-6">
@@ -23,9 +24,9 @@ function About() {
                                         <Upload size={35} className="text-[#2563EB]" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-semibold mb-2">Upload Notes</h3>
+                                <h3 className="text-xl font-semibold mb-2">Create personalized handwritten Notes</h3>
                                 <p className="text-gray-600">
-                                    Share your handwritten notes easily and reach students worldwide.
+                                    Write neat, organized notes in your own style — your clarity makes them valuable to others.
                                 </p>
                             </div>
 
@@ -36,22 +37,22 @@ function About() {
                                         <Search size={35} className="text-[#10B981]" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-semibold mb-2">Discover Notes</h3>
+                                <h3 className="text-xl font-semibold mb-2">Make PDF of your notes</h3>
                                 <p className="text-gray-600">
-                                    Explore quality notes from top students to boost your learning.
+                                    Scan or capture your notes and convert them into clean, shareable PDFs.
                                 </p>
                             </div>
 
                             {/* Step 3 */}
-                            <div className="bg-yellow-50 p-8 rounded-2xl shadow-lg  hover:shadow-2xl transition-all duration-300">
+                            <div className="bg-yellow-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
                                 <div className="flex justify-center mb-6">
                                     <div className="p-4 bg-yellow-100 rounded-full">
                                         <DollarSign size={35} className="text-[#F59E0B]" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-semibold mb-2">Sell & Earn</h3>
+                                <h3 className="text-xl font-semibold mb-2">List your notes</h3>
                                 <p className="text-gray-600">
-                                    Earn money when students buy your notes and grow together.
+                                    Upload your PDFs, set a price, and list them for students to discover and buy.
                                 </p>
                             </div>
 
@@ -62,12 +63,13 @@ function About() {
                                         <BookOpen size={35} className="text-[#8B5CF6]" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-semibold mb-2">Learn & Share</h3>
+                                <h3 className="text-xl font-semibold mb-2">Earn money when a user buys your notes</h3>
                                 <p className="text-gray-600">
-                                    Study smarter and help peers by sharing your knowledge.
+                                    Earn every time your notes sell - turn your effort into income while helping others.
                                 </p>
                             </div>
                         </div>
+
                     </div>
                 </section>
 
