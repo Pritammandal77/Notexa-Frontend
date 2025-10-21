@@ -1,4 +1,5 @@
 import { TableOfContents } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 function Header() {
@@ -25,10 +26,13 @@ function Header() {
                         <li className='font-semibold cursor-pointer'>
                             Dashboard
                         </li>
+                        <li className='font-semibold cursor-pointer' >
+                            <Link href="/signup">SignUp</Link>
+                        </li>
                     </ul>
                 </div>
                 <div className='xl:hidden font-bold'>
-                    <TableOfContents size={28} weight="bold"/>
+                    <TableOfContents size={28} weight="bold" />
                 </div>
             </header>
         </>
