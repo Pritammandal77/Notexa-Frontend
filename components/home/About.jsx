@@ -1,5 +1,6 @@
 "use client";
 import { BookOpen, DollarSign, Search, Upload } from 'lucide-react';
+import Image from 'next/image';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -12,76 +13,164 @@ function About() {
 
     return (
         <>
-            <div className='w-full h-auto'>
+            {/* <div className='flex flex-col xl:flex-row py-30'>
+                <div className='w-full xl:w-[50vw]'>
 
-                <section className="w-full py-20">
-                    <div className="w-[90%] max-w-7xl mx-auto text-center">
-                        {/* Section Heading */}
-                        <h2 className="text-5xl font-bold mb-4 text-gray-900">How It Works ?</h2>
-                        <p className="text-gray-600 text-lg mb-16">
-                            Simple steps to share, discover, and earn from handwritten notes.
-                        </p>
+                </div>
+                <div className='w-full xl:w-[50vw] flex items-center justify-center'>
+                    <div className="w-[75%] px-2 md:px-0">
+                        <div className="relative">
+                            <div
+                                className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+                                <div className="bg-white rounded-2xl p-8 transform -rotate-6 shadow-xl">
+                                    <div className="text-center flex flex-col items-center">
+                                        <div className="text-7xl mb-6">
+                                            <Image
+                                                src="/notesLogo.png"
+                                                alt="Hero image"
+                                                width={40}
+                                                height={40}
+                                            />
+                                        </div>
+                                        <h3 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
+                                            Get Premium Quality Self Made notes
+                                        </h3>
+                                        <p className="text-gray-600 text-lg mb-6">
+                                            Notes from top students & professionals
+                                        </p>
+                                        <div className="grid grid-cols-2 gap-4 text-center">
+                                            <div>
+                                                <div className="text-sm text-gray-500">
 
-                        {/* Steps Grid */}
-                        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
-
-                            {/* Step 1 */}
-                            <div className="bg-[#e3f9fe] p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                                <div className="flex justify-center mb-6">
-                                    <div className="p-4 bg-blue-200 rounded-full">
-                                        <Upload size={35} className="text-[#2563EB]" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="text-sm text-gray-500">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-semibold mb-2">Create personalized handwritten Notes</h3>
-                                <p className="text-gray-600">
-                                    Write neat, organized notes in your own style — your clarity makes them valuable to others.
-                                </p>
-                            </div>
-
-                            {/* Step 2 */}
-                            <div className="bg-green-100 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                                <div className="flex justify-center mb-6">
-                                    <div className="p-4 bg-green-200 rounded-full">
-                                        <Search size={35} className="text-[#10B981]" />
-                                    </div>
-                                </div>
-                                <h3 className="text-xl font-semibold mb-2">Make PDF of your notes</h3>
-                                <p className="text-gray-600">
-                                    Scan or capture your notes and convert them into clean, shareable PDFs.
-                                </p>
-                            </div>
-
-                            {/* Step 3 */}
-                            <div className="bg-yellow-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                                <div className="flex justify-center mb-6">
-                                    <div className="p-4 bg-yellow-100 rounded-full">
-                                        <DollarSign size={35} className="text-[#F59E0B]" />
-                                    </div>
-                                </div>
-                                <h3 className="text-xl font-semibold mb-2">List your notes</h3>
-                                <p className="text-gray-600">
-                                    Upload your PDFs, set a price, and list them for students to discover and buy.
-                                </p>
-                            </div>
-
-                            {/* Step 4 */}
-                            <div className="bg-purple-100 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                                <div className="flex justify-center mb-6">
-                                    <div className="p-4 bg-purple-200 rounded-full">
-                                        <BookOpen size={35} className="text-[#8B5CF6]" />
-                                    </div>
-                                </div>
-                                <h3 className="text-xl font-semibold mb-2">Earn money when a user buys your notes</h3>
-                                <p className="text-gray-600">
-                                    Earn every time your notes sell - turn your effort into income while helping others.
-                                </p>
                             </div>
                         </div>
-
                     </div>
-                </section>
+                </div>
+            </div> */}
 
+            <div className='flex flex-col xl:flex-row py-30'>
+                {/* LEFT SIDE */}
+                <div className='w-full xl:w-[50vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
+                    {/* Background decorative circles */}
+                    <div className='absolute top-0 left-0 w-60 h-60 bg-orange-200 rounded-full blur-3xl opacity-40 -z-10'></div>
+                    <div className='absolute bottom-10 right-10 w-72 h-72 bg-orange-300 rounded-full blur-3xl opacity-30 -z-10'></div>
+
+                    {/* Heading */}
+                    <h1 className='text-5xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
+                        Empowering Students <br />
+                        <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600'>
+                            Through Notes
+                        </span>
+                    </h1>
+
+                    {/* Tagline */}
+                    <p className='text-lg md:text-xl text-gray-600 leading-relaxed'>
+                        Notexa connects learners and toppers by creating a single platform
+                        where premium quality handwritten notes meet accessibility and affordability.
+                    </p>
+
+
+                    {/* Highlights */}
+                    <div className="mt-6">
+                        <h4 className="text-xl font-semibold text-gray-800 mb-3 font-playfair">
+                            Why Notexa?
+                        </h4>
+                        <ul className="space-y-3">
+                            <li className="flex items-center gap-3 group">
+                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                    <span className="font-semibold">Affordable</span> notes starting at just ₹29
+                                </span>
+                            </li>
+
+                            <li className="flex items-center gap-3 group">
+                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                    Created by <span className="font-semibold">toppers & students</span> like you
+                                </span>
+                            </li>
+
+                            <li className="flex items-center gap-3 group">
+                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                    <span className="font-semibold">Verified & high-quality</span> content
+                                </span>
+                            </li>
+
+                            <li className="flex items-center gap-3 group">
+                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                    Available in <span className="font-semibold">handwritten or typed</span> formats
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    {/* CTA buttons */}
+                    <div className='flex gap-4 pt-4'>
+                        <button className='px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition'>
+                            Explore Notes
+                        </button>
+                        <button className='px-6 py-3 border-2 border-orange-400 text-orange-500 font-semibold rounded-xl hover:bg-orange-50 transition'>
+                            Upload Yours
+                        </button>
+                    </div>
+                </div>
+
+                {/* RIGHT SIDE (untouched) */}
+                <div className='w-full xl:w-[50vw] flex items-center justify-center'>
+                    <div className="w-[75%] px-2 md:px-0">
+                        <div className="relative">
+                            <div
+                                className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+                                <div className="bg-white rounded-2xl p-8 transform -rotate-6 shadow-xl">
+                                    <div className="text-center flex flex-col items-center">
+                                        <div className="text-7xl mb-6">
+                                            <Image
+                                                src="/notesLogo.png"
+                                                alt="Hero image"
+                                                width={40}
+                                                height={40}
+                                            />
+                                        </div>
+                                        <h3 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
+                                            Get Premium Quality Self Made notes
+                                        </h3>
+                                        <p className="text-gray-600 text-lg mb-6">
+                                            Notes from top students & professionals
+                                        </p>
+                                        <div className="grid grid-cols-2 gap-4 text-center">
+                                            <div>
+                                                <div className="text-sm text-gray-500">
+
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="text-sm text-gray-500">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
         </>
     );
 }
