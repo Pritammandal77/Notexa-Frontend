@@ -1,9 +1,25 @@
 "use client";
 
+import { fetchWithAuth } from '@/utils/auth';
+import axios from 'axios';
 import { Sparkles } from 'lucide-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Hero() {
+
+    useEffect(() => {
+        async function getUser() {
+            const res = await fetchWithAuth('http://localhost:8000/api/auth/me');
+            if (res.ok) {
+                const data = await res.json();
+                console.log("User data:", data);
+            } else {
+                console.log("Failed to fetch user");
+            }
+        }
+        getUser();
+    }, []);
+
     return (
         <>
             <div className='w-full h-screen flex items-center justify-center relative'>
