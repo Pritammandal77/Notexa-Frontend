@@ -1,24 +1,36 @@
 "use client";
 
+import { setCurrUser } from '@/redux/slices/userSlice';
 import { fetchWithAuth } from '@/utils/auth';
 import axios from 'axios';
 import { Sparkles } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Hero() {
 
+    const [userData, setUserData] = useState()
     useEffect(() => {
         async function getUser() {
             const res = await fetchWithAuth('http://localhost:8000/api/auth/me');
             if (res.ok) {
                 const data = await res.json();
                 console.log("User data:", data);
+                setUserData(data);
             } else {
                 console.log("Failed to fetch user");
             }
         }
         getUser();
     }, []);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (userData) {
+            dispatch(setCurrUser(userData));
+        }
+    }, [userData, dispatch]);
+
 
     return (
         <>
