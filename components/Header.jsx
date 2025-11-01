@@ -18,7 +18,7 @@ function Header() {
                 <div className='hidden xl:inline'>
                     <ul className='flex items-center gap-10'>
                         <li className='font-semibold cursor-pointer'>
-                            Home
+                            <Link href="/">Home</Link>
                         </li>
                         <li className='font-semibold cursor-pointer'>
                             About
