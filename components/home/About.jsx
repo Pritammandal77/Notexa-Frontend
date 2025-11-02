@@ -58,12 +58,10 @@ function About() {
                 </div>
             </div> */}
 
-            <div className='flex flex-col xl:flex-row py-30'>
+            <div className='flex flex-col xl:flex-row py-30 relative'>
                 {/* LEFT SIDE */}
                 <div className='w-full xl:w-[50vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
                     {/* Background decorative circles */}
-                    <div className='absolute top-0 left-0 w-60 h-60 bg-orange-200 rounded-full blur-3xl opacity-40 -z-10'></div>
-                    <div className='absolute bottom-10 right-10 w-72 h-72 bg-orange-300 rounded-full blur-3xl opacity-30 -z-10'></div>
 
                     {/* Heading */}
                     <h1 className='text-5xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
@@ -168,6 +166,9 @@ function About() {
                         </div>
                     </div>
                 </div>
+
+                <div className='absolute top-20 left-20 w-60 h-60 bg-orange-200 rounded-full blur-3xl opacity-40 -z-10'></div>
+                <div className='absolute bottom-10 right-40 w-72 h-72 bg-orange-300 rounded-full blur-3xl opacity-30 -z-10'></div>
             </div>
 
 
