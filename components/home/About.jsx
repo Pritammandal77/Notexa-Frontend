@@ -58,9 +58,9 @@ function About() {
                 </div>
             </div> */}
 
-            <div className='flex flex-col xl:flex-row py-30 relative'>
+            <div className='flex flex-col xl:flex-row justify-center py-30 relative'>
                 {/* LEFT SIDE */}
-                <div className='w-full xl:w-[50vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
+                <div className='w-full xl:w-[45vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
                     {/* Background decorative circles */}
 
                     {/* Heading */}
@@ -72,7 +72,7 @@ function About() {
                     </h1>
 
                     {/* Tagline */}
-                    <p className='text-lg md:text-xl text-gray-600 leading-relaxed'>
+                    <p className='text-lg md:text-xl text-gray-700 leading-relaxed'>
                         Notexa connects learners and toppers by creating a single platform
                         where premium quality handwritten notes meet accessibility and affordability.
                     </p>
@@ -127,7 +127,7 @@ function About() {
                 </div>
 
                 {/* RIGHT SIDE (untouched) */}
-                <div className='w-full xl:w-[50vw] flex items-center justify-center'>
+                <div className='w-full xl:w-[45vw] flex items-center justify-center'>
                     <div className="w-[75%] px-2 md:px-0">
                         <div className="relative">
                             <div
