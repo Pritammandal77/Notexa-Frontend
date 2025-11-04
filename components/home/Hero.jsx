@@ -2,6 +2,7 @@
 
 import { setCurrUser } from '@/redux/slices/userSlice';
 import { fetchWithAuth } from '@/utils/auth';
+import { fetchAllNotes } from '@/utils/notesApi';
 import axios from 'axios';
 import { Sparkles } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
@@ -30,6 +31,14 @@ function Hero() {
             dispatch(setCurrUser(userData));
         }
     }, [userData, dispatch]);
+
+    useEffect(() => {
+        async function getAllNotes() {
+            let allNotes = await fetchAllNotes();
+            console.log("all notes", allNotes)
+        }
+        getAllNotes();
+    }, []);
 
 
     return (
