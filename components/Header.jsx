@@ -1,22 +1,144 @@
-"use client"
-import { CircleX, TableOfContents } from 'lucide-react';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import Login from './Login';
-import { useSelector } from 'react-redux';
-import Image from 'next/image';
-import { logOutUser } from '@/utils/userApi';
-import { toast } from 'sonner';
-import Loader1 from './Loader/Loader';
-// import DialogBox from './DialogBox';
+// "use client"
+// import { CircleX, TableOfContents } from 'lucide-react';
+// import Link from 'next/link';
+// import React, { useState } from 'react';
+// import Login from './Login';
+// import { useSelector } from 'react-redux';
+// import Image from 'next/image';
+// import { logOutUser } from '@/utils/userApi';
+// import { toast } from 'sonner';
+// import Loader1 from './Loader/Loader';
+// // import DialogBox from './DialogBox';
+
+// function Header() {
+
+//     const [isDialogOpen, setIsDialogOpen] = useState(false)
+//     const user = useSelector((state) => state.user?.currUser?.user)
+//     console.log("user on header", user?.profilePicture)
+
+//     const [isLoading, setIsLoading] = useState(false)
+//     const handleLogout = async () => {
+//         try {
+//             setIsLoading(true);
+//             await logOutUser();
+//             setIsLoading(false);
+//         } catch (error) {
+//             toast.error("Log out failed");
+//         }
+//     }
+
+//     return (
+//         <>
+//             <header className='z-20 h-17 w-full text-[18px] bg-white border-b border-gray-200 shadow-sm flex flex-row items-center justify-between px-5 md:px-20 fixed top-0'>
+//                 <div className='font-bold text-[24px]'>
+//                     Notexa
+//                 </div>
+//                 <div className='hidden xl:inline'>
+//                     <ul className='flex items-center gap-10'>
+//                         <li className='font-semibold cursor-pointer'>
+//                             <Link href="/">Home</Link>
+//                         </li>
+//                         <li className='font-semibold cursor-pointer'>
+//                             <Link href="/allnotes">Notes</Link>
+//                         </li>
+//                         <li className='font-semibold cursor-pointer'>
+//                             <Link href="/sellnotes">Sell Notes</Link>
+//                         </li>
+//                         <li className='font-semibold cursor-pointer'>
+//                             Dashboard
+//                         </li>
+//                         <li className='font-semibold cursor-pointer'
+//                             onClick={() => isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)}
+//                         >
+//                             {/* <Link href="/signup">Login</Link> */}
+//                             Profile
+//                         </li>
+//                     </ul>
+//                 </div>
+//                 <div className='xl:hidden font-bold'>
+//                     <TableOfContents size={28} weight="bold" />
+//                 </div>
+//             </header>
+
+//             <div
+//                 className={`fixed flex flex-col items-center justify-center gap-7 top-20 right-10 h-40 w-100 bg-orange-100 border-1 border-orange-200 z-20 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out 
+//                                 ${isDialogOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5 pointer-events-none"}`}
+//             >
+//                 {
+//                     user ?
+//                         (
+//                             <div className='w-full h-[100%] relative'>
+//                                 <div className='flex items-center gap-5'>
+//                                     <Image
+//                                         src={user?.profilePicture}
+//                                         alt="User image"
+//                                         width={70}
+//                                         height={70}
+//                                         className='rounded-full'
+//                                     />
+//                                     <div>
+//                                         <p className='font-semibold'>
+//                                             {user.fullName}
+//                                         </p>
+//                                         <p>
+//                                             {user.email}
+//                                         </p>
+//                                     </div>
+//                                 </div>
+
+//                                 <CircleX className='absolute top-3 right-3 cursor-pointer'
+//                                     onClick={() => isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)}
+//                                 />
+//                                 <button className='bg-orange-500 text-white font-semibold cursor-pointer text-[15px] px-3 py-1 rounded-xl absolute bottom-0 right-0'
+//                                     onClick={() => handleLogout()}
+//                                 >
+//                                     Log Out
+//                                 </button>
+//                             </div>
+//                         ) :
+//                         (
+//                             <div className='w-[100%] h-[100%] flex flex-col items-center justify-center gap-6'>
+//                                 <h1 className='text-2xl font-bold'>Login now</h1>
+//                                 <Login />
+//                                 <CircleX className='absolute top-3 right-3 cursor-pointer'
+//                                     onClick={() => isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)}
+//                                 />
+//                             </div >
+//                         )
+//                 }
+
+//             </div >
+//             {
+//                 isLoading &&
+//                 <Loader1 />
+//             }
+
+//         </>
+//     );
+// }
+
+// export default Header;
+
+
+
+"use client";
+
+import { CircleX, TableOfContents, X } from "lucide-react";
+import Link from "next/link";
+import React, { useState } from "react";
+import Login from "./Login";
+import { useSelector } from "react-redux";
+import Image from "next/image";
+import { logOutUser } from "@/utils/userApi";
+import { toast } from "sonner";
+import Loader1 from "./Loader/Loader";
 
 function Header() {
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const user = useSelector((state) => state.user?.currUser?.user);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const [isDialogOpen, setIsDialogOpen] = useState(false)
-    const user = useSelector((state) => state.user?.currUser?.user)
-    console.log("user on header", user?.profilePicture)
-
-    const [isLoading, setIsLoading] = useState(false)
     const handleLogout = async () => {
         try {
             setIsLoading(true);
@@ -25,94 +147,135 @@ function Header() {
         } catch (error) {
             toast.error("Log out failed");
         }
-    }
+    };
 
     return (
         <>
-            <header className='z-20 h-17 w-full text-[18px] bg-white border-b border-gray-200 shadow-sm flex flex-row items-center justify-between px-5 md:px-20 fixed top-0'>
-                <div className='font-bold text-[24px]'>
-                    Notexa
+            {/* ✅ Main Header */}
+            <header className="fixed top-0 left-0 z-50 h-16 w-[100vw] text-[18px] bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-5 md:px-20 overflow-x-hidden">
+                <div className="font-bold text-[24px]">Notexa</div>
+
+                {/* ✅ Desktop Menu */}
+                <div className="hidden xl:flex items-center gap-10">
+                    <Link href="/" className="font-semibold cursor-pointer">Home</Link>
+                    <Link href="/allnotes" className="font-semibold cursor-pointer">Notes</Link>
+                    <Link href="/sellnotes" className="font-semibold cursor-pointer">Sell Notes</Link>
+                    <span className="font-semibold cursor-pointer">Dashboard</span>
+                    <span
+                        className="font-semibold cursor-pointer"
+                        onClick={() => setIsDialogOpen(!isDialogOpen)}
+                    >
+                        Profile
+                    </span>
                 </div>
-                <div className='hidden xl:inline'>
-                    <ul className='flex items-center gap-10'>
-                        <li className='font-semibold cursor-pointer'>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li className='font-semibold cursor-pointer'>
-                            <Link href="/allnotes">Notes</Link>
-                        </li>
-                        <li className='font-semibold cursor-pointer'>
-                            <Link href="/sellnotes">Sell Notes</Link>
-                        </li>
-                        <li className='font-semibold cursor-pointer'>
-                            Dashboard
-                        </li>
-                        <li className='font-semibold cursor-pointer'
-                            onClick={() => isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)}
-                        >
-                            {/* <Link href="/signup">Login</Link> */}
-                            Profile
-                        </li>
-                    </ul>
-                </div>
-                <div className='xl:hidden font-bold'>
-                    <TableOfContents size={28} weight="bold" />
+
+                {/* ✅ Mobile Menu Icon */}
+                <div
+                    className="xl:hidden font-bold cursor-pointer"
+                    onClick={() => setIsSidebarOpen(true)}
+                >
+                    <TableOfContents size={28} />
                 </div>
             </header>
 
+            {/* ✅ Mobile Sidebar Overlay */}
             <div
-                className={`fixed flex flex-col items-center justify-center gap-7 top-20 right-10 h-40 w-100 bg-orange-100 border-1 border-orange-200 z-20 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out 
-                                ${isDialogOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5 pointer-events-none"}`}
+                className={`w-[100vw] fixed right-0 top-0 inset-0 z-50 transition-all duration-500 ease-in-out overflow-x-hidden ${isSidebarOpen
+                        ? "translate-x-0 bg-black/40 backdrop-blur-sm pointer-events-auto"
+                        : "translate-x-full bg-transparent pointer-events-none"
+                    }`}
+                onClick={() => setIsSidebarOpen(false)}
             >
-                {
-                    user ?
-                        (
-                            <div className='w-full h-[100%] relative'>
-                                <div className='flex items-center gap-5'>
-                                    <Image
-                                        src={user?.profilePicture}
-                                        alt="User image"
-                                        width={70}
-                                        height={70}
-                                        className='rounded-full'
-                                    />
-                                    <div>
-                                        <p className='font-semibold'>
-                                            {user.fullName}
-                                        </p>
-                                        <p>
-                                            {user.email}
-                                        </p>
-                                    </div>
-                                </div>
+                {/* ✅ Sidebar Panel */}
+                <aside
+                    className={`absolute top-0 right-0 h-full w-[75vw] max-w-xs sm:w-[50vw] bg-orange-50 shadow-xl border-l border-gray-200 transform transition-transform duration-500 ease-in-out ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
+                        }`}
+                    onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+                >
+                    {/* Header of Sidebar */}
+                    <div className="flex items-center justify-between p-5 border-b border-gray-200">
+                        <h2 className="font-bold text-xl">Menu</h2>
+                        <X
+                            className="cursor-pointer text-gray-600 hover:text-black transition"
+                            onClick={() => setIsSidebarOpen(false)}
+                        />
+                    </div>
 
-                                <CircleX className='absolute top-3 right-3 cursor-pointer'
-                                    onClick={() => isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)}
-                                />
-                                <button className='bg-orange-500 text-white font-semibold cursor-pointer text-[15px] px-3 py-1 rounded-xl absolute bottom-0 right-0'
-                                    onClick={() => handleLogout()}
-                                >
-                                    Log Out
-                                </button>
+                    {/* Menu Links */}
+                    <ul className="flex flex-col gap-6 mt-6 px-6 text-lg font-semibold text-gray-800">
+                        <li>
+                            <Link href="/" onClick={() => setIsSidebarOpen(false)}>Home</Link>
+                        </li>
+                        <li>
+                            <Link href="/allnotes" onClick={() => setIsSidebarOpen(false)}>Notes</Link>
+                        </li>
+                        <li>
+                            <Link href="/sellnotes" onClick={() => setIsSidebarOpen(false)}>Sell Notes</Link>
+                        </li>
+                        <li>
+                            <Link href="#" onClick={() => setIsSidebarOpen(false)}>Dashboard</Link>
+                        </li>
+                        <li
+                            className="cursor-pointer"
+                            onClick={() => {
+                                setIsDialogOpen(!isDialogOpen);
+                                setIsSidebarOpen(false);
+                            }}
+                        >
+                            Profile
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            {/* ✅ Profile Dialog */}
+            <div
+                className={`fixed flex flex-col items-center justify-center gap-7 top-20 h-40 w-100 bg-orange-100 border border-orange-200 z-30 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out 
+        ${isDialogOpen
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 -translate-y-5 pointer-events-none"
+                    }`}
+            >
+                {user ? (
+                    <div className="w-full h-full relative">
+                        <div className="flex items-center gap-5">
+                            <Image
+                                src={user?.profilePicture}
+                                alt="User image"
+                                width={70}
+                                height={70}
+                                className="rounded-full"
+                            />
+                            <div>
+                                <p className="font-semibold">{user.fullName}</p>
+                                <p>{user.email}</p>
                             </div>
-                        ) :
-                        (
-                            <div className='w-[100%] h-[100%] flex flex-col items-center justify-center gap-6'>
-                                <h1 className='text-2xl font-bold'>Login now</h1>
-                                <Login />
-                                <CircleX className='absolute top-3 right-3 cursor-pointer'
-                                    onClick={() => isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)}
-                                />
-                            </div >
-                        )
-                }
+                        </div>
 
-            </div >
-            {
-                isLoading &&
-                <Loader1 />
-            }
+                        <CircleX
+                            className="absolute top-3 right-3 cursor-pointer"
+                            onClick={() => setIsDialogOpen(false)}
+                        />
+                        <button
+                            className="bg-orange-500 text-white font-semibold cursor-pointer text-[15px] px-3 py-1 rounded-xl absolute bottom-0 right-0"
+                            onClick={handleLogout}
+                        >
+                            Log Out
+                        </button>
+                    </div>
+                ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center gap-6">
+                        <h1 className="text-2xl font-bold">Login now</h1>
+                        <Login />
+                        <CircleX
+                            className="absolute top-3 right-3 cursor-pointer"
+                            onClick={() => setIsDialogOpen(false)}
+                        />
+                    </div>
+                )}
+            </div>
 
+            {isLoading && <Loader1 />}
         </>
     );
 }
