@@ -1,5 +1,6 @@
 "use client";
 
+import { setAllNotes } from '@/redux/slices/notesSlice';
 import { setCurrUser } from '@/redux/slices/userSlice';
 import { fetchWithAuth } from '@/utils/auth';
 import { fetchAllNotes } from '@/utils/notesApi';
@@ -35,11 +36,11 @@ function Hero() {
     useEffect(() => {
         async function getAllNotes() {
             let allNotes = await fetchAllNotes();
-            console.log("all notes", allNotes)
+            console.log("all notes", allNotes.data)
+            dispatch(setAllNotes(allNotes.data))
         }
         getAllNotes();
-    }, []);
-
+    }, [userData]);
 
     return (
         <>

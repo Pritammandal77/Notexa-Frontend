@@ -11,6 +11,6 @@ const userSlice = createSlice({
         },
     },
 })
-
+ 
 export const { setCurrUser } = userSlice.actions
 export default userSlice.reducer
