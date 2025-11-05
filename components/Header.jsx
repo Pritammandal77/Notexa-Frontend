@@ -39,7 +39,7 @@ function Header() {
                             <Link href="/">Home</Link>
                         </li>
                         <li className='font-semibold cursor-pointer'>
-                            Notes
+                            <Link href="/allnotes">Notes</Link>
                         </li>
                         <li className='font-semibold cursor-pointer'>
                             <Link href="/sellnotes">Sell Notes</Link>

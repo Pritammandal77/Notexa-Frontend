@@ -232,6 +232,7 @@ function Page() {
         subject: "",
         className: "",
         pagesCount: "",
+        category: "",
         description: "",
         notesFile: null,
         samples: [],
@@ -263,7 +264,7 @@ function Page() {
             e.target.value = null;
             return;
         }
- 
+
         if (file.size > maxSize) {
             toast.error("File size exceeds 25 MB. Please upload a smaller file.");
             e.target.value = null;
@@ -315,6 +316,40 @@ function Page() {
                     Fill in the details below carefully before submitting.
                 </p>
 
+
+                {/* Smooth Upload Guide */}
+                <div className="bg-orange-50 border border-orange-200 rounded-xl p-5 mb-8 shadow-sm">
+                    <h2 className="text-lg font-semibold text-orange-600 mb-3 flex items-center gap-2">
+                        ⚡ For a Smooth Upload Experience:
+                    </h2>
+                    <ul className="list-decimal list-inside space-y-2 text-gray-700 text-sm md:text-base">
+                        <li>
+                            <span className="font-semibold text-orange-500">Step 1:</span> Convert your handwritten or digital notes into a single <strong>PDF file</strong>.
+                        </li>
+                        <li>
+                            <span className="font-semibold text-orange-500">Step 2:</span> Compress your file using{" "}                                 <a
+                                href="https://www.ilovepdf.com/compress_pdf"
+                                target="_blank"
+                                className="text-orange-600 underline hover:text-orange-700"
+                            >
+                                ilovepdf.com
+                            </a>{" "}
+                            or{" "}
+                            <a
+                                href="https://www.smallpdf.com/compress-pdf"
+                                target="_blank"
+                                className="text-orange-600 underline hover:text-orange-700"
+                            >
+                                smallpdf.com
+                            </a>{" "}
+                            to keep it under <strong>25 MB</strong>.
+                        </li>
+                        <li>
+                            <span className="font-semibold text-orange-500">Step 3:</span> Once ready, fill in the required details & upload your notes below.
+                        </li>
+                    </ul>
+                </div>
+
                 <form className="space-y-5">
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -356,17 +391,46 @@ function Page() {
                         </div>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                            Pages Count
-                        </label>
-                        <input
-                            type="text"
-                            name="pagesCount"
-                            placeholder="e.g. 27"
-                            className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
-                            onChange={handleChange}
-                        />
+                    <div className="flex justify-between">
+                        {/* 📄 Pages Count Field */}
+                        <div className="w-[47%]">
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Pages Count
+                            </label>
+                            <input
+                                type="text"
+                                name="pagesCount"
+                                placeholder="e.g. 27"
+                                className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none transition-all duration-200"
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="w-[47%]">
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Category
+                            </label>
+                            <select
+                                name="category"
+                                value={form.category}
+                                className="w-full p-3 border border-orange-200 bg-white text-gray-800 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none cursor-pointer appearance-none transition-all duration-200"
+                                onChange={handleChange}
+                            >
+                                <option value="">Select Category</option>
+                                <option value="computer-science">Computer Science / IT</option>
+                                <option value="mathematics">Mathematics</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                                <option value="biology">Biology</option>
+                                <option value="commerce">Commerce</option>
+                                <option value="programming">Programming</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="ai">AI</option>
+                                <option value="entrance-preparation">Entrance Preparation</option>
+                                <option value="school">School Notes</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div>
@@ -414,8 +478,8 @@ function Page() {
                         Upload Notes
                     </button>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 

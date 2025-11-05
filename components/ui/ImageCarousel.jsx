@@ -252,7 +252,7 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
                             <p className="text-xl font-semibold text-orange-400 mt-2">
                                 @just ₹{price}
                             </p>
-                        </div>
+                        </div> 
                         <div className="flex justify-center">
                             <button className="w-full px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition">
                                 Read More
