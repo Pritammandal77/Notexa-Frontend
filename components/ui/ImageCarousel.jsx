@@ -162,6 +162,7 @@
 
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef, useId, useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -200,14 +201,14 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
 
     if (!note) return null;
 
-    const { title, description, notesSample1, subject, price, seller } = note;
+    const { title, description, notesSample1, subject, price, seller, _id } = note;
     const imageSrc = notesSample1?.replace(/^http:\/\//, "https://");
 
     return (
-        <div className="[perspective:1200px] [transform-style:preserve-3d]">
+        <div className="[perspective:1200px] [transform-style:preserve-3d] ">
             <li
                 ref={slideRef}
-                className="flex flex-1 flex-col items-center justify-center relative text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-4 bg-white duration-300 ease-in-out w-[70vmin] xl:w-[27vw] h-[70vmin] xl:h-[60vh] mx-[4vmin] cursor-pointer"
+                className="flex flex-1 flex-col items-center justify-center relative text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-4 bg-white duration-300 ease-in-out w-[70vmin] xl:w-[27vw] h-auto xl:h-[60vh] mx-[4vmin] cursor-pointer"
                 onClick={() => handleSlideClick(index)}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
@@ -221,7 +222,7 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
                 }}
             >
                 <div
-                    className="absolute top-0 left-0 p-3 w-full h-full bg-white rounded-[10%] overflow-hidden transition-all duration-150 ease-out"
+                    className="absolute top-0 left-0 p-3 w-full h-auto xl:h-full bg-white rounded-[10%] overflow-hidden transition-all duration-150 ease-out"
                     style={{
                         transform:
                             current === index
@@ -230,7 +231,7 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
                     }}
                 >
 
-                    <div className="w-full h-[50%] overflow-hidden rounded-xl">
+                    <div className="w-full h-40 xl:h-[50%] overflow-hidden rounded-xl">
                         <Image
                             src={imageSrc}
                             alt={title || "note image"}
@@ -252,11 +253,13 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
                             <p className="text-xl font-semibold text-orange-400 mt-2">
                                 @just ₹{price}
                             </p>
-                        </div> 
+                        </div>
                         <div className="flex justify-center">
-                            <button className="w-full px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition">
-                                Read More
-                            </button>
+                            <Link href={`/notes/${note._id}`}>
+                                <button className="w-full px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition" >
+                                    Read More
+                                </button>
+                            </Link>
                         </div>
                     </div>
 
@@ -268,8 +271,8 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
 
 
 
-            </li>
-        </div>
+            </li >
+        </div >
     );
 };
 
@@ -309,11 +312,11 @@ export function Carousel() {
 
     return (
         <div
-            className="relative w-[70vmin] h-[70vmin] mx-auto"
+            className="relative w-[70vmin] min-h-[50vh] h-auto xl:h-[70vmin] mx-auto "
             aria-labelledby={`carousel-heading-${id}`}
         >
             <ul
-                className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
+                className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out "
                 style={{
                     transform: `translateX(-${current * (100 / allNotes.length)}%)`,
                 }}
