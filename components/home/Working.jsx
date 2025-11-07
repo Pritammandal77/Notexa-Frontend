@@ -116,7 +116,7 @@ export default function Working() {
     return (
         <section className="relative bg-gradient-to-b from-orange-100 via-white to-orange-100 py-24 overflow-hidden">
             <div className="w-[90%] max-w-6xl mx-auto text-center mb-20">
-                <h2 className="text-5xl font-bold text-gray-900">
+                <h2 className="text-4xl font-bold text-gray-900">
                     How It <span className="text-orange-500">Works?</span>
                 </h2>
                 <p className="text-gray-600 text-lg mt-3">

@@ -46,7 +46,7 @@ export const AnimatedTestimonials = ({
     return (
         <div className="mx-auto flex flex-col gap-15 max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
             <div className="flex flex-col items-center gap-3">
-                <h1 className="text-5xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight">
+                <h1 className="text-4xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight">
                     What Our <span className="text-orange-500">Users</span> Say
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
@@ -141,15 +141,15 @@ export const AnimatedTestimonials = ({
                     <div className="flex gap-4 pt-12 md:pt-0">
                         <button
                             onClick={handlePrev}
-                            className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+                            className="group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
                         >
-                            <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
+                            <IconArrowLeft className="h-6 w-6 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
                         </button>
                         <button
                             onClick={handleNext}
-                            className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+                            className="group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
                         >
-                            <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+                            <IconArrowRight className="h-6 w-6 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
                         </button>
                     </div>
                 </div>

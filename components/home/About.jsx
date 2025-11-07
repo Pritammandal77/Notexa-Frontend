@@ -64,7 +64,7 @@ function About() {
                     {/* Background decorative circles */}
 
                     {/* Heading */}
-                    <h1 className='text-5xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
+                    <h1 className='text-4xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
                         Empowering Students <br />
                         <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600'>
                             Through Notes
