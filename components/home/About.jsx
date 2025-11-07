@@ -127,7 +127,7 @@ function About() {
                 </div>
 
                 {/* RIGHT SIDE (untouched) */}
-                <div className='w-full xl:w-[45vw] flex items-center justify-center'>
+                <div className='w-full xl:w-[45vw] hidden xl:flex items-center justify-center'>
                     <div className="w-[75%] px-2 md:px-0">
                         <div className="relative">
                             <div

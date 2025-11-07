@@ -283,7 +283,7 @@ function Page() {
             data.append("className", form.className);
             data.append("pagesCount", form.pagesCount);
             data.append("description", form.description);
-
+            data.append("category", "form.category")
             if (form.notesFile) data.append("notesFile", form.notesFile);
             if (form.samples.length > 0)
                 form.samples.forEach((img) => data.append("samples", img));
@@ -359,6 +359,7 @@ function Page() {
                             type="text"
                             name="title"
                             placeholder="e.g. DBMS Unit 3 Notes"
+                            required
                             className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
                             onChange={handleChange}
                         />
@@ -372,6 +373,7 @@ function Page() {
                             <input
                                 type="text"
                                 name="subject"
+                                required
                                 placeholder="e.g. Physics"
                                 className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
                                 onChange={handleChange}
@@ -384,6 +386,7 @@ function Page() {
                             <input
                                 type="text"
                                 name="className"
+                                required
                                 placeholder="e.g. class 12"
                                 className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
                                 onChange={handleChange}
@@ -400,6 +403,7 @@ function Page() {
                             <input
                                 type="text"
                                 name="pagesCount"
+                                required
                                 placeholder="e.g. 27"
                                 className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none transition-all duration-200"
                                 onChange={handleChange}
@@ -413,6 +417,7 @@ function Page() {
                             <select
                                 name="category"
                                 value={form.category}
+                                required
                                 className="w-full p-3 border border-orange-200 bg-white text-gray-800 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none cursor-pointer appearance-none transition-all duration-200"
                                 onChange={handleChange}
                             >
@@ -439,6 +444,7 @@ function Page() {
                         </label>
                         <textarea
                             name="description"
+                            required
                             placeholder="Write a short description..."
                             className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none h-24 resize-none"
                             onChange={handleChange}
@@ -453,6 +459,7 @@ function Page() {
                             type="file"
                             accept="image/*"
                             multiple
+                            required
                             onChange={handleSampleChange}
                             className="w-full border border-orange-200 p-2 rounded-lg cursor-pointer bg-orange-50 hover:bg-orange-100 transition"
                         />
@@ -465,6 +472,7 @@ function Page() {
                         <input
                             type="file"
                             accept=".pdf, .docx, .doc, .pptx"
+                            required
                             onChange={handleNotesFileSize}
                             className="w-full border border-orange-200 p-2 rounded-lg cursor-pointer bg-orange-50 hover:bg-orange-100 transition"
                         />

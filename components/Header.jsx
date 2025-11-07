@@ -230,7 +230,7 @@ function Header() {
 
             {/* ✅ Profile Dialog */}
             <div
-                className={`fixed flex flex-col items-center justify-center gap-7 top-20 h-40 w-100 bg-orange-100 border border-orange-200 z-30 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out 
+                className={`fixed flex flex-col items-center justify-center gap-7 top-20 right-5 xl:right-10 h-40 w-[90vw] md:w-100 bg-orange-100 border border-orange-200 z-30 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out 
         ${isDialogOpen
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 -translate-y-5 pointer-events-none"
