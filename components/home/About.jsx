@@ -2,15 +2,10 @@
 import { BookOpen, DollarSign, Search, Upload } from 'lucide-react';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+
 
 function About() {
-    const user = useSelector((state) => state.user.currUser)
-
-    useEffect(() => {
-        console.log("user data on about page", user)
-    }, [user]);
-
+   
     return (
         <>
             {/* <div className='flex flex-col xl:flex-row py-30'>

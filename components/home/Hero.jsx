@@ -11,37 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Hero() {
 
-    const [userData, setUserData] = useState()
-    useEffect(() => {
-        async function getUser() {
-            const res = await fetchWithAuth('http://localhost:8000/api/auth/me');
-            if (res.ok) {
-                const data = await res.json();
-                console.log("User data:", data);
-                setUserData(data);
-            } else {
-                console.log("Failed to fetch user");
-            }
-        }
-        getUser();
-    }, []);
-
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (userData) {
-            dispatch(setCurrUser(userData));
-        }
-    }, [userData, dispatch]);
-
-    useEffect(() => {
-        async function getAllNotes() {
-            let allNotes = await fetchAllNotes();
-            console.log("all notes", allNotes.data)
-            dispatch(setAllNotes(allNotes.data))
-        }
-        getAllNotes();
-    }, [userData]);
-
     return (
         <>
             <div className='w-full h-screen flex items-center justify-center relative'>

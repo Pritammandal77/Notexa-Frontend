@@ -125,13 +125,17 @@
 
 import { CircleX, TableOfContents, X } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./Login";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { logOutUser } from "@/utils/userApi";
 import { toast } from "sonner";
 import Loader1 from "./Loader/Loader";
+import { fetchWithAuth } from "@/utils/auth";
+import { fetchAllNotes } from "@/utils/notesApi";
+import { setAllNotes } from "@/redux/slices/notesSlice";
+import { setCurrUser } from "@/redux/slices/userSlice";
 
 function Header() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -149,6 +153,40 @@ function Header() {
         }
     };
 
+
+
+    const [userData, setUserData] = useState()
+    useEffect(() => {
+        async function getUser() {
+            const res = await fetchWithAuth('http://localhost:8000/api/auth/me');
+            if (res.ok) {
+                const data = await res.json();
+                console.log("User data:", data);
+                setUserData(data);
+            } else {
+                console.log("Failed to fetch user");
+            }
+        }
+        getUser();
+    }, []);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (userData) {
+            dispatch(setCurrUser(userData));
+        }
+    }, [userData, dispatch]);
+
+    useEffect(() => {
+        async function getAllNotes() {
+            let allNotes = await fetchAllNotes();
+            console.log("all notes", allNotes.data)
+            dispatch(setAllNotes(allNotes.data))
+        }
+        getAllNotes();
+    }, [userData]);
+
+
     return (
         <>
             {/* ✅ Main Header */}
@@ -160,7 +198,7 @@ function Header() {
                     <Link href="/" className="font-semibold cursor-pointer">Home</Link>
                     <Link href="/allnotes" className="font-semibold cursor-pointer">Notes</Link>
                     <Link href="/sellnotes" className="font-semibold cursor-pointer">Sell Notes</Link>
-                    <span className="font-semibold cursor-pointer">Dashboard</span>
+                    <Link href="/dashboard" className="font-semibold cursor-pointer">Dashboard</Link>
                     <span
                         className="font-semibold cursor-pointer"
                         onClick={() => setIsDialogOpen(!isDialogOpen)}
@@ -181,8 +219,8 @@ function Header() {
             {/* ✅ Mobile Sidebar Overlay */}
             <div
                 className={`w-[100vw] fixed right-0 top-0 inset-0 z-50 transition-all duration-500 ease-in-out overflow-x-hidden ${isSidebarOpen
-                        ? "translate-x-0 bg-black/40 backdrop-blur-sm pointer-events-auto"
-                        : "translate-x-full bg-transparent pointer-events-none"
+                    ? "translate-x-0 bg-black/40 backdrop-blur-sm pointer-events-auto"
+                    : "translate-x-full bg-transparent pointer-events-none"
                     }`}
                 onClick={() => setIsSidebarOpen(false)}
             >
@@ -213,7 +251,7 @@ function Header() {
                             <Link href="/sellnotes" onClick={() => setIsSidebarOpen(false)}>Sell Notes</Link>
                         </li>
                         <li>
-                            <Link href="#" onClick={() => setIsSidebarOpen(false)}>Dashboard</Link>
+                            <Link href="/dashboard" onClick={() => setIsSidebarOpen(false)}>Dashboard</Link>
                         </li>
                         <li
                             className="cursor-pointer"
