@@ -19,3 +19,16 @@ export const getNotesById = async (id) => {
         console.error("Error fetching data:", error);
     }
 }
+
+export const fetchCurrentUserNotes = async () => {
+    try {
+        const response = await axios.get("http://localhost:8000/api/v1/notes/my-notes",
+            {
+                withCredentials: true
+            }
+        )
+        return response.data
+    } catch (error) {
+        console.log("Error while fectching notes");
+    }
+}

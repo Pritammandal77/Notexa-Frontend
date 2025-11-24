@@ -208,7 +208,7 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
         <div className="[perspective:1200px] [transform-style:preserve-3d] ">
             <li
                 ref={slideRef}
-                className="flex flex-1 flex-col items-center justify-center relative text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-4 bg-white duration-300 ease-in-out w-[70vmin] xl:w-[27vw] h-auto xl:h-[60vh] mx-[4vmin] cursor-pointer"
+                className="flex flex-1 flex-col items-center justify-center relative border-2 border-gray-300 text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-4 bg-white duration-300 ease-in-out w-[70vmin] xl:w-[27vw] h-auto xl:h-[60vh] mx-[4vmin] cursor-pointer"
                 onClick={() => handleSlideClick(index)}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
@@ -222,7 +222,7 @@ const Slide = ({ note, index, current, handleSlideClick }) => {
                 }}
             >
                 <div
-                    className="absolute top-0 left-0 p-3 w-full h-auto xl:h-full bg-white rounded-[10%] overflow-hidden transition-all duration-150 ease-out"
+                    className="absolute top-0 left-0 p-3 w-full h-auto xl:h-full  rounded-[10%] overflow-hidden transition-all duration-150 ease-out"
                     style={{
                         transform:
                             current === index
