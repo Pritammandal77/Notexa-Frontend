@@ -32,93 +32,143 @@ function page() {
 
     return (
         <>
-            <div className='w-[100vw] min-h-[100vh] h-auto flex flex-col md:flex-row pt-17 '>
-                <div className='w-full md:w-[30%] xl:w-[25%] h-[100vh] bg-orange-100 p-3 fixed top-0 pt-20'>
-                    <div className='flex items-center justify-center gap-8'>
-                        <div className="relative h-20 w-20 md:w-25 md:h-25">
-                            {
-                                user?.profilePicture &&
+            <div className="min-h-screen w-full bg-orange-50 pt-18 xl:pt-0">
+
+                {/* LEFT SIDEBAR */}
+                <div className="
+        xl:fixed xl:top-0 xl:left-0 
+        w-full h-[80px] md:h-[90px] xl:h-screen
+        xl:w-[25%] 
+        bg-orange-100 
+        p-3 md:p-4 
+        xl:pt-20 
+        border-b xl:border-b-0 xl:border-r 
+        border-orange-200 
+        z-20 
+        flex items-center justify-center xl:block
+    ">
+
+                    <div className="flex items-center justify-center md:gap-6 gap-3 md:flex-row xl:flex-row">
+
+                        {/* Profile Image */}
+                        <div className="relative h-14 w-14 md:h-20 md:w-20">
+                            {user?.profilePicture && (
                                 <Image
                                     src={user.profilePicture}
-                                    alt="Banner"
+                                    alt="Profile"
                                     fill
                                     className="object-cover rounded-full"
                                 />
-                            }
+                            )}
                         </div>
-                        <div>
-                            <p className='text-[]18px'>
+
+                        {/* User Info */}
+                        <div className="text-center xl:text-left">
+                            <p className="text-sm md:text-lg font-semibold text-gray-800">
                                 {user?.fullName}
                             </p>
-                            <p>
+                            <p className="text-xs md:text-sm text-gray-600 truncate max-w-[200px]">
                                 {user?.email}
                             </p>
                         </div>
+
+                    </div>
+
+                    <div>
+                        <div>
+                            <h1>Notes uploaded</h1>
+                            <p>5</p>
+                        </div>
                     </div>
                 </div>
 
-                <div className='w-full md:w-[80%] xl:w-[75%] h-auto absolute top-0 right-0 pt-20'>
+                {/* RIGHT CONTENT */}
+                <div className="
+        pt-[90px] 
+        xl:pt-20 
+        pb-14 
+        ml-0 
+        xl:ml-[25%]
+    ">
 
-                    <div className='p-4 text-3xl'>
-                        <h1>Notes</h1>
+                    {/* Heading */}
+                    <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
+                        Notes
                     </div>
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full px-7'>
-                        {
-                            currUserNotes &&
-                            currUserNotes.map((data, index) => (
-                                <div
-                                    key={data._id}
-                                    className="w-[95%] xl:w-[90%] h-auto xl:h-[60vh] bg-orange-50 flex flex-1 flex-col items-center justify-center relative border-1 border-orange-100 text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-4 duration-300 ease-in-out mx-[4vmin] cursor-pointer"
-                                >
-                                    <div
-                                        className="absolute top-0 left-0 p-3 w-full h-auto xl:h-full  rounded-[10%] overflow-hidden transition-all duration-150 ease-out"
-                                    >
+                    {/* Notes Grid */}
+                    <div className="
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            xl:grid-cols-3 
+            gap-4 md:gap-6 
+            px-4 md:px-6
+        ">
 
-                                        <div className="w-full h-40 xl:h-[50%] overflow-hidden rounded-xl">
-                                            <Image
-                                                src={data?.notesSample1}
-                                                alt={data.title || "note image"}
-                                                width={500}
-                                                height={100}
-                                                className="w-[100%] h-[100%] mx-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105"
-                                            />
-                                        </div>
+                        {currUserNotes && currUserNotes.map((data) => (
+                            <div
+                                key={data._id}
+                                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-4 flex flex-col justify-between min-h-[340px]"
+                            >
 
-                                        <div className="flex flex-col gap-5">
-                                            <div className="px-2">
-                                                <h2 className="text-xl md:text-3xl font-semibold mb-2 text-orange-500">{data.title}</h2>
-                                                <p className="text-[16px] text-gray-700 mt-2">
-                                                    <span className="font-medium">Subject:</span> {data.subject}
-                                                </p>
-                                                <p className="text-[16px] text-gray-700">
-                                                    <span className="font-medium">Seller:</span> {data.seller?.fullName}
-                                                </p>
-                                                <p className="text-xl font-semibold text-orange-400 mt-2">
-                                                    @just ₹{data.price}
-                                                </p>
-                                            </div>
-                                            <div className="flex justify-center">
-                                                <Link href={`/notes/${data._id}`}>
-                                                    <button className="w-full px-6 py-3 cursor-pointer bg-orange-500 text-black font-semibold rounded-xl shadow-md hover:bg-orange-600 transition" >
-                                                        Read More
-                                                    </button>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
+                                {/* NOTE IMAGE */}
+                                <div className="w-full h-36 md:h-40 overflow-hidden rounded-xl">
+                                    <Image
+                                        src={data?.notesSample1}
+                                        alt={data.title || "note"}
+                                        width={600}
+                                        height={300}
+                                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                    />
                                 </div>
-                            ))
 
-                        }
+                                {/* CONTENT */}
+                                <div className="mt-4 flex flex-col justify-between flex-1">
+
+                                    <div>
+                                        <h2 className="text-xl md:text-2xl font-bold text-orange-500">
+                                            {data.title}
+                                        </h2>
+
+                                        <p className="text-sm md:text-md text-gray-700 mt-2">
+                                            <span className="font-medium">Subject:</span> {data.subject}
+                                        </p>
+
+                                        <p className="text-sm md:text-md text-gray-700">
+                                            <span className="font-medium">Seller:</span> {data.seller?.fullName}
+                                        </p>
+
+                                        <p className="text-xl md:text-2xl font-bold text-orange-400 mt-2">
+                                            ₹{data.price}
+                                        </p>
+                                    </div>
+
+                                    <Link href={`/notes/${data._id}`}>
+                                        <button className="
+                                mt-4 w-full px-4 py-2 
+                                bg-orange-500 text-white 
+                                text-sm md:text-base
+                                font-semibold 
+                                rounded-xl 
+                                hover:bg-orange-600 transition
+                            ">
+                                            Read More
+                                        </button>
+                                    </Link>
+                                </div>
+
+                            </div>
+                        ))}
                     </div>
 
-                    {
-                        isLoading &&
-                        <Loader1 />
-                    }
+                    {isLoading && <Loader1 />}
                 </div>
+
             </div>
+
+
+
         </>
     );
 }
