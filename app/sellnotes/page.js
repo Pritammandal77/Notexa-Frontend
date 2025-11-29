@@ -222,6 +222,7 @@
 
 
 "use client";
+import Loader2 from "@/components/Loader/Loader2/Loader2";
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "sonner";
@@ -238,13 +239,23 @@ function Page() {
         samples: [],
     });
 
+    const [isLoading, setIsLoading] = useState(true)
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
+    // const handleSampleChange = (e) => {
+    //     const files = Array.from(e.target.files);
+    //     setForm({ ...form, samples: files });
+    // };
+
+    const [sampleImages, setSampleImages] = useState([]);
+
     const handleSampleChange = (e) => {
         const files = Array.from(e.target.files);
-        setForm({ ...form, samples: files });
+        const previews = files.map((file) => URL.createObjectURL(file));
+        setSampleImages(previews);
     };
 
     const handleNotesFileSize = (e) => {
@@ -283,11 +294,12 @@ function Page() {
             data.append("className", form.className);
             data.append("pagesCount", form.pagesCount);
             data.append("description", form.description);
-            data.append("category", "form.category")
+            data.append("category", form.category)
             if (form.notesFile) data.append("notesFile", form.notesFile);
             if (form.samples.length > 0)
                 form.samples.forEach((img) => data.append("samples", img));
 
+            setIsLoading(true)
             const response = await axios.post(
                 "http://localhost:8000/api/v1/notes/upload-notes",
                 data,
@@ -296,6 +308,7 @@ function Page() {
                     headers: { "Content-Type": "multipart/form-data" },
                 }
             );
+            setIsLoading(false)
 
             toast.success("Notes uploaded successfully!");
             console.log("Uploaded:", response.data);
@@ -304,6 +317,10 @@ function Page() {
             toast.error(error.response?.data?.message || "Upload failed!");
         }
     };
+
+
+
+
 
     return (
         <div className="min-h-screen pt-20 bg-gradient-to-b from-orange-50 to-orange-100 py-10 px-4 flex justify-center">
@@ -381,12 +398,11 @@ function Page() {
                         </div>
                         <div className="w-[47%]">
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                Class
+                                Class (optional)
                             </label>
                             <input
                                 type="text"
                                 name="className"
-                                required
                                 placeholder="e.g. class 12"
                                 className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
                                 onChange={handleChange}
@@ -463,6 +479,18 @@ function Page() {
                             onChange={handleSampleChange}
                             className="w-full border border-orange-200 p-2 rounded-lg cursor-pointer bg-orange-50 hover:bg-orange-100 transition"
                         />
+                        {sampleImages.length > 0 && (
+                            <div className="mt-3 flex gap-3 flex-wrap">
+                                {sampleImages.map((src, i) => (
+                                    <img
+                                        key={i}
+                                        src={src}
+                                        alt={`sample-${i}`}
+                                        className="w-auto h-24 object-cover rounded-lg border border-orange-200 shadow-sm"
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     <div>
@@ -487,6 +515,14 @@ function Page() {
                     </button>
                 </form>
             </div >
+
+            {
+                isLoading &&
+                <div className="absolute top-0 right-0 w-full h-full flex items-center justify-center ">
+                    <Loader2 />
+                </div>
+            }
+
         </div >
     );
 }

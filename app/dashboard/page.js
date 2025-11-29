@@ -71,15 +71,29 @@ function page() {
                                 {user?.email}
                             </p>
                         </div>
-
                     </div>
 
-                    <div>
-                        <div>
-                            <h1>Notes uploaded</h1>
-                            <p>5</p>
+                    <div className='grid grid-cols-2 w-[100%] gap-3 mt-10'>
+                        <div className='py-3 w-[90%] bg-orange-50 rounded-2xl p-3'>
+                            <h1 className='font-semibold'>Notes uploaded</h1>
+                            <p className='text-[25px] font-bold text-orange-500 text-center mt-2'>+5</p>
+                        </div>
+                        <div className='py-3 w-[90%] bg-orange-50 rounded-2xl p-3'>
+                            <h1 className='font-semibold'>Notes purchased</h1>
+                                                      <p className='text-[25px] font-bold text-orange-500 text-center mt-2'>+5</p>
+                        </div>
+                        <div className='py-3 w-[90%] bg-orange-50 rounded-2xl p-3'>
+                            <h1 className='font-semibold'>Total downloads</h1>
+                                                      <p className='text-[25px] font-bold text-orange-500 text-center mt-2'>+5</p>
+
+                        </div>
+                        <div className='py-3 w-[90%] bg-orange-50 rounded-2xl p-3'>
+                            <h1 className='font-semibold'>Notes uploaded</h1>
+                                                       <p className='text-[25px] font-bold text-orange-500 text-center mt-2'>+5</p>
+
                         </div>
                     </div>
+
                 </div>
 
                 {/* RIGHT CONTENT */}
