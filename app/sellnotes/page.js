@@ -239,7 +239,7 @@ function Page() {
         samples: [],
     });
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -514,12 +514,18 @@ function Page() {
                         Upload Notes
                     </button>
                 </form>
-            </div >
+            </div>
 
             {
                 isLoading &&
-                <div className="absolute top-0 right-0 w-full h-full flex items-center justify-center ">
+                <div className="fixed top-0 right-0 w-full h-full flex items-center justify-center bg-orange-50 flex-col">
                     <Loader2 />
+                    <p className="text-[20px] text-center">
+                        Uploading, please wait.....
+                        <br />
+                        <span className="text-[18px] text-gray-600">Do not close or refresh the page</span>
+                    </p>
+
                 </div>
             }
 
