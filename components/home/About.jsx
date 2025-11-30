@@ -1,11 +1,13 @@
 "use client";
+import MotionWrapper from '@/utils/MotionWrapper';
+import ScaleWrapper from '@/utils/ScaleWrapper';
 import { BookOpen, DollarSign, Search, Upload } from 'lucide-react';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 
 
 function About() {
-   
+
     return (
         <>
             {/* <div className='flex flex-col xl:flex-row py-30'>
@@ -54,76 +56,79 @@ function About() {
             </div> */}
 
             <div className='flex flex-col xl:flex-row justify-center py-30 relative'>
-                {/* LEFT SIDE */}
-                <div className='w-full xl:w-[45vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
-                    {/* Background decorative circles */}
+                <MotionWrapper direction='-x'>
+                    <div className='w-full xl:w-[45vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
+                        {/* Background decorative circles */}
 
-                    {/* Heading */}
-                    <h1 className='text-4xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
-                        Empowering Students <br />
-                        <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600'>
-                            Through Notes
-                        </span>
-                    </h1>
+                        {/* Heading */}
+                        <h1 className='text-4xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
+                            Empowering Students <br />
+                            <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600'>
+                                Through Notes
+                            </span>
+                        </h1>
 
-                    {/* Tagline */}
-                    <p className='text-lg md:text-xl text-gray-700 leading-relaxed'>
-                        Notexa connects learners and toppers by creating a single platform
-                        where premium quality handwritten notes meet accessibility and affordability.
-                    </p>
+                        {/* Tagline */}
+                        <p className='text-lg md:text-xl text-gray-700 leading-relaxed'>
+                            Notexa connects learners and toppers by creating a single platform
+                            where premium quality handwritten notes meet accessibility and affordability.
+                        </p>
 
 
-                    {/* Highlights */}
-                    <div className="mt-6">
-                        <h4 className="text-xl font-semibold text-gray-800 mb-3 font-playfair">
-                            Why Notexa?
-                        </h4>
-                        <ul className="space-y-3">
-                            <li className="flex items-center gap-3 group">
-                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                    <span className="font-semibold">Affordable</span> notes starting at just ₹29
-                                </span>
-                            </li>
+                        {/* Highlights */}
+                        <div className="mt-6">
+                            <h4 className="text-xl font-semibold text-gray-800 mb-3 font-playfair">
+                                Why Notexa?
+                            </h4>
+                            <ul className="space-y-3">
+                                <li className="flex items-center gap-3 group">
+                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                        <span className="font-semibold">Affordable</span> notes starting at just ₹29
+                                    </span>
+                                </li>
 
-                            <li className="flex items-center gap-3 group">
-                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                    Created by <span className="font-semibold">toppers & students</span> like you
-                                </span>
-                            </li>
+                                <li className="flex items-center gap-3 group">
+                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                        Created by <span className="font-semibold">toppers & students</span> like you
+                                    </span>
+                                </li>
 
-                            <li className="flex items-center gap-3 group">
-                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                    <span className="font-semibold">Verified & high-quality</span> content
-                                </span>
-                            </li>
+                                <li className="flex items-center gap-3 group">
+                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                        <span className="font-semibold">Verified & high-quality</span> content
+                                    </span>
+                                </li>
 
-                            <li className="flex items-center gap-3 group">
-                                <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                    Available in <span className="font-semibold">handwritten or typed</span> formats
-                                </span>
-                            </li>
-                        </ul>
+                                <li className="flex items-center gap-3 group">
+                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+                                        Available in <span className="font-semibold">handwritten or typed</span> formats
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        {/* CTA buttons */}
+                        <div className='flex gap-4 pt-4'>
+                            <button className='px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition'>
+                                Explore Notes
+                            </button>
+                            <button className='px-6 py-3 border-2 border-orange-400 text-orange-500 font-semibold rounded-xl hover:bg-orange-50 transition'>
+                                Upload Yours
+                            </button>
+                        </div>
                     </div>
+                </MotionWrapper>
 
-
-                    {/* CTA buttons */}
-                    <div className='flex gap-4 pt-4'>
-                        <button className='px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition'>
-                            Explore Notes
-                        </button>
-                        <button className='px-6 py-3 border-2 border-orange-400 text-orange-500 font-semibold rounded-xl hover:bg-orange-50 transition'>
-                            Upload Yours
-                        </button>
-                    </div>
-                </div>
 
                 {/* RIGHT SIDE (untouched) */}
-                <div className='w-full xl:w-[45vw] hidden xl:flex items-center justify-center'>
+                <div className='w-full xl:w-[45vw] hidden xl:flex items-center justify-center '>
                     <div className="w-[75%] px-2 md:px-0">
+                    <ScaleWrapper>
                         <div className="relative">
                             <div
                                 className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
@@ -159,6 +164,7 @@ function About() {
                                 </div>
                             </div>
                         </div>
+                    </ScaleWrapper>
                     </div>
                 </div>
 
