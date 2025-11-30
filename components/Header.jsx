@@ -153,8 +153,6 @@ function Header() {
         }
     };
 
-
-
     const [userData, setUserData] = useState()
     useEffect(() => {
         async function getUser() {

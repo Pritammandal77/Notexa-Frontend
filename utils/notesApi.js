@@ -32,3 +32,16 @@ export const fetchCurrentUserNotes = async () => {
         console.log("Error while fectching notes");
     }
 }
+
+export const deleteNotes = async (notesId) => {
+    try {
+        const res = await axios.delete(`http://localhost:8000/api/v1/notes/delete-notes/${notesId}`,
+            {
+                withCredentials: true
+            }
+        )
+        return res.data
+    } catch (error) {
+        console.log("Error while deleting notes");
+    }
+}
