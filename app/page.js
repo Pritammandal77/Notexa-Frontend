@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import About from "@/components/home/About";
+import Faqs from "@/components/home/Faqs";
 import Hero from "@/components/home/Hero";
 import PopularNotes from "@/components/home/PopularNotes";
 import Working from "@/components/home/Working";
@@ -16,6 +17,7 @@ export default function Home() {
         <Working />
         <PopularNotes />
         <TestimonialsSection />
+        <Faqs/>
       </div>
     </>
   );
