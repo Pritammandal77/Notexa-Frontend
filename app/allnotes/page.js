@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 function page() {
 
     const allNotes = useSelector((state) => state.notes.allNotes);
-    console.log("sssssssssssssssssssssss", allNotes)
+    console.log("all notes", allNotes)
 
     return (
         <>

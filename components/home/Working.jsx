@@ -84,6 +84,7 @@
 import React from "react";
 import { Upload, Search, DollarSign, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
+import MotionWrapper from "@/utils/MotionWrapper";
 
 const steps = [
     {
@@ -136,49 +137,47 @@ export default function Working() {
                         const Icon = step.icon;
                         const isLeft = index % 2 === 0;
                         return (
-                            <motion.div
-                                key={step.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6 }}
-                                viewport={{ once: true }}
-                                className={`flex items-center md:justify-between relative ${isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                                    }`}
-                            >
-                                {/* Connector dot */}
+                            <MotionWrapper key={step.id}>
                                 <div
-                                    className={`absolute md:top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 left-[10px] md:w-6 md:h-6 w-4 h-4 bg-orange-500 border-[4px] border-white rounded-full shadow-md`}
-                                ></div>
-
-                                {/* Step Card */}
-                                <div
-                                    className={`bg-white shadow-xl rounded-2xl p-8 w-[90%] md:w-[45%] border relative right-2 border-orange-100 hover:scale-[1.03] hover:shadow-2xl transition-all duration-300 ${isLeft
-                                        ? "md:pr-10 md:text-right md:ml-0 ml-10"
-                                        : "md:pl-10 md:text-left ml-10"
+                                    className={`flex items-center md:justify-between relative ${isLeft ? "md:flex-row" : "md:flex-row-reverse"
                                         }`}
                                 >
+
+                                    {/* Connector dot */}
                                     <div
-                                        className={`flex items-center gap-3 mb-3 ${isLeft ? "md:justify-end" : ""
+                                        className={`absolute md:top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 left-[10px] md:w-6 md:h-6 w-4 h-4 bg-orange-500 border-[4px] border-white rounded-full shadow-md`}
+                                    ></div>
+
+                                    {/* Step Card */}
+                                    <div
+                                        className={`bg-white shadow-xl rounded-2xl p-8 w-[90%] md:w-[45%] border relative right-2 border-orange-100 hover:scale-[1.03] hover:shadow-2xl transition-all duration-300 ${isLeft
+                                            ? "md:pr-10 md:text-right md:ml-0 ml-10"
+                                            : "md:pl-10 md:text-left ml-10"
                                             }`}
                                     >
-                                        <div className="p-3 px-4 bg-orange-100 font-bold rounded-full text-orange-600 shadow-inner">
-                                            Step {step.id}
-                                            {/* <Icon size={26} /> */}
+                                        <div
+                                            className={`flex items-center gap-3 mb-3 ${isLeft ? "md:justify-end" : ""
+                                                }`}
+                                        >
+                                            <div className="p-3 px-4 bg-orange-100 font-bold rounded-full text-orange-600 shadow-inner">
+                                                Step {step.id}
+                                                {/* <Icon size={26} /> */}
+                                            </div>
+                                            <h3 className="text-xl md:text-2xl font-semibold text-gray-900">
+                                                {step.title}
+                                            </h3>
                                         </div>
-                                        <h3 className="text-xl md:text-2xl font-semibold text-gray-900">
-                                            {step.title}
-                                        </h3>
+                                        <p className="text-gray-600 leading-relaxed text-base md:text-[1.05rem]">
+                                            {step.desc}
+                                        </p>
+                                        <p
+                                            className={`mt-4 font-semibold text-orange-500 ${isLeft ? "md:text-right" : "md:text-left"
+                                                }`}
+                                        >
+                                        </p>
                                     </div>
-                                    <p className="text-gray-600 leading-relaxed text-base md:text-[1.05rem]">
-                                        {step.desc}
-                                    </p>
-                                    <p
-                                        className={`mt-4 font-semibold text-orange-500 ${isLeft ? "md:text-right" : "md:text-left"
-                                            }`}
-                                    >
-                                    </p>
                                 </div>
-                            </motion.div>
+                            </MotionWrapper>
                         );
                     })}
                 </div>

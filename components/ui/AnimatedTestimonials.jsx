@@ -53,7 +53,7 @@ export const AnimatedTestimonials = ({
                     Hear from people who love using Notexa.
                 </p>
             </div>
-            <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
+            <div className="relative grid grid-cols-1 gap-8 xl:gap-20 md:grid-cols-2">
                 {/* Image Section */}
                 <div>
                     <div className="relative h-80 w-full">
@@ -118,7 +118,7 @@ export const AnimatedTestimonials = ({
                         <p className="text-sm text-gray-500 ">
                             {activeTestimonial.designation}
                         </p>
-                        <motion.p className="mt-8 text-lg text-gray-500 ">
+                        <motion.p className="mt-4 xl:mt-8 text-lg text-gray-500 ">
                             {activeTestimonial.quote.split(" ").map((word, index) => (
                                 <motion.span
                                     key={index}
@@ -138,7 +138,7 @@ export const AnimatedTestimonials = ({
                     </motion.div>
 
                     {/* Buttons */}
-                    <div className="flex gap-4 pt-12 md:pt-0">
+                    <div className="flex gap-4 pt-6 md:pt-0">
                         <button
                             onClick={handlePrev}
                             className="group/button flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"

@@ -254,9 +254,21 @@ function Page() {
 
     const handleSampleChange = (e) => {
         const files = Array.from(e.target.files);
-        const previews = files.map((file) => URL.createObjectURL(file));
+
+        // merge old + new selected files
+        const allFiles = [...form.samples, ...files];
+
+        // limit to max 2
+        const limitedFiles = allFiles.slice(0, 2);
+
+        // update form with the File objects
+        setForm({ ...form, samples: limitedFiles });
+
+        // generate preview URLs
+        const previews = limitedFiles.map((file) => URL.createObjectURL(file));
         setSampleImages(previews);
     };
+
 
     const handleNotesFileSize = (e) => {
         const file = e.target.files[0];
@@ -317,8 +329,6 @@ function Page() {
             toast.error(error.response?.data?.message || "Upload failed!");
         }
     };
-
-
 
 
 

@@ -10,52 +10,7 @@ function About() {
 
     return (
         <>
-            {/* <div className='flex flex-col xl:flex-row py-30'>
-                <div className='w-full xl:w-[50vw]'>
-
-                </div>
-                <div className='w-full xl:w-[50vw] flex items-center justify-center'>
-                    <div className="w-[75%] px-2 md:px-0">
-                        <div className="relative">
-                            <div
-                                className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
-                                <div className="bg-white rounded-2xl p-8 transform -rotate-6 shadow-xl">
-                                    <div className="text-center flex flex-col items-center">
-                                        <div className="text-7xl mb-6">
-                                            <Image
-                                                src="/notesLogo.png"
-                                                alt="Hero image"
-                                                width={40}
-                                                height={40}
-                                            />
-                                        </div>
-                                        <h3 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
-                                            Get Premium Quality Self Made notes
-                                        </h3>
-                                        <p className="text-gray-600 text-lg mb-6">
-                                            Notes from top students & professionals
-                                        </p>
-                                        <div className="grid grid-cols-2 gap-4 text-center">
-                                            <div>
-                                                <div className="text-sm text-gray-500">
-
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="text-sm text-gray-500">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-
-            <div className='flex flex-col xl:flex-row justify-center py-30 relative'>
+            <div className='flex flex-col xl:flex-row justify-center xl:py-30 pb-20 xl:pb-30 relative'>
                 <MotionWrapper direction='-x'>
                     <div className='w-full xl:w-[45vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
                         {/* Background decorative circles */}

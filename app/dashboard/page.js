@@ -26,7 +26,7 @@ function page() {
         async function fetchNotes() {
             setIsLoading(true);
             let data = await fetchCurrentUserNotes();
-            console.log("currUser notes", data)
+            console.log("currUser notes", data.data.length)
             setCurrUserNotes(data.data)
             setIsLoading(false)
         }
@@ -89,7 +89,14 @@ function page() {
                     <div className='grid grid-cols-2 w-[100%] gap-3 mt-10'>
                         <div className='py-3 w-[90%] bg-orange-50 rounded-2xl p-3'>
                             <h1 className='font-semibold'>Notes uploaded</h1>
-                            <p className='text-[25px] font-bold text-orange-500 text-center mt-2'>+5</p>
+                            <p className='text-[25px] font-bold text-orange-500 text-center mt-2'>
+                                {
+                                    currUserNotes
+                                        ? currUserNotes.length
+                                        : <span>loading...</span>
+                                }
+                            </p>
+
                         </div>
                         <div className='py-3 w-[90%] bg-orange-50 rounded-2xl p-3'>
                             <h1 className='font-semibold'>Notes purchased</h1>
@@ -195,7 +202,7 @@ function page() {
                                 text-sm md:text-base
                                 font-semibold 
                                 rounded-xl 
-                                hover:bg-orange-600 transition
+                                hover:bg-orange-600 transition cursor-pointer
                             ">
                                             Read More
                                         </button>
