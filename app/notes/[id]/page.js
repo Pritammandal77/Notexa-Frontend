@@ -37,16 +37,45 @@ import {
     Calendar,
     User,
     Star,
+    ChevronRightCircleIcon,
+    ChevronLeftCircleIcon,
+    ChevronLeft,
+    ChevronRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 function Page() {
     const { id } = useParams();
     const [notesData, setNotesData] = useState(null);
 
+
+    const [currentSlide, setCurrentSlide] = React.useState(0);
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev === 1 ? 0 : prev + 1));
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev === 0 ? 1 : prev - 1));
+    };
+
+    // Auto slide every 3s
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+
+
     useEffect(() => {
         async function fetchNote() {
             const res = await getNotesById(id);
             setNotesData(res?.data);
+            console.log(res)
         }
         fetchNote();
     }, [id]);
@@ -86,15 +115,156 @@ function Page() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-20">
+        // <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-20">
 
-            {/* ===== Header ===== */}
+        //     <div className="max-w-7xl mx-auto mb-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+        //         <div>
+        //             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+        //                 {title}
+        //             </h1>
+        //             <p className="text-gray-500 text-sm mt-2">
+        //                 {subject} • Class {className}
+        //             </p>
+        //         </div>
+
+        //         <button
+        //             onClick={handleDownload}
+        //             className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl text-white shadow-lg w-full sm:w-auto"
+        //         >
+        //             <Download size={18} />
+        //             Download Notes
+        //         </button>
+        //     </div>
+
+        //     <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-[1.4fr_1fr] gap-8 items-start">
+
+        //         <div className="flex flex-col gap-6">
+
+        //             {[notesSample1, notesSample2].map((src, i) => (
+        //                 <div
+        //                     key={i}
+        //                     className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4"
+        //                 >
+        //                     <div className="w-full h-[400px] bg-orange-50 rounded-xl flex items-center justify-center overflow-hidden">
+        //                         <img
+        //                             src={src}
+        //                             alt={`Sample ${i + 1}`}
+        //                             className="w-full h-full object-contain"
+        //                         />
+        //                     </div>
+        //                 </div>
+        //             ))}
+        //         </div>
+
+        //         <div className="bg-white rounded-2xl shadow-xl border border-orange-100 p-6 md:p-7 lg:sticky lg:top-8 max-h-[90vh] flex flex-col">
+
+        //             <div className="flex items-center gap-4 border-b border-orange-100 pb-4">
+        //                 <img
+        //                     src={seller.profilePicture}
+        //                     alt={seller.fullName}
+        //                     className="w-14 h-14 rounded-full object-cover border border-orange-400"
+        //                 />
+        //                 <div className="min-w-0">
+        //                     <h3 className="font-semibold text-gray-800 truncate">
+        //                         {seller.fullName}
+        //                     </h3>
+        //                     <p className="text-sm text-gray-500 truncate">
+        //                         {seller.email}
+        //                     </p>
+        //                 </div>
+        //             </div>
+
+        //             <div className="grid grid-cols-2 gap-4 text-sm text-gray-700 py-6">
+        //                 <div className="flex items-center gap-2">
+        //                     <FileText className="text-orange-500 w-4 h-4" />
+        //                     {pagesCount} pages
+        //                 </div>
+        //                 <div className="flex items-center gap-2">
+        //                     <Eye className="text-orange-500 w-4 h-4" />
+        //                     {viewsCount} views
+        //                 </div>
+        //                 <div className="flex items-center gap-2">
+        //                     <Download className="text-orange-500 w-4 h-4" />
+        //                     {totalDownloads} downloads
+        //                 </div>
+        //                 <div className="flex items-center gap-2">
+        //                     <Calendar className="text-orange-500 w-4 h-4" />
+        //                     {formattedDate}
+        //                 </div>
+        //             </div>
+
+        //             <div className="bg-orange-50 border border-orange-200 rounded-xl p-5 mb-6">
+        //                 <div className="flex justify-between items-center">
+        //                     <span className="text-gray-700 font-medium">Price</span>
+        //                     <span className="text-3xl font-bold text-orange-600">
+        //                         ₹{price}
+        //                     </span>
+        //                 </div>
+
+        //                 <button
+        //                     onClick={handleDownload}
+        //                     className="w-full mt-5 py-3 rounded-xl bg-orange-500 text-white font-medium shadow-md hover:bg-orange-600 transition"
+        //                 >
+        //                     Get This Note
+        //                 </button>
+        //             </div>
+
+        //             <div className="flex flex-col flex-grow">
+        //                 <h2 className="text-lg font-semibold text-gray-800 mb-3">
+        //                     About This Note
+        //                 </h2>
+
+        //                 <div className="overflow-y-auto max-h-[200px] pr-2 text-sm text-gray-600 leading-relaxed">
+        //                     {description}
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+
+        //     <div className="max-w-7xl mx-auto mt-14 bg-white rounded-2xl shadow-lg border border-orange-100 p-6 md:p-8">
+
+        //         <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+        //             <Star className="text-orange-500 w-5 h-5" />
+        //             Reviews
+        //         </h2>
+
+        //         {reviews?.length === 0 ? (
+        //             <p className="text-gray-400 text-sm">No reviews yet.</p>
+        //         ) : (
+        //             <div className="space-y-5">
+        //                 {reviews.map((r, i) => (
+        //                     <div
+        //                         key={i}
+        //                         className="flex justify-between gap-4 border-b border-orange-100 pb-4"
+        //                     >
+        //                         <div className="min-w-0 flex-1">
+        //                             <p className="font-medium text-gray-800 truncate">
+        //                                 {r.user}
+        //                             </p>
+        //                             <p className="text-sm text-gray-500 break-words">
+        //                                 {r.comment}
+        //                             </p>
+        //                         </div>
+
+        //                         <span className="text-orange-500 font-semibold whitespace-nowrap">
+        //                             ⭐ {r.rating}
+        //                         </span>
+        //                     </div>
+        //                 ))}
+        //             </div>
+        //         )}
+        //     </div>
+        // </div>
+
+        <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-24 pb-16">
+
+            {/* TOP HEADER */}
             <div className="max-w-7xl mx-auto mb-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    <h1 className="text-4xl font-bold text-gray-900 drop-shadow-sm">
                         {title}
                     </h1>
-                    <p className="text-gray-500 text-sm mt-2">
+                    <p className="text-gray-500 text-sm mt-1">
                         {subject} • Class {className}
                     </p>
                 </div>
@@ -108,49 +278,25 @@ function Page() {
                 </button>
             </div>
 
-            {/* ===== Main Layout ===== */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-[1.4fr_1fr] gap-8 items-start">
+            {/* 3 TOP BOXES */}
+            <div className="max-w-7xl h-[400px] mx-auto grid grid-cols-1 xl:grid-cols-3  gap-8 items-start p-3">
 
-                {/* ===== LEFT - Images ===== */}
-                <div className="flex flex-col gap-6">
-
-                    {[notesSample1, notesSample2].map((src, i) => (
-                        <div
-                            key={i}
-                            className="bg-white rounded-2xl shadow-lg border border-orange-100 p-4"
-                        >
-                            <div className="w-full h-[400px] bg-orange-50 rounded-xl flex items-center justify-center overflow-hidden">
-                                <img
-                                    src={src}
-                                    alt={`Sample ${i + 1}`}
-                                    className="w-full h-full object-contain"
-                                />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* ===== RIGHT - Details Panel ===== */}
-                <div className="bg-white rounded-2xl shadow-xl border border-orange-100 p-6 md:p-7 lg:sticky lg:top-8 max-h-[90vh] flex flex-col">
-
-                    {/* Seller */}
-                    <div className="flex items-center gap-4 border-b border-orange-100 pb-4">
+                {/* 1️⃣ SELLER + BUY BOX */}
+                <div
+                    className="bg-white/80 h-full backdrop-blur-xl border border-orange-200 shadow-xl rounded-2xl p-6 sticky top-8 "
+                >
+                    <div className="flex items-center gap-4 pb-4 border-b border-orange-100">
                         <img
                             src={seller.profilePicture}
                             alt={seller.fullName}
-                            className="w-14 h-14 rounded-full object-cover border border-orange-400"
+                            className="w-16 h-16 rounded-full object-cover border-2 border-orange-400 shadow-md"
                         />
-                        <div className="min-w-0">
-                            <h3 className="font-semibold text-gray-800 truncate">
-                                {seller.fullName}
-                            </h3>
-                            <p className="text-sm text-gray-500 truncate">
-                                {seller.email}
-                            </p>
+                        <div>
+                            <p className="font-bold text-gray-800">{seller.fullName}</p>
+                            <p className="text-sm text-gray-500">{seller.email}</p>
                         </div>
                     </div>
 
-                    {/* Stats */}
                     <div className="grid grid-cols-2 gap-4 text-sm text-gray-700 py-6">
                         <div className="flex items-center gap-2">
                             <FileText className="text-orange-500 w-4 h-4" />
@@ -170,70 +316,112 @@ function Page() {
                         </div>
                     </div>
 
-                    {/* Price Section */}
-                    <div className="bg-orange-50 border border-orange-200 rounded-xl p-5 mb-6">
+                    <div className="bg-orange-50 border border-orange-200 rounded-xl p-5 shadow-inner">
                         <div className="flex justify-between items-center">
                             <span className="text-gray-700 font-medium">Price</span>
-                            <span className="text-3xl font-bold text-orange-600">
-                                ₹{price}
-                            </span>
+                            <span className="text-3xl font-bold text-orange-600">₹{price}</span>
                         </div>
 
                         <button
                             onClick={handleDownload}
-                            className="w-full mt-5 py-3 rounded-xl bg-orange-500 text-white font-medium shadow-md hover:bg-orange-600 transition"
+                            className="w-full mt-5 py-3 rounded-xl bg-orange-500 text-white font-semibold shadow-md hover:bg-orange-600 transition"
                         >
                             Get This Note
                         </button>
                     </div>
+                </div>
 
-                    {/* About Section */}
-                    <div className="flex flex-col flex-grow">
-                        <h2 className="text-lg font-semibold text-gray-800 mb-3">
-                            About This Note
-                        </h2>
+                <div className="relative bg-white/70 h-[400px] rounded-2xl shadow-lg border border-orange-100 p-4 backdrop-blur-xl overflow-hidden xl:col-span-2">
 
-                        <div className="overflow-y-auto max-h-[200px] pr-2 text-sm text-gray-600 leading-relaxed">
-                            {description}
+                    <div
+                        className="w-full h-full flex transition-transform duration-700"
+                        style={{
+                            transform: `translateX(-${currentSlide * 100}%)`,
+                        }}
+                    >
+                        <div className="min-w-full h-[360px] bg-orange-50 rounded-xl flex items-center justify-center overflow-hidden shadow-inner">
+                            <img
+                                src={notesSample1}
+                                alt="Sample 1"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+
+                        <div className="min-w-full h-[360px] bg-orange-50 rounded-xl flex items-center justify-center overflow-hidden shadow-inner">
+                            <img
+                                src={notesSample2}
+                                alt="Sample 2"
+                                className="w-full h-full object-contain"
+                            />
                         </div>
                     </div>
+
+                    <button
+                        onClick={prevSlide}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 bg-orange-300 hover:bg-orange-400 p-2 rounded-full shadow cursor-pointer"
+                    >
+                        <ChevronLeft/>
+                    </button>
+
+                    <button
+                        onClick={nextSlide}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-orange-300 hover:bg-orange-400 p-2 rounded-full shadow cursor-pointer"
+                    >
+                        <ChevronRight/>
+                    </button>
                 </div>
+
             </div>
 
-            {/* ===== Reviews ===== */}
-            <div className="max-w-7xl mx-auto mt-14 bg-white rounded-2xl shadow-lg border border-orange-100 p-6 md:p-8">
+            {/* 2 BOTTOM BOXES */}
+            <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-10 mt-14">
 
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
-                    <Star className="text-orange-500 w-5 h-5" />
-                    Reviews
-                </h2>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white rounded-2xl shadow-xl border border-orange-100 p-8"
+                >
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-4">About This Note</h2>
+                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                        {description}
+                    </p>
+                </motion.div>
 
-                {reviews?.length === 0 ? (
-                    <p className="text-gray-400 text-sm">No reviews yet.</p>
-                ) : (
-                    <div className="space-y-5">
-                        {reviews.map((r, i) => (
-                            <div
-                                key={i}
-                                className="flex justify-between gap-4 border-b border-orange-100 pb-4"
-                            >
-                                <div className="min-w-0 flex-1">
-                                    <p className="font-medium text-gray-800 truncate">
-                                        {r.user}
-                                    </p>
-                                    <p className="text-sm text-gray-500 break-words">
-                                        {r.comment}
-                                    </p>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white rounded-2xl shadow-xl border border-orange-100 p-8"
+                >
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+                        <Star className="text-orange-500 w-5 h-5" />
+                        Reviews
+                    </h2>
+
+                    {reviews?.length === 0 ? (
+                        <p className="text-gray-400 text-sm">No reviews yet.</p>
+                    ) : (
+                        <div className="space-y-5">
+                            {reviews.map((r, i) => (
+                                <div
+                                    key={i}
+                                    className="flex justify-between gap-4 border-b border-orange-100 pb-4"
+                                >
+                                    <div className="min-w-0 flex-1">
+                                        <p className="font-medium text-gray-800 truncate">{r.user}</p>
+                                        <p className="text-sm text-gray-500 break-words">{r.comment}</p>
+                                    </div>
+
+                                    <span className="text-orange-500 font-semibold whitespace-nowrap">
+                                        ⭐ {r.rating}
+                                    </span>
                                 </div>
+                            ))}
+                        </div>
+                    )}
+                </motion.div>
 
-                                <span className="text-orange-500 font-semibold whitespace-nowrap">
-                                    ⭐ {r.rating}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                )}
             </div>
+
         </div>
 
     );

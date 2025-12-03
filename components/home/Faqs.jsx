@@ -2,6 +2,7 @@ import React from 'react';
 import Accordion from '../ui/Accordion';
 
 function Faqs() {
+
     const faqData = [
         {
             title: "What is Notexa?",
@@ -52,13 +53,16 @@ function Faqs() {
 
     return (
         <>
-            <div className='flex flex-col items-center justify-center py-20 font-sans p-4 transition-colors duration-500'>
+            <div className='flex flex-col items-center justify-center py-20 p-4 transition-colors duration-500 rounded-t-[140px]'>
                 <div className='w-full max-w-4xl mx-auto'>
-                    <h1 className='text-5xl font-bold text-orange-500  text-center mb-2'>
-                        Freqently asked questions
+                    <h1 className='text-4xl xl:text-5xl font-extrabold text-black text-center mb-2'>
+                        Freqently Asked {" "}
+                        <span className='text-orange-500'>
+                             Questions
+                        </span>
                     </h1>
                     <p className='text-gray-800  text-center mb-10'>
-                        A production-ready, accessible, and stylish accordion component.
+                        Here are the answers of the quetions you might have
                     </p>
 
                     {/* Here we use the reusable component with our data */}
