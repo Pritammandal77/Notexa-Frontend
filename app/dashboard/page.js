@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { Ellipsis } from 'lucide-react';
 import { toast } from 'sonner';
 
-function page() {
+function Page() {
 
     const user = useSelector((state) => state.user?.currUser?.user)
     const [userData, setUserData] = useState(null)
@@ -224,4 +224,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;
