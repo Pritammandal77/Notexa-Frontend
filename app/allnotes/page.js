@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-function page() {
+function Page() {
 
     const allNotes = useSelector((state) => state.notes.allNotes);
     console.log("all notes", allNotes)
@@ -16,4 +16,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;
