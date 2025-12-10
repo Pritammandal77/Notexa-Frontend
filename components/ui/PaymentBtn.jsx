@@ -71,7 +71,7 @@ function PaymentBtn({ userId, onSuccess }) {
         <button
             type="button"
             onClick={handlePayment}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+            className="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer"
         >
             Pay ₹9 & Upload Notes
         </button>

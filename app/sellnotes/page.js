@@ -225,6 +225,7 @@
 import Loader2 from "@/components/Loader/Loader2/Loader2";
 import PaymentBtn from "@/components/ui/PaymentBtn";
 import axios from "axios";
+import { Ban } from "lucide-react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
@@ -531,7 +532,7 @@ function Page() {
                     </button> */}
 
 
-                    <div className="p-6">
+                    <div className="xl:p-6">
 
                         {!allowed && (
                             <PaymentBtn userId={userId} onSuccess={() => setAllowed(true)} />
@@ -542,10 +543,14 @@ function Page() {
                         <button
                             disabled={!allowed}
                             onClick={uploadNotes}
-                            className={`px-5 py-2 rounded ${allowed ? "bg-green-600 text-white" : "bg-gray-300 text-gray-600"
+                            className={`mt-4 px-5 py-2 flex gap-3 rounded cursor-pointer ${allowed ? "bg-green-600 text-white" : "bg-gray-300 text-gray-600"
                                 }`}
                         >
                             Upload Notes
+                            {
+                                !allowed &&
+                                <Ban />
+                            }
                         </button>
 
                     </div>
