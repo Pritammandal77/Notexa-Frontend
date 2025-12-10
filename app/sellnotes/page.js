@@ -223,11 +223,18 @@
 
 "use client";
 import Loader2 from "@/components/Loader/Loader2/Loader2";
+import PaymentBtn from "@/components/ui/PaymentBtn";
 import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
 function Page() {
+
+    const user = useSelector((state) => state.user?.currUser?.user)
+    const userId = user?._id; // from auth context / redux
+    const [allowed, setAllowed] = useState(false);
+
     const [form, setForm] = useState({
         title: "",
         subject: "",
@@ -329,7 +336,6 @@ function Page() {
             toast.error(error.response?.data?.message || "Upload failed!");
         }
     };
-
 
 
     return (
@@ -516,13 +522,35 @@ function Page() {
                         />
                     </div>
 
-                    <button
+                    {/* <button
                         type="button"
                         onClick={uploadNotes}
                         className="w-full bg-orange-500 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-orange-600 transition"
                     >
                         Upload Notes
-                    </button>
+                    </button> */}
+
+
+                    <div className="p-6">
+
+                        {!allowed && (
+                            <PaymentBtn userId={userId} onSuccess={() => setAllowed(true)} />
+                        )}
+
+                        <br />
+
+                        <button
+                            disabled={!allowed}
+                            onClick={uploadNotes}
+                            className={`px-5 py-2 rounded ${allowed ? "bg-green-600 text-white" : "bg-gray-300 text-gray-600"
+                                }`}
+                        >
+                            Upload Notes
+                        </button>
+
+                    </div>
+
+
                 </form>
             </div>
 
