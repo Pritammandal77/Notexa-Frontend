@@ -25,11 +25,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 } */
 
-body{
+body {
   /* background-color: #F9FAFB; */
   background-color: #fff8f4;
-  color : #111827;
+  color: #111827;
   /* background-color: #0E1117;
   color: white; */
   overflow-x: hidden;
+}
+
+
+/* hide horizontal scrollbar but keep scrolling enabled */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

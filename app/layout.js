@@ -35,6 +35,7 @@ export const metadata = {
       },
     ],
     type: "website",
+    // metadataBase: new URL("https://notexahub.vercel.app"),
   }
 };
 

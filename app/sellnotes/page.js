@@ -568,7 +568,6 @@ function Page() {
                         <br />
                         <span className="text-[18px] text-gray-600">Do not close or refresh the page</span>
                     </p>
-
                 </div>
             }
 

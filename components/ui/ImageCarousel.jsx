@@ -2,10 +2,11 @@
 
 // import { IconArrowNarrowRight } from "@tabler/icons-react";
 // import Image from "next/image";
+// import Link from "next/link";
 // import { useState, useRef, useId, useEffect } from "react";
 // import { useSelector } from "react-redux";
 
-// // ✅ Single Note Card
+// // ✅ Single Slide
 // const Slide = ({ note, index, current, handleSlideClick }) => {
 //     const slideRef = useRef(null);
 //     const xRef = useRef(0);
@@ -25,12 +26,12 @@
 //         return () => cancelAnimationFrame(frameRef.current);
 //     }, []);
 
-//     const handleMouseMove = (event) => {
+//     const handleMouseMove = (e) => {
 //         const el = slideRef.current;
 //         if (!el) return;
 //         const r = el.getBoundingClientRect();
-//         xRef.current = event.clientX - (r.left + r.width / 2);
-//         yRef.current = event.clientY - (r.top + r.height / 2);
+//         xRef.current = e.clientX - (r.left + Math.floor(r.width / 2));
+//         yRef.current = e.clientY - (r.top + Math.floor(r.height / 2));
 //     };
 
 //     const handleMouseLeave = () => {
@@ -40,54 +41,78 @@
 
 //     if (!note) return null;
 
-//     const { title, description, notesSample1, subject, price, seller } = note;
+//     const { title, description, notesSample1, subject, price, seller, _id } = note;
+//     const imageSrc = notesSample1?.replace(/^http:\/\//, "https://");
 
 //     return (
-//         <li
-//             ref={slideRef}
-//             onClick={() => handleSlideClick(index)}
-//             onMouseMove={handleMouseMove}
-//             onMouseLeave={handleMouseLeave}
-//             className="relative flex flex-col items-center justify-start text-left text-gray-900 bg-white shadow-lg rounded-2xl w-[70vmin] xl:w-[28vw] h-[65vh] mx-[2vmin] p-4 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
-//         >
-//             {/* Image */}
-//             <div className="w-full h-2/3 overflow-hidden rounded-xl mb-3">
-//                 <Image
-//                     src={note.notesSample1.replace(/^http:\/\//, 'https://')}
-//                     alt={title || "note image"}
-//                     width={500}
-//                     height={300}
-//                     className="w-[90%] mx-auto h-full object-cover rounded-xl transition-transform duration-500 hover:scale-105"
-//                 />
-//             </div>
+//         <div className="[perspective:1200px] [transform-style:preserve-3d] ">
+//             <li
+//                 ref={slideRef}
+//                 className="flex flex-1 flex-col items-center justify-center relative border-2 border-gray-300 text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-4 bg-white duration-300 ease-in-out w-[70vmin] xl:w-[27vw] h-auto xl:h-[60vh] mx-[4vmin] cursor-pointer"
+//                 onClick={() => handleSlideClick(index)}
+//                 onMouseMove={handleMouseMove}
+//                 onMouseLeave={handleMouseLeave}
+//                 style={{
+//                     transform:
+//                         current !== index
+//                             ? "scale(0.96) rotateX(8deg)"
+//                             : "scale(1) rotateX(0deg)",
+//                     transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+//                     transformOrigin: "bottom",
+//                 }}
+//             >
+//                 <div
+//                     className="absolute top-0 left-0 p-3 w-full h-auto xl:h-full  rounded-[10%] overflow-hidden transition-all duration-150 ease-out"
+//                     style={{
+//                         transform:
+//                             current === index
+//                                 ? "translate3d(calc(var(--x)/30), calc(var(--y)/30), 0)"
+//                                 : "none",
+//                     }}
+//                 >
 
-//             {/* Info */}
-//             <div className="flex flex-col gap-1 px-2">
-//                 <h3 className="text-lg font-semibold truncate">{title}</h3>
-//                 <p className="text-sm text-gray-600 line-clamp-2">{description}</p>
-//                 <p className="text-xs text-gray-500 mt-1">
-//                     <span className="font-medium">Subject:</span> {subject}
-//                 </p>
-//                 <p className="text-xs text-gray-500">
-//                     <span className="font-medium">Seller:</span> {seller?.fullName}
-//                 </p>
-//                 <p className="text-md font-semibold text-orange-600 mt-1">
-//                     ₹{price}
-//                 </p>
-//             </div>
+//                     <div className="w-full h-40 xl:h-[50%] overflow-hidden rounded-xl">
+//                         <Image
+//                             src={imageSrc}
+//                             alt={title || "note image"}
+//                             width={500}
+//                             height={100}
+//                             className="w-[100%] h-[100%] mx-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+//                         />
+//                     </div>
 
-//             {/* Read More Button */}
-//             <button className="mt-3 px-5 py-2 bg-orange-500 text-white text-sm font-medium rounded-xl hover:bg-orange-600 transition duration-200">
-//                 Read More
-//             </button>
-//         </li>
+//                     <div className="flex flex-col gap-5">
+//                         <div className="px-2">
+//                             <h2 className="text-xl md:text-3xl font-semibold mb-2 text-orange-500">{title}</h2>
+//                             <p className="text-[16px] text-gray-700 mt-2">
+//                                 <span className="font-medium">Subject:</span> {subject}
+//                             </p>
+//                             <p className="text-[16px] text-gray-700">
+//                                 <span className="font-medium">Seller:</span> {seller?.fullName}
+//                             </p>
+//                             <p className="text-xl font-semibold text-orange-400 mt-2">
+//                                 @just ₹{price}
+//                             </p>
+//                         </div>
+//                         <div className="flex justify-center">
+//                             <Link href={`/notes/${note._id}`}>
+//                                 <button className="w-full px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition" >
+//                                     Read More
+//                                 </button>
+//                             </Link>
+//                         </div>
+//                     </div>
+
+//                 </div>
+//             </li >
+//         </div >
 //     );
 // };
 
-// // ✅ Control Buttons
+// // ✅ Carousel Controls
 // const CarouselControl = ({ type, title, handleClick }) => (
 //     <button
-//         className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${type === "previous" ? "rotate-180" : ""
+//         className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 rounded-full hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${type === "previous" ? "rotate-180" : ""
 //             }`}
 //         title={title}
 //         onClick={handleClick}
@@ -99,7 +124,7 @@
 // // ✅ Main Carousel Component
 // export function Carousel() {
 //     const allNotes = useSelector((state) => state.notes.allNotes);
-//     const [current, setCurrent] = useState(0);
+//     const [current, setCurrent] = useState(1);
 //     const id = useId();
 
 //     const handlePreviousClick = () => {
@@ -120,14 +145,13 @@
 
 //     return (
 //         <div
-//             className="relative w-full max-w-[85vw] mx-auto overflow-hidden py-10"
+//             className="relative w-[70vmin] min-h-[50vh] h-auto xl:h-[70vmin] mx-auto "
 //             aria-labelledby={`carousel-heading-${id}`}
 //         >
-//             {/* Cards */}
 //             <ul
-//                 className="flex transition-transform duration-700 ease-in-out"
+//                 className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out "
 //                 style={{
-//                     transform: `translateX(-${current * 32}vw)`,
+//                     transform: `translateX(-${current * (100 / allNotes.length)}%)`,
 //                 }}
 //             >
 //                 {allNotes.map((note, index) => (
@@ -141,8 +165,7 @@
 //                 ))}
 //             </ul>
 
-//             {/* Controls */}
-//             <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
+//             <div className="absolute flex justify-center w-full bottom-0">
 //                 <CarouselControl
 //                     type="previous"
 //                     title="Go to previous slide"
@@ -158,192 +181,149 @@
 //     );
 // }
 
+
+
 "use client";
 
-import { IconArrowNarrowRight } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, useId, useEffect } from "react";
+import { useRef } from "react";
 import { useSelector } from "react-redux";
+import { IconArrowNarrowRight } from "@tabler/icons-react";
 
-// ✅ Single Slide
-const Slide = ({ note, index, current, handleSlideClick }) => {
-    const slideRef = useRef(null);
-    const xRef = useRef(0);
-    const yRef = useRef(0);
-    const frameRef = useRef();
-
-    useEffect(() => {
-        const animate = () => {
-            if (!slideRef.current) return;
-            const x = xRef.current;
-            const y = yRef.current;
-            slideRef.current.style.setProperty("--x", `${x}px`);
-            slideRef.current.style.setProperty("--y", `${y}px`);
-            frameRef.current = requestAnimationFrame(animate);
-        };
-        frameRef.current = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(frameRef.current);
-    }, []);
-
-    const handleMouseMove = (e) => {
-        const el = slideRef.current;
-        if (!el) return;
-        const r = el.getBoundingClientRect();
-        xRef.current = e.clientX - (r.left + Math.floor(r.width / 2));
-        yRef.current = e.clientY - (r.top + Math.floor(r.height / 2));
-    };
-
-    const handleMouseLeave = () => {
-        xRef.current = 0;
-        yRef.current = 0;
-    };
-
-    if (!note) return null;
-
-    const { title, description, notesSample1, subject, price, seller, _id } = note;
-    const imageSrc = notesSample1?.replace(/^http:\/\//, "https://");
-
-    return (
-        <div className="[perspective:1200px] [transform-style:preserve-3d] ">
-            <li
-                ref={slideRef}
-                className="flex flex-1 flex-col items-center justify-center relative border-2 border-gray-300 text-white transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-4 bg-white duration-300 ease-in-out w-[70vmin] xl:w-[27vw] h-auto xl:h-[60vh] mx-[4vmin] cursor-pointer"
-                onClick={() => handleSlideClick(index)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                    transform:
-                        current !== index
-                            ? "scale(0.96) rotateX(8deg)"
-                            : "scale(1) rotateX(0deg)",
-                    transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                    transformOrigin: "bottom",
-                }}
-            >
-                <div
-                    className="absolute top-0 left-0 p-3 w-full h-auto xl:h-full  rounded-[10%] overflow-hidden transition-all duration-150 ease-out"
-                    style={{
-                        transform:
-                            current === index
-                                ? "translate3d(calc(var(--x)/30), calc(var(--y)/30), 0)"
-                                : "none",
-                    }}
-                >
-
-                    <div className="w-full h-40 xl:h-[50%] overflow-hidden rounded-xl">
-                        <Image
-                            src={imageSrc}
-                            alt={title || "note image"}
-                            width={500}
-                            height={100}
-                            className="w-[100%] h-[100%] mx-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105"
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-5">
-                        <div className="px-2">
-                            <h2 className="text-xl md:text-3xl font-semibold mb-2 text-orange-500">{title}</h2>
-                            <p className="text-[16px] text-gray-700 mt-2">
-                                <span className="font-medium">Subject:</span> {subject}
-                            </p>
-                            <p className="text-[16px] text-gray-700">
-                                <span className="font-medium">Seller:</span> {seller?.fullName}
-                            </p>
-                            <p className="text-xl font-semibold text-orange-400 mt-2">
-                                @just ₹{price}
-                            </p>
-                        </div>
-                        <div className="flex justify-center">
-                            <Link href={`/notes/${note._id}`}>
-                                <button className="w-full px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition" >
-                                    Read More
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-
-
-                    {/* {current === index && (
-                        <div className="absolute inset-0 bg-black/40 transition-all duration-700" />
-                    )} */}
-                </div>
-
-
-
-            </li >
-        </div >
-    );
-};
-
-// ✅ Carousel Controls
-const CarouselControl = ({ type, title, handleClick }) => (
-    <button
-        className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 rounded-full hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${type === "previous" ? "rotate-180" : ""
-            }`}
-        title={title}
-        onClick={handleClick}
-    >
-        <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
-    </button>
-);
-
-// ✅ Main Carousel Component
 export function Carousel() {
     const allNotes = useSelector((state) => state.notes.allNotes);
-    const [current, setCurrent] = useState(1);
-    const id = useId();
 
-    const handlePreviousClick = () => {
-        setCurrent((prev) => (prev - 1 < 0 ? allNotes.length - 1 : prev - 1));
-    };
-
-    const handleNextClick = () => {
-        setCurrent((prev) => (prev + 1 === allNotes.length ? 0 : prev + 1));
-    };
-
-    const handleSlideClick = (index) => {
-        setCurrent(index);
-    };
+    const containerRef = useRef(null);
+    const isDragging = useRef(false);
+    const startX = useRef(0);
+    const currentX = useRef(0);
+    const velocity = useRef(0);
+    let raf;
 
     if (!allNotes || allNotes.length === 0) {
         return <p className="text-center py-10 text-gray-500">No notes found.</p>;
     }
 
-    return (
-        <div
-            className="relative w-[70vmin] min-h-[50vh] h-auto xl:h-[70vmin] mx-auto "
-            aria-labelledby={`carousel-heading-${id}`}
-        >
-            <ul
-                className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out "
-                style={{
-                    transform: `translateX(-${current * (100 / allNotes.length)}%)`,
-                }}
-            >
-                {allNotes.map((note, index) => (
-                    <Slide
-                        key={note._id || index}
-                        note={note}
-                        index={index}
-                        current={current}
-                        handleSlideClick={handleSlideClick}
-                    />
-                ))}
-            </ul>
+    const scroll = (dir) => {
+        const c = containerRef.current;
+        c.scrollTo({
+            left: c.scrollLeft + (dir === "left" ? -400 : 400),
+            behavior: "smooth",
+        });
+    };
 
-            {/* Prev / Next Buttons */}
-            <div className="absolute flex justify-center w-full bottom-0">
-                <CarouselControl
-                    type="previous"
-                    title="Go to previous slide"
-                    handleClick={handlePreviousClick}
-                />
-                <CarouselControl
-                    type="next"
-                    title="Go to next slide"
-                    handleClick={handleNextClick}
-                />
+    const onDown = (e) => {
+        isDragging.current = true;
+        cancelAnimationFrame(raf);
+
+        startX.current = (e.touches?.[0]?.clientX ?? e.clientX);
+        currentX.current = startX.current;
+
+        const c = containerRef.current;
+        c.style.cursor = "grabbing";
+    };
+
+    const onMove = (e) => {
+        if (!isDragging.current) return;
+
+        const c = containerRef.current;
+        const x = (e.touches?.[0]?.clientX ?? e.clientX);
+
+        const delta = currentX.current - x;
+        currentX.current = x;
+
+        c.scrollLeft += delta;
+
+        velocity.current = delta; // track momentum
+    };
+
+    const onUp = () => {
+        isDragging.current = false;
+        const c = containerRef.current;
+        c.style.cursor = "grab";
+
+        const momentum = () => {
+            if (Math.abs(velocity.current) < 0.2) return;
+
+            c.scrollLeft += velocity.current;
+            velocity.current *= 0.95;
+
+            raf = requestAnimationFrame(momentum);
+        };
+
+        momentum();
+    };
+
+    return (
+        <div className="relative w-full py-6">
+            <button
+                className="absolute left-0 xl:left-2 top-1/2 -translate-y-1/2 z-10 bg-orange-100 shadow-lg p-2 rounded-full cursor-pointer"
+                onClick={() => scroll("left")}
+            >
+                <IconArrowNarrowRight className="rotate-180" />
+            </button>
+
+            <button
+                className="absolute right-0 xl:right-2 top-1/2 -translate-y-1/2 z-10 bg-orange-100 shadow-lg p-2 rounded-full cursor-pointer"
+                onClick={() => scroll("right")}
+            >
+                <IconArrowNarrowRight />
+            </button>
+
+            <div
+                ref={containerRef}
+                className="flex gap-4 px-4 hide-scrollbar select-none"
+                style={{
+                    overflowX: "hidden",      
+                    cursor: "grab",
+                    userSelect: "none",
+                }}
+                onMouseDown={onDown}
+                onMouseMove={onMove}
+                onMouseUp={onUp}
+                onMouseLeave={onUp}
+                onTouchStart={onDown}
+                onTouchMove={onMove}
+                onTouchEnd={onUp}
+            >
+                {allNotes.map((note) => {
+                    const imageSrc = note.notesSample1?.replace(/^http:\/\//, "https://");
+
+                    return (
+                        <div
+                            key={note._id}
+                            className="min-w-[350px] bg-white border border-orange-100 rounded-xl shadow-md p-3 flex-shrink-0"
+                        >
+                            <div className="w-full h-40 overflow-hidden rounded-lg">
+                                <Image
+                                    src={imageSrc}
+                                    width={400}
+                                    height={240}
+                                    alt={note.title}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+
+                            <h2 className="text-2xl font-bold mt-3 text-orange-500">
+                                {note.title}
+                            </h2>
+
+                            <p className="text-md text-gray-600">Subject: {note.subject}</p>
+                            <p className="text-md text-gray-600">
+                                Seller: {note?.seller?.fullName}
+                            </p>
+
+                            <p className="font-bold text-orange-600 mt-2 text-2xl">₹{note.price}</p>
+
+                            <Link href={`/notes/${note._id}`}>
+                                <button className="mt-3 w-full bg-orange-500 text-white py-2 rounded-lg cursor-pointer">
+                                    Read More
+                                </button>
+                            </Link>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
