@@ -1,10 +1,10 @@
-import axios from "axios";
+import {axiosInstance} from "./axiosInstance"
 import { toast } from "sonner";
 import { fetchWithAuth } from "./auth";
 
 
 export const fetchCurrentUser = async () => {
-    const res = await fetchWithAuth('http://localhost:8000/api/auth/me');
+    const res = await fetchWithAuth(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/me`);
     if (res.ok) {
         const data = await res.json();
         return data;
@@ -15,8 +15,8 @@ export const fetchCurrentUser = async () => {
 
 export const logOutUser = async () => {
     try {
-        const res = await axios.post(
-            "http://localhost:8000/api/auth/logout",
+        const res = await axiosInstance.post(
+            "/api/auth/logout",
             {}, // body empty
             {
                 withCredentials: true, // 👈 send cookies with request

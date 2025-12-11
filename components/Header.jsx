@@ -156,7 +156,7 @@ function Header() {
     const [userData, setUserData] = useState()
     useEffect(() => {
         async function getUser() {
-            const res = await fetchWithAuth('http://localhost:8000/api/auth/me');
+            const res = await fetchWithAuth(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/me`);
             if (res.ok) {
                 const data = await res.json();
                 console.log("User data:", data);

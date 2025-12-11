@@ -5,7 +5,7 @@ function Login() {
 
     const handleLogin = () => {
         // Open backend signin in same tab so that cookies set by backend are available to the site origin
-        window.location.href = 'http://localhost:8000/api/auth/google';
+        window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/google`;
     };
 
     return (

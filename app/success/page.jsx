@@ -7,7 +7,7 @@ function page() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/auth/me', {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/me`, {
       credentials: 'include'
     })
       .then(r => r.json())

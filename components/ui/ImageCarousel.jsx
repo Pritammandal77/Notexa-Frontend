@@ -73,14 +73,14 @@ export function Carousel() {
     return (
         <div className="relative w-full py-6">
             <button
-                className="absolute left-0 xl:left-2 top-1/2 -translate-y-1/2 z-10 bg-orange-100 shadow-lg p-1 xl:p-2 rounded-full cursor-pointer"
+                className="absolute left-0 xl:left-3 top-1/2 -translate-y-1/2 z-10 bg-orange-100 shadow-lg p-1 xl:p-2 rounded-full cursor-pointer"
                 onClick={() => scroll("left")}
             >
                 <IconArrowNarrowRight className="rotate-180" />
             </button>
 
             <button
-                className="absolute right-0 xl:right-2 top-1/2 -translate-y-1/2 z-10 bg-orange-100 shadow-lg p-1 xl:p-2 rounded-full cursor-pointer"
+                className="absolute right-0 xl:right-3 top-1/2 -translate-y-1/2 z-10 bg-orange-100 shadow-lg p-1 xl:p-2 rounded-full cursor-pointer"
                 onClick={() => scroll("right")}
             >
                 <IconArrowNarrowRight />

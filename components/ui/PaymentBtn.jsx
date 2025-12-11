@@ -2,6 +2,7 @@
 import axios from "axios";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { axiosInstance } from "@/utils/axiosInstance";
 
 function PaymentBtn({ userId, onSuccess }) {
 
@@ -18,8 +19,8 @@ function PaymentBtn({ userId, onSuccess }) {
 
     const handlePayment = async () => {
         try {
-            const { data } = await axios.post(
-                "http://localhost:8000/api/v1/payments/create-order-uploadnotes",
+            const { data } = await axiosInstance.post(
+                "/api/v1/payments/create-order-uploadnotes",
                 { userId }
             );
 
@@ -39,8 +40,8 @@ function PaymentBtn({ userId, onSuccess }) {
                 order_id: order.id,
 
                 handler: async function (response) {
-                    const verify = await axios.post(
-                        "http://localhost:8000/api/v1/payments/verify-payment",
+                    const verify = await axiosInstance.post(
+                        "/api/v1/payments/verify-payment",
                         {
                             ...response,
                             userId,

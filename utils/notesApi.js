@@ -1,9 +1,8 @@
-import axios from "axios";
-
+import {axiosInstance} from "./axiosInstance"
 
 export const fetchAllNotes = async () => {
     try {
-        const response = await axios.get("http://localhost:8000/api/v1/notes/all-notes");
+        const response = await axiosInstance.get("/api/v1/notes/all-notes");
         // console.log("dwefrwfef", response)
         return response.data;
     } catch (error) {
@@ -13,7 +12,7 @@ export const fetchAllNotes = async () => {
 
 export const getNotesById = async (id) => {
     try {
-        const response = await axios.get(`http://localhost:8000/api/v1/notes/${id}`);
+        const response = await axiosInstance.get(`/api/v1/notes/${id}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -22,7 +21,7 @@ export const getNotesById = async (id) => {
 
 export const fetchCurrentUserNotes = async () => {
     try {
-        const response = await axios.get("http://localhost:8000/api/v1/notes/my-notes",
+        const response = await axiosInstance.get("/api/v1/notes/my-notes",
             {
                 withCredentials: true
             }
@@ -35,7 +34,7 @@ export const fetchCurrentUserNotes = async () => {
 
 export const deleteNotes = async (notesId) => {
     try {
-        const res = await axios.delete(`http://localhost:8000/api/v1/notes/delete-notes/${notesId}`,
+        const res = await axiosInstance.delete(`api/v1/notes/delete-notes/${notesId}`,
             {
                 withCredentials: true
             }

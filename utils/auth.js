@@ -1,27 +1,6 @@
-// export async function refreshAccessToken() {
-//     try {
-//         const res = await fetch('http://localhost:8000/api/auth/refresh', {
-//             method: 'POST',
-//             credentials: 'include' // 👈 cookies send karne ke liye important
-//         });
-
-//         if (res.ok) {
-//             console.log('✅ Access token refreshed');
-//             return true;
-//         } else {
-//             console.warn('❌ Failed to refresh token');
-//             return false;
-//         }
-//     } catch (err) {
-//         console.error('Refresh token error:', err);
-//         return false;
-//     }
-// }
-
-
 export async function refreshAccessToken() {
     try {
-        const res = await fetch('http://localhost:8000/api/auth/refresh', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/refresh`, {
             method: 'POST',
             credentials: 'include', // important: send cookies
         });
