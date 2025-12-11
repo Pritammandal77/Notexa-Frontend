@@ -22,7 +22,7 @@ export const logOutUser = async () => {
                 withCredentials: true, // 👈 send cookies with request
             }
         );
-
+        console.log(res)
         if (res.data.ok) {
             toast.success("Logged out successfully")
         } else {
