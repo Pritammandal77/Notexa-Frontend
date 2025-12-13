@@ -1,0 +1,20 @@
+/* globals.css */
+@keyframes shimmer {
+  0% {
+    background-position: -450px 0;
+  }
+  100% {
+    background-position: 450px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e4e4e4 25%,   /* base (thoda dark) */
+    #d6d6d6 37%,   /* highlight */
+    #e4e4e4 63%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.3s ease infinite;
+}

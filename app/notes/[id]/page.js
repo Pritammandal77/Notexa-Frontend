@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import axios from "axios";
 import { axiosInstance } from "@/utils/axiosInstance";
+import NotesDetailsPageSkeleton from "@/components/SkeletonLoaders/NotesDetailsPageSkeleton";
 
 
 function Page() {
@@ -56,11 +57,13 @@ function Page() {
         fetchNote();
     }, [id]);
 
-    if (!notesData)
+
+    if (notesData)
         return (
-            <div className="flex items-center justify-center h-[80vh] text-gray-500 text-lg">
-                Loading Note Details...
-            </div>
+            // <div className="flex items-center justify-center h-[80vh] text-gray-500 text-lg">
+            //     Loading Note Details...
+            // </div>
+            <NotesDetailsPageSkeleton />
         );
 
     const {
