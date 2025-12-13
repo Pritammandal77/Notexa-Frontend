@@ -15,7 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  ),
   title: "Notexa - Buy Handwritten Notes",
   description: "Notexa is a platform where you can find high-quality handwritten or hand-typed notes across different subjects and courses.",
   keywords: ["notes", "buy notes", "sell notes", "Notexa", "college notes", "study material", "handwritten notes", "handtyped notes"],
@@ -35,7 +39,7 @@ export const metadata = {
       },
     ],
     type: "website",
-    // metadataBase: new URL("https://notexahub.vercel.app"),
+
   }
 };
 

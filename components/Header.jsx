@@ -187,11 +187,9 @@ function Header() {
 
     return (
         <>
-            {/* ✅ Main Header */}
             <header className="fixed top-0 left-0 z-50 h-16 w-[100vw] text-[18px] bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-5 md:px-20 overflow-x-hidden">
                 <div className="font-bold text-[24px]">Notexa</div>
 
-                {/* ✅ Desktop Menu */}
                 <div className="hidden xl:flex items-center gap-10">
                     <Link href="/" className="font-semibold cursor-pointer">Home</Link>
                     <Link href="/allnotes" className="font-semibold cursor-pointer">Notes</Link>
@@ -201,11 +199,16 @@ function Header() {
                         className="font-semibold cursor-pointer"
                         onClick={() => setIsDialogOpen(!isDialogOpen)}
                     >
-                        Profile
+                        <Image
+                            src={user?.profilePicture || "/defaultpfp.webp"}
+                            alt="User Profile"
+                            height={40}
+                            width={40}
+                            className="rounded-full"
+                        />
                     </span>
                 </div>
 
-                {/* ✅ Mobile Menu Icon */}
                 <div
                     className="xl:hidden font-bold cursor-pointer"
                     onClick={() => setIsSidebarOpen(true)}
