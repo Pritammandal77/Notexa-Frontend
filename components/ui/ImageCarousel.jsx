@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
+import NotesCardSkeleton from "../SkeletonLoaders/NotesCardSkeleton";
 
 export function Carousel() {
     const allNotes = useSelector((state) => state.notes.allNotes);
@@ -19,6 +20,12 @@ export function Carousel() {
     if (!allNotes || allNotes.length === 0) {
         return <p className="text-center py-10 text-gray-500">No notes found.</p>;
     }
+
+    //  if (allNotes) {
+    //     return <div>
+    //         <NotesCardSkeleton />
+    //     </div>
+    // }
 
     const scroll = (dir) => {
         const c = containerRef.current;

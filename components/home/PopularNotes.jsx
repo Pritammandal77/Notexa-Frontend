@@ -5,9 +5,6 @@ import { useSelector } from 'react-redux';
 
 function PopularNotes() {
 
-    // const allNotes = useSelector((state) => state.notes.allNotes)
-    // console.log("notes in cards component : ", allNotes)
-
     return (
         <>
             <div className='w-[100vw] min-h-[65vh] h-auto flex flex-col gap-10 py-15 overflow-x-hidden '>
