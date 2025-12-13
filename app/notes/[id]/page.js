@@ -155,10 +155,10 @@ function Page() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-24 pb-16">
+        <div className="min-h-screen h-auto bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-24 pb-16 px-0 xl:px-0">
 
             {/* TOP HEADER */}
-            <div className="max-w-7xl mx-auto mb-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+            <div className="max-w-7xl mx-auto xl:mb-10 px-3 xl:px-0 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
                 <div>
                     <h1 className="text-4xl font-bold text-gray-900 drop-shadow-sm">
                         {title}
@@ -170,19 +170,19 @@ function Page() {
 
                 <button
                     onClick={handlePaymentForBuyingNotes}
-                    className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl text-white shadow-lg w-full sm:w-auto"
+                    className="sticky top-30 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl text-white shadow-lg w-full sm:w-auto"
                 >
                     <Download size={18} />
-                    Download Notes
+                    Get this note
                 </button>
             </div>
 
             {/* 3 TOP BOXES */}
-            <div className="max-w-7xl h-[400px] mx-auto grid grid-cols-1 xl:grid-cols-3  gap-8 items-start p-3">
+            <div className="max-w-7xl h-auto xl:h-[400px] mx-auto grid grid-cols-1 xl:grid-cols-3 gap-8 items-start p-3 ">
 
                 {/* 1️⃣ SELLER + BUY BOX */}
                 <div
-                    className="bg-white/80 h-full backdrop-blur-xl border border-orange-200 shadow-xl rounded-2xl p-6 sticky top-8 "
+                    className="order-2 xl:order-1 bg-white/80 h-full backdrop-blur-xl border border-orange-200 shadow-xl rounded-2xl p-4 xl:p-6"
                 >
                     <div className="flex items-center gap-4 pb-4 border-b border-orange-100">
                         <img
@@ -228,9 +228,18 @@ function Page() {
                             Get This Note
                         </button>
                     </div>
+
+                    <div
+                        className="mt-5 p-1 pb-5 flex flex-col xl:hidden rounded-2xl xl:shadow-xl xl:border xl:border-orange-100"
+                    >
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">About This Note</h2>
+                        <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                            {description}
+                        </p>
+                    </div>
                 </div>
 
-                <div className="relative bg-white/70 h-[400px] rounded-2xl shadow-lg border border-orange-100 p-4 backdrop-blur-xl overflow-hidden xl:col-span-2">
+                <div className="order-1 xl:order-2 relative bg-white/70 h-[400px] rounded-2xl shadow-lg border border-orange-200 p-4 backdrop-blur-xl overflow-hidden xl:col-span-2">
 
                     <div
                         className="w-full h-full flex transition-transform duration-700"
@@ -257,14 +266,14 @@ function Page() {
 
                     <button
                         onClick={prevSlide}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 bg-orange-300 hover:bg-orange-400 p-2 rounded-full shadow cursor-pointer"
+                        className="absolute left-1 xl:lef-3 top-1/2 -translate-y-1/2 bg-orange-200 hover:bg-orange-400 p-2 rounded-full shadow cursor-pointer"
                     >
                         <ChevronLeft />
                     </button>
 
                     <button
                         onClick={nextSlide}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-orange-300 hover:bg-orange-400 p-2 rounded-full shadow cursor-pointer"
+                        className="absolute right-1 xl:right-3 top-1/2 -translate-y-1/2 bg-orange-200 hover:bg-orange-400 p-2 rounded-full shadow cursor-pointer"
                     >
                         <ChevronRight />
                     </button>
@@ -273,12 +282,12 @@ function Page() {
             </div>
 
             {/* 2 BOTTOM BOXES */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-10 mt-14">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-5 xl:gap-10 mt-5 xl:mt-14 p-3 xl:p-0">
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white rounded-2xl shadow-xl border border-orange-100 p-8"
+                    className="bg-white hidden xl:inline rounded-2xl xl:shadow-xl xl:border xl:border-orange-200 p-8"
                 >
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">About This Note</h2>
                     <p className="text-gray-600 leading-relaxed whitespace-pre-line">
@@ -289,7 +298,7 @@ function Page() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white rounded-2xl shadow-xl border border-orange-100 p-8"
+                    className="bg-white rounded-2xl shadow-xl border border-orange-200 xl:border-orange-200 p-8"
                 >
                     <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
                         <Star className="text-orange-500 w-5 h-5" />
