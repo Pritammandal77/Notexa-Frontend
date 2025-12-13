@@ -155,7 +155,7 @@ function Page() {
     }
 
     return (
-        <div className="min-h-screen h-auto bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-24 pb-16 px-0 xl:px-0">
+        <div className="min-h-screen h-auto bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-24 pb-16 px-0 md:px-20 xl:px-0">
 
             {/* TOP HEADER */}
             <div className="max-w-7xl mx-auto xl:mb-10 px-3 xl:px-0 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">

@@ -21,7 +21,7 @@ function Hero() {
                     </span>
 
                     <h1 className='text-5xl md:text-6xl lg:text-7xl text-center font-bold'>
-                        Turn Your <span className='text-orange-400'>Notes</span> Into <span className='text-orange-400'>Opportunities</span><br />
+                        Turn Your <br className='inline md:hidden'/> <span className='text-orange-400'>Notes</span> Into <span className='text-orange-400'>Opportunities</span><br />
                         Sell, Share, and Learn Together
                     </h1>
                     <p className='text-center text-lg text-[#222222] mt-6'>

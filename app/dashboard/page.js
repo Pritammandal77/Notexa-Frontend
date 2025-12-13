@@ -46,20 +46,11 @@ function Page() {
     return (
         <>
             <div className="min-h-screen w-full bg-orange-50 pt-17 xl:pt-0">
-
                 {/* LEFT SIDEBAR */}
-                <div className="
-        xl:fixed xl:top-0 xl:left-0 
-        w-full h-auto md:h-[90px] xl:h-screen
-        xl:w-[25%] 
-        bg-orange-100 
-        p-3 md:p-4 
-        xl:pt-20 
-        border-b xl:border-b-0 xl:border-r 
-        border-orange-200 
-        z-20 
-        flex flex-col items-center justify-center xl:block
-    ">
+                <div className="xl:fixed xl:top-0 xl:left-0 w-full h-auto md:h-auto xl:h-screen xl:w-[25%] 
+              bg-orange-100 p-3 md:p-4 xl:pt-20 border-b xl:border-b-0 xl:border-r  border-orange-200 z-20 
+               flex flex-col items-center justify-center xl:block md:px-15 xl:px-0
+                  ">
 
                     <div className="self-start flex md:gap-6 gap-3 md:flex-row xl:flex-row ">
 
@@ -117,13 +108,7 @@ function Page() {
                 </div>
 
                 {/* RIGHT CONTENT */}
-                <div className="
-        pt-[90px] 
-        xl:pt-20 
-        pb-14 
-        ml-0 
-        xl:ml-[25%]
-    ">
+                <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
 
                     {/* Heading */}
                     <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
@@ -131,14 +116,7 @@ function Page() {
                     </div>
 
                     {/* Notes Grid */}
-                    <div className="
-            grid 
-            grid-cols-1 
-            sm:grid-cols-2 
-            xl:grid-cols-3 
-            gap-4 md:gap-6 
-            px-4 md:px-6
-        ">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 px-4 md:px-6">
 
                         {currUserNotes && currUserNotes.map((data) => (
                             <div
@@ -196,19 +174,12 @@ function Page() {
                                     </div>
 
                                     <Link href={`/notes/${data._id}`}>
-                                        <button className="
-                                mt-4 w-full px-4 py-2 
-                                bg-orange-500 text-white 
-                                text-sm md:text-base
-                                font-semibold 
-                                rounded-xl 
-                                hover:bg-orange-600 transition cursor-pointer
-                            ">
+                                        <button className="mt-4 w-full px-4 py-2  bg-orange-500 text-white text-sm 
+                                        md:text-basefont-semibold rounded-xl hover:bg-orange-600 transition cursor-pointer ">
                                             Read More
                                         </button>
                                     </Link>
                                 </div>
-
                             </div>
                         ))}
                     </div>
