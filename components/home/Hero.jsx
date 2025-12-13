@@ -36,11 +36,11 @@ function Hero() {
 
                 {/* CTA */}
                 <div className="flex flex-wrap justify-center gap-5 mt-8">
-                    <button className="px-7 py-3 bg-[#ff7a1f] text-white font-semibold rounded-lg hover:bg-[#ff9340] transition shadow-md">
+                    <button className="px-7 py-3 cursor-pointer bg-[#ff7a1f] text-white font-semibold rounded-lg hover:bg-[#ff9340] transition shadow-md">
                         Explore Notes
                     </button>
 
-                    <button className="px-7 py-3 bg-white text-[#ff7a1f] font-semibold rounded-lg border border-orange-300 hover:bg-orange-50 transition">
+                    <button className="px-7 py-3 cursor-pointer bg-white text-[#ff7a1f] font-semibold rounded-lg border border-orange-300 hover:bg-orange-50 transition">
                         Browse Subjects
                     </button>
                 </div>
@@ -48,7 +48,7 @@ function Hero() {
                 {/* TRUST STATS */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 text-center">
                     <div>
-                        <p className="text-3xl font-bold text-orange-400">10K+</p>
+                        <p className="text-3xl font-bold text-orange-400">100+</p>
                         <p className="text-sm text-gray-600">Handwritten Notes</p>
                     </div>
                     <div>
@@ -56,7 +56,7 @@ function Hero() {
                         <p className="text-sm text-gray-600">Students</p>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold text-orange-400">50+</p>
+                        <p className="text-3xl font-bold text-orange-400">20+</p>
                         <p className="text-sm text-gray-600">Subjects</p>
                     </div>
                     <div>
