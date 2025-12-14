@@ -21,11 +21,6 @@ export function Carousel() {
         return <p className="text-center py-10 text-gray-500">No notes found.</p>;
     }
 
-    //  if (allNotes) {
-    //     return <div>
-    //         <NotesCardSkeleton />
-    //     </div>
-    // }
 
     const scroll = (dir) => {
         const c = containerRef.current;

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getNotesById } from "@/utils/notesApi";
+import { getNotesById, UpdateNotesDownloadsCount } from "@/utils/notesApi";
 import { useParams } from "next/navigation";
 import {
     Download,
@@ -138,6 +138,7 @@ function Page() {
                     if (verify.data.success) {
                         toast.success("Payment Verified!");
                         handleDownload();
+                        UpdateNotesDownloadsCount(id);
                     } else {
                         toast.error("Payment failed!");
                     }
@@ -207,7 +208,7 @@ function Page() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Download className="text-orange-500 w-4 h-4" />
-                            {totalDownloads} downloads
+                            {totalDownloads?.length} downloads
                         </div>
                         <div className="flex items-center gap-2">
                             <Calendar className="text-orange-500 w-4 h-4" />
