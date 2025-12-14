@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { axiosInstance } from "./axiosInstance"
 
 export const fetchAllNotes = async () => {
@@ -56,5 +57,26 @@ export const UpdateNotesDownloadsCount = async (notesId) => {
         console.log(res.data)
     } catch (error) {
         console.log("something went wrong while updating the notes downloads count")
+    }
+}
+
+
+export const AddReview = async(rating, review, notesId) => {
+    try {
+        const res = await axiosInstance.post("/api/v1/notes/add-review", {
+            rating, review, notesId
+        })
+        console.log(res.data)
+    } catch (error) {
+        toast.error("Error while rating the notes")
+    }
+}
+
+export const fetchReviewsById = async(notesId) => {
+    try {
+        const res = await axiosInstance.get(`/api/v1/notes/reviews/${notesId}`)
+        return res.data.data
+    } catch (error) {
+        toast.error("Error while fetching the reviews")
     }
 }

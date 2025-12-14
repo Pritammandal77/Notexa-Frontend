@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getNotesById, UpdateNotesDownloadsCount } from "@/utils/notesApi";
+import { fetchReviewsById, getNotesById, UpdateNotesDownloadsCount } from "@/utils/notesApi";
 import { useParams } from "next/navigation";
 import {
     Download,
@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { axiosInstance } from "@/utils/axiosInstance";
 import NotesDetailsPageSkeleton from "@/components/SkeletonLoaders/NotesDetailsPageSkeleton";
+import ReviewModal from "@/components/ui/ReviewModal";
 
 
 function Page() {
@@ -27,7 +28,7 @@ function Page() {
     const [notesData, setNotesData] = useState(null);
     const user = useSelector((state) => state.user?.currUser?.user)
     const userId = user?._id;
-
+    const [showReview, setShowReview] = useState(false);
     const [currentSlide, setCurrentSlide] = React.useState(0);
 
     const nextSlide = () => {
@@ -56,6 +57,14 @@ function Page() {
         }
         fetchNote();
     }, [id]);
+
+    useEffect(() => {
+        async function HandleFetchReviews() {
+            const reviews = await fetchReviewsById(id)
+            console.log("all reviews",reviews)
+        }
+        HandleFetchReviews();
+    }, []);
 
 
     if (!notesData)
@@ -154,6 +163,7 @@ function Page() {
             toast.error("Error starting payment");
         }
     }
+
 
     return (
         <div className="min-h-screen h-auto bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-24 pb-16 px-0 md:px-20 xl:px-0">
@@ -301,9 +311,17 @@ function Page() {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white rounded-2xl shadow-xl border border-orange-200 xl:border-orange-200 p-8"
                 >
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
-                        <Star className="text-orange-500 w-5 h-5" />
-                        Reviews
+                    <h2 className="font-semibold text-gray-800 mb-6 flex items-center justify-between gap-2">
+                        <div className="text-2xl flex items-center justify-center gap-2">
+                            <Star className="text-orange-500 w-5 h-5" />
+                            Reviews
+                        </div>
+                        <div>
+                            <button className="bg-orange-500 hover:bg-orange-600 px-3 py-2 text-white font-semibold rounded-2xl cursor-pointer"
+                                onClick={() => setShowReview(true)}>
+                                Add Review
+                            </button>
+                        </div>
                     </h2>
 
                     {reviews?.length === 0 ? (
@@ -330,6 +348,12 @@ function Page() {
                 </motion.div>
 
             </div>
+
+            <ReviewModal
+                open={showReview}
+                onClose={() => setShowReview(false)}
+                notesId={id}
+            />
 
         </div>
     );

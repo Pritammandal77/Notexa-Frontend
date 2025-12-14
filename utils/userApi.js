@@ -19,7 +19,7 @@ export const logOutUser = async () => {
             "/api/auth/logout",
             {}, // body empty
             {
-                withCredentials: true, // 👈 send cookies with request
+                withCredentials: true,
             }
         );
         console.log(res)
