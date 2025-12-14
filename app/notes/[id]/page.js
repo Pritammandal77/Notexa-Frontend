@@ -10,6 +10,7 @@ import {
     Star,
     ChevronLeft,
     ChevronRight,
+    StarIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -18,6 +19,7 @@ import { axiosInstance } from "@/utils/axiosInstance";
 import NotesDetailsPageSkeleton from "@/components/SkeletonLoaders/NotesDetailsPageSkeleton";
 import ReviewModal from "@/components/ui/ReviewModal";
 import Image from "next/image";
+import { formatDate } from "@/utils/FormatDate";
 
 
 function Page() {
@@ -87,12 +89,6 @@ function Page() {
         seller,
         reviews,
     } = notesData;
-
-    const formattedDate = new Date(createdAt).toLocaleDateString("en-IN", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-    });
 
     const handleDownload = () => {
         window.open(`http://localhost:8000/api/v1/notes/download/${id}`, "_blank");
@@ -221,7 +217,7 @@ function Page() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Calendar className="text-orange-500 w-4 h-4" />
-                            {formattedDate}
+                            {formatDate(createdAt)}
                         </div>
                     </div>
 
@@ -326,25 +322,37 @@ function Page() {
                             {Allreviews?.map((review, index) => (
                                 <div
                                     key={index}
-                                    className="flex justify-between gap-4 border-1 bg-orange-50 border-orange-200 pb-4 p-2 md:p-3 xl:p-4 rounded-2xl"
+                                    className="flex justify-between gap-4 relative border-1 bg-orange-50 border-orange-200 pb-4 p-2 md:p-3 xl:p-4 rounded-2xl"
                                 >
                                     <div className="min-w-0 flex-1">
                                         <div className="flex gap-3">
                                             <Image
                                                 src={review?.user?.profilePicture}
                                                 alt="failed to load the image"
-                                                height={35}
-                                                width={35}
+                                                height={50}
+                                                width={50}
                                                 className="rounded-full"
                                             />
-                                            <p className="font-medium text-gray-800 truncate">{review.user.fullName}</p>
-                                        </div>
-                                        <p className="text-sm text-gray-700 mt-3">{review.reviewMessage}</p>
-                                    </div>
+                                            <div>
+                                                <p className="font-medium text-gray-800">
+                                                    {review.user.fullName}
+                                                </p>
+                                                <div className="flex gap-1">
+                                                    {Array.from({ length: 5 }).map((_, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className={i < review.rating ? "text-orange-500" : "text-gray-400"}
+                                                        >
+                                                            <StarIcon size={18} />
+                                                        </span>
+                                                    ))}
+                                                </div>
 
-                                    <span className="text-orange-500 font-semibold whitespace-nowrap">
-                                        ⭐ {review.rating}
-                                    </span>
+                                            </div>
+                                        </div>
+                                        <p className="text-sm text-gray-700 mt-3 font-semibold">{review.reviewMessage}</p>
+                                    </div>
+                                    <span className="text-xs text-gray-500 ml-2 absolute bottom-2 right-2">{formatDate(review.createdAt)}</span>
                                 </div>
                             ))}
                         </div>

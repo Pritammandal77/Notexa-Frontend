@@ -133,11 +133,6 @@ function Footer() {
                             Email: thetechbanao@gmail.com
                         </p>
 
-                        <p>Phone</p>
-                        <div className="flex flex-col    text-[14px]">
-                            <a href="tel:+917720803593">+91 77208 03593</a>
-                            <a href="tel:+919960507451">+91 99605 07451</a>
-                        </div>
                     </div>
                 </div>
 
