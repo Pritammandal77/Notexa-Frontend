@@ -1,10 +1,8 @@
 "use client";
 import MotionWrapper from '@/utils/MotionWrapper';
 import ScaleWrapper from '@/utils/ScaleWrapper';
-import { BookOpen, DollarSign, Search, Upload } from 'lucide-react';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
-
+import React from 'react';
 
 function About() {
 

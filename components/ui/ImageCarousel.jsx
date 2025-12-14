@@ -18,7 +18,16 @@ export function Carousel() {
     let raf;
 
     if (!allNotes || allNotes.length === 0) {
-        return <p className="text-center py-10 text-gray-500">No notes found.</p>;
+        return (
+            <>
+                <div className="flex gap-6 px-3 xl:px-5">
+                    <NotesCardSkeleton />
+                    <NotesCardSkeleton />
+                    <NotesCardSkeleton />
+                    <NotesCardSkeleton />
+                </div>
+            </>
+        );
     }
 
 

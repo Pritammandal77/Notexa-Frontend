@@ -7,20 +7,17 @@ import {
     Eye,
     FileText,
     Calendar,
-    User,
     Star,
-    ChevronRightCircleIcon,
-    ChevronLeftCircleIcon,
     ChevronLeft,
     ChevronRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
-import axios from "axios";
 import { axiosInstance } from "@/utils/axiosInstance";
 import NotesDetailsPageSkeleton from "@/components/SkeletonLoaders/NotesDetailsPageSkeleton";
 import ReviewModal from "@/components/ui/ReviewModal";
+import Image from "next/image";
 
 
 function Page() {
@@ -30,6 +27,7 @@ function Page() {
     const userId = user?._id;
     const [showReview, setShowReview] = useState(false);
     const [currentSlide, setCurrentSlide] = React.useState(0);
+    const [Allreviews, setAllReviews] = useState(null);
 
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev === 1 ? 0 : prev + 1));
@@ -40,7 +38,7 @@ function Page() {
     };
 
     // Auto slide every 3s
-    React.useEffect(() => {
+    useEffect(() => {
         const interval = setInterval(() => {
             nextSlide();
         }, 3000);
@@ -61,7 +59,8 @@ function Page() {
     useEffect(() => {
         async function HandleFetchReviews() {
             const reviews = await fetchReviewsById(id)
-            console.log("all reviews",reviews)
+            console.log("all reviews", reviews)
+            setAllReviews(reviews)
         }
         HandleFetchReviews();
     }, []);
@@ -293,22 +292,18 @@ function Page() {
             </div>
 
             {/* 2 BOTTOM BOXES */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-5 xl:gap-10 mt-5 xl:mt-14 p-3 xl:p-0">
+            <div className="max-w-7xl relative mx-auto grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-5 xl:gap-10 mt-5 xl:mt-14 p-3 xl:p-0">
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                <div
                     className="bg-white hidden xl:inline rounded-2xl xl:shadow-xl xl:border xl:border-orange-200 p-8"
                 >
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">About This Note</h2>
                     <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                         {description}
                     </p>
-                </motion.div>
+                </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                <div
                     className="bg-white rounded-2xl shadow-xl border border-orange-200 xl:border-orange-200 p-8"
                 >
                     <h2 className="font-semibold text-gray-800 mb-6 flex items-center justify-between gap-2">
@@ -324,28 +319,37 @@ function Page() {
                         </div>
                     </h2>
 
-                    {reviews?.length === 0 ? (
+                    {Allreviews?.length === 0 ? (
                         <p className="text-gray-400 text-sm">No reviews yet.</p>
                     ) : (
                         <div className="space-y-5">
-                            {reviews.map((r, i) => (
+                            {Allreviews?.map((review, index) => (
                                 <div
-                                    key={i}
-                                    className="flex justify-between gap-4 border-b border-orange-100 pb-4"
+                                    key={index}
+                                    className="flex justify-between gap-4 border-1 bg-orange-50 border-orange-200 pb-4 p-2 md:p-3 xl:p-4 rounded-2xl"
                                 >
                                     <div className="min-w-0 flex-1">
-                                        <p className="font-medium text-gray-800 truncate">{r.user}</p>
-                                        <p className="text-sm text-gray-500 break-words">{r.comment}</p>
+                                        <div className="flex gap-3">
+                                            <Image
+                                                src={review?.user?.profilePicture}
+                                                alt="failed to load the image"
+                                                height={35}
+                                                width={35}
+                                                className="rounded-full"
+                                            />
+                                            <p className="font-medium text-gray-800 truncate">{review.user.fullName}</p>
+                                        </div>
+                                        <p className="text-sm text-gray-700 mt-3">{review.reviewMessage}</p>
                                     </div>
 
                                     <span className="text-orange-500 font-semibold whitespace-nowrap">
-                                        ⭐ {r.rating}
+                                        ⭐ {review.rating}
                                     </span>
                                 </div>
                             ))}
                         </div>
                     )}
-                </motion.div>
+                </div>
 
             </div>
 

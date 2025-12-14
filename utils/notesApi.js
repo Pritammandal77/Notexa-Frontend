@@ -67,6 +67,7 @@ export const AddReview = async(rating, review, notesId) => {
             rating, review, notesId
         })
         console.log(res.data)
+        toast.success("Reviewed successfully")
     } catch (error) {
         toast.error("Error while rating the notes")
     }

@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Ellipsis } from 'lucide-react';
 import { toast } from 'sonner';
+import NotesCardSkeleton from '@/components/SkeletonLoaders/NotesCardSkeleton';
 
 function Page() {
 
@@ -61,6 +62,9 @@ function Page() {
                                     src={user.profilePicture}
                                     alt="Profile"
                                     fill
+                                    sizes="(max-width: 640px) 100vw,
+                                            (max-width: 1024px) 50vw,
+                                            33vw"
                                     className="object-cover rounded-full"
                                 />
                             )}
@@ -104,7 +108,6 @@ function Page() {
 
                         </div>
                     </div>
-
                 </div>
 
                 {/* RIGHT CONTENT */}
@@ -184,7 +187,16 @@ function Page() {
                         ))}
                     </div>
 
-                    {isLoading && <Loader1 />}
+                    {isLoading &&
+                        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-5'>
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                        </div>
+                    }
                 </div>
 
             </div>
