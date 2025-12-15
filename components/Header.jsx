@@ -123,7 +123,7 @@
 
 "use client";
 
-import { CircleX, TableOfContents, X } from "lucide-react";
+import { CircleX, LogOut, TableOfContents, X } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Login from "./Login";
@@ -193,7 +193,6 @@ function Header() {
                 <div className="hidden xl:flex items-center gap-10">
                     <Link href="/" className="font-semibold cursor-pointer">Home</Link>
                     <Link href="/allnotes" className="font-semibold cursor-pointer">Notes</Link>
-                    <Link href="/sellnotes" className="font-semibold cursor-pointer">Sell Notes</Link>
                     <Link href="/profile" className="font-semibold cursor-pointer">Profile</Link>
                     <Link href="/about" className="font-semibold cursor-pointer">About</Link>
                     <span
@@ -242,7 +241,38 @@ function Header() {
                     </div>
 
                     {/* Menu Links */}
-                    <ul className="flex flex-col gap-6 mt-6 px-6 text-lg font-semibold text-gray-800">
+                    <ul className="flex flex-col gap-6 mt-6 pl-4 pr-2 text-lg font-semibold text-gray-800">
+                        {
+                            user ?
+                                (
+                                    <div
+                                        className="font-semibold cursor-pointer flex gap-2"
+                                        onClick={() => {
+                                            setIsDialogOpen(!isDialogOpen)
+                                            setIsSidebarOpen(false)
+                                        }}
+
+                                    >
+                                        <Image
+                                            src={user?.profilePicture || "/defaultpfp.webp"}
+                                            alt="User Profile"
+                                            height="40"
+                                            width="40"
+                                            className="rounded-full"
+                                        />
+                                        <div>
+                                            <p className="text-[16px]">{user?.fullName}</p>
+                                            <p className="text-[12px]">{user?.email}</p>
+                                        </div>
+                                    </div>
+                                ) :
+                                (
+                                    // <button className="bg-orange-500 py-2 text-white font-semibold rounded-2xl">continue with google</button>
+                                    <Login />
+                                )
+                        }
+
+
                         <li>
                             <Link href="/" onClick={() => setIsSidebarOpen(false)}>Home</Link>
                         </li>
@@ -258,20 +288,21 @@ function Header() {
                         <li>
                             <Link href="/profile" onClick={() => setIsSidebarOpen(false)}>Profile</Link>
                         </li>
-                        <li
-                            className="cursor-pointer"
-                            onClick={() => {
-                                setIsDialogOpen(!isDialogOpen);
-                                setIsSidebarOpen(false);
-                            }}
-                        >
-                            Profile
-                        </li>
                     </ul>
+
+                    {
+                        user &&
+                        <p className="flex gap-2 absolute bottom-5 right-5 text-[16px text-gray-600]"
+                            onClick={logOutUser}>
+                            <LogOut />
+                            Logout
+                        </p>
+
+                    }
                 </aside>
             </div>
 
-            {/* ✅ Profile Dialog */}
+
             <div
                 className={`fixed flex flex-col items-center justify-center gap-7 top-20 right-5 xl:right-10 h-40 w-[90vw] md:w-100 bg-orange-100 border border-orange-200 z-30 rounded-lg shadow-lg p-4 transition-all duration-300 ease-out 
         ${isDialogOpen

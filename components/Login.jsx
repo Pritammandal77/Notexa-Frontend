@@ -12,11 +12,11 @@ function Login() {
         <>
             <button
                 onClick={handleLogin}
-                className='shadow-xl flex items-center cursor-pointer justify-center gap-8 xl:w-[80%] bg-white self-center px-5 py-3 rounded-xl border-1 border-[#787878] hover:bg-[#e6e6e6] transition-all duration-400'>
+                className='shadow-xl flex items-center cursor-pointer justify-center gap-4 md:gap-8 xl:w-[80%] bg-white self-center px-5 py-3 rounded-xl border-1 border-[#787878] hover:bg-[#e6e6e6] transition-all duration-400'>
                 <img src='/googleLogo.png'
                     className='w-6 h-6'
                 />
-                <span className='font-semibold'>
+                <span className='font-semibold text-[16px]'>
                     Continue with Google
                 </span>
             </button>

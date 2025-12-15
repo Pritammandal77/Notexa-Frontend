@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import NotesCardSkeleton from '@/components/SkeletonLoaders/NotesCardSkeleton';
 import { getPurchasedNotes } from '@/utils/userApi';
 import NotesCard from '@/components/ui/NotesCard';
+import Link from 'next/link';
 
 function Page() {
 
@@ -66,7 +67,7 @@ function Page() {
 
                 <div className="xl:fixed xl:top-0 xl:left-0 w-full h-auto md:h-auto xl:h-screen xl:w-[25%] 
               bg-orange-100 p-3 md:p-4 xl:pt-20 border-b xl:border-b-0 xl:border-r  border-orange-200 z-20 
-               flex flex-col items-center justify-center xl:block md:px-15 xl:px-4
+               flex flex-col items-center justify-center xl:block md:px-15 lg:px-30 xl:px-4
                   ">
 
                     <div className="self-start flex md:gap-6 gap-3 md:flex-row xl:flex-row ">
@@ -87,7 +88,7 @@ function Page() {
                         </div>
 
                         {/* User Info */}
-                        <div className="">
+                        <div className="mt-3">
                             <p className="text-md md:text-lg font-semibold text-gray-800">
                                 {user?.fullName}
                             </p>
@@ -96,6 +97,10 @@ function Page() {
                             </p>
                         </div>
                     </div>
+
+                    <Link href="/sellnotes">
+                        <button className='w-[90vw] md:w-[85vw] lg:w-[75vw] xl:w-full py-2 lg:py-3 xl:py-2 cursor-pointer bg-orange-500 rounded-2xl text-white font-semibold mt-5'>Sell Notes</button>
+                    </Link>
 
                     <div className="grid grid-cols-2 w-full gap-3 mt-10">
 

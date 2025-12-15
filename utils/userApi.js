@@ -28,6 +28,7 @@ export const logOutUser = async () => {
         } else {
             toast.error("Log out failed")
         }
+        window.location.reload();
     } catch (err) {
         toast.error("Logout failed : something went wrong")
 
