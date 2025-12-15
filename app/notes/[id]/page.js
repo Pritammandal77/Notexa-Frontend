@@ -20,6 +20,8 @@ import NotesDetailsPageSkeleton from "@/components/SkeletonLoaders/NotesDetailsP
 import ReviewModal from "@/components/ui/ReviewModal";
 import Image from "next/image";
 import { formatDate } from "@/utils/FormatDate";
+import { IconStarFilled, IconStarsFilled } from "@tabler/icons-react";
+import { addNotesToPurchased } from "@/utils/userApi";
 
 
 function Page() {
@@ -143,6 +145,7 @@ function Page() {
                         toast.success("Payment Verified!");
                         handleDownload();
                         UpdateNotesDownloadsCount(id);
+                        addNotesToPurchased(id);
                     } else {
                         toast.error("Payment failed!");
                     }
@@ -343,7 +346,7 @@ function Page() {
                                                             key={i}
                                                             className={i < review.rating ? "text-orange-500" : "text-gray-400"}
                                                         >
-                                                            <StarIcon size={18} />
+                                                            <IconStarFilled size={18} />
                                                         </span>
                                                     ))}
                                                 </div>

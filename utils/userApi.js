@@ -1,4 +1,4 @@
-import {axiosInstance} from "./axiosInstance"
+import { axiosInstance } from "./axiosInstance"
 import { toast } from "sonner";
 import { fetchWithAuth } from "./auth";
 
@@ -33,3 +33,22 @@ export const logOutUser = async () => {
 
     }
 }
+
+export const addNotesToPurchased = async (notesId) => {
+    try {
+        const res = await axiosInstance.post("/api/v1/me/add-notes-to-purchased",
+            { notesId },
+            {
+                withCredentials: true
+            }
+        )
+        return res.data
+    } catch (error) {
+        console.log("Error while marking this notes as purchased")
+    }
+}
+
+export const getPurchasedNotes = async () => {
+    const res = await axiosInstance.get("/api/v1/me/purchased-notes");
+    return res;
+};

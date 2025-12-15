@@ -45,7 +45,7 @@
 //                             <Link href="/sellnotes">Sell Notes</Link>
 //                         </li>
 //                         <li className='font-semibold cursor-pointer'>
-//                             Dashboard
+//                             profile
 //                         </li>
 //                         <li className='font-semibold cursor-pointer'
 //                             onClick={() => isDialogOpen ? setIsDialogOpen(false) : setIsDialogOpen(true)}
@@ -194,7 +194,7 @@ function Header() {
                     <Link href="/" className="font-semibold cursor-pointer">Home</Link>
                     <Link href="/allnotes" className="font-semibold cursor-pointer">Notes</Link>
                     <Link href="/sellnotes" className="font-semibold cursor-pointer">Sell Notes</Link>
-                    <Link href="/dashboard" className="font-semibold cursor-pointer">Dashboard</Link>
+                    <Link href="/profile" className="font-semibold cursor-pointer">profile</Link>
                     <span
                         className="font-semibold cursor-pointer"
                         onClick={() => setIsDialogOpen(!isDialogOpen)}
@@ -252,7 +252,7 @@ function Header() {
                             <Link href="/sellnotes" onClick={() => setIsSidebarOpen(false)}>Sell Notes</Link>
                         </li>
                         <li>
-                            <Link href="/dashboard" onClick={() => setIsSidebarOpen(false)}>Dashboard</Link>
+                            <Link href="/profile" onClick={() => setIsSidebarOpen(false)}>profile</Link>
                         </li>
                         <li
                             className="cursor-pointer"
