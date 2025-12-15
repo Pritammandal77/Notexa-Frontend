@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const MotionWrapper = ({ children, delay = 0, direction = "y" }) => {
+const MotionWrapper = ({ children, delay = 0, direction = "y", fromBottom }) => {
   let initialPos = {};
 
   switch (direction) {
     case "y":  // bottom se
-      initialPos = { y: 10 };
+      initialPos = { y: fromBottom };
       break;
     case "-y": // top se
       initialPos = { y: -10 };

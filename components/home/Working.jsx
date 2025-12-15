@@ -115,7 +115,7 @@ const steps = [
 
 export default function Working() {
     return (
-        <section className="relative bg-gradient-to-b from-orange-100 via-white to-orange-100 py-24 overflow-hidden">
+        <section id="working" className="relative bg-gradient-to-b from-orange-100 via-white to-orange-100 py-24 overflow-hidden">
             <div className="w-[90%] max-w-6xl mx-auto text-center mb-20">
                 <h2 className="text-4xl font-bold text-gray-900">
                     How It <span className="text-orange-500">Works?</span>
@@ -137,7 +137,7 @@ export default function Working() {
                         const Icon = step.icon;
                         const isLeft = index % 2 === 0;
                         return (
-                            <MotionWrapper key={step.id}>
+                            <MotionWrapper key={step.id} fromBottom={30}>
                                 <div
                                     className={`flex items-center md:justify-between relative ${isLeft ? "md:flex-row" : "md:flex-row-reverse"
                                         }`}
@@ -182,6 +182,7 @@ export default function Working() {
                     })}
                 </div>
             </div>
+
         </section>
     );
 }

@@ -194,7 +194,8 @@ function Header() {
                     <Link href="/" className="font-semibold cursor-pointer">Home</Link>
                     <Link href="/allnotes" className="font-semibold cursor-pointer">Notes</Link>
                     <Link href="/sellnotes" className="font-semibold cursor-pointer">Sell Notes</Link>
-                    <Link href="/profile" className="font-semibold cursor-pointer">profile</Link>
+                    <Link href="/profile" className="font-semibold cursor-pointer">Profile</Link>
+                    <Link href="/about" className="font-semibold cursor-pointer">About</Link>
                     <span
                         className="font-semibold cursor-pointer"
                         onClick={() => setIsDialogOpen(!isDialogOpen)}
@@ -252,7 +253,10 @@ function Header() {
                             <Link href="/sellnotes" onClick={() => setIsSidebarOpen(false)}>Sell Notes</Link>
                         </li>
                         <li>
-                            <Link href="/profile" onClick={() => setIsSidebarOpen(false)}>profile</Link>
+                            <Link href="/about" onClick={() => setIsSidebarOpen(false)}>About</Link>
+                        </li>
+                        <li>
+                            <Link href="/profile" onClick={() => setIsSidebarOpen(false)}>Profile</Link>
                         </li>
                         <li
                             className="cursor-pointer"

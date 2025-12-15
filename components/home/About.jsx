@@ -8,7 +8,7 @@ function About() {
 
     return (
         <>
-            <div className='flex flex-col xl:flex-row justify-center xl:py-30 pb-20 xl:pb-30 relative'>
+            <div className='flex flex-col xl:flex-row justify-center pt-10 xl:pt-15 xl:py-30 pb-20 xl:pb-30 relative bg-gradient-to-b from-white via-orange-100 to-orange-100'>
                 <MotionWrapper direction='-x'>
                     <div className='w-full xl:w-[45vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
                         {/* Background decorative circles */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Sparkles, CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 function Hero() {
     return (
@@ -36,13 +37,17 @@ function Hero() {
 
                 {/* CTA */}
                 <div className="flex flex-wrap justify-center gap-5 mt-8">
-                    <button className="px-7 py-3 cursor-pointer bg-[#ff7a1f] text-white font-semibold rounded-lg hover:bg-[#ff9340] transition shadow-md">
-                        Explore Notes
-                    </button>
+                    <Link href="/allnotes">
+                        <button className="px-7 py-3 cursor-pointer bg-[#ff7a1f] text-white font-semibold rounded-lg hover:bg-[#ff9340] transition shadow-md">
+                            Explore Notes
+                        </button>
+                    </Link>
 
-                    <button className="px-7 py-3 cursor-pointer bg-white text-[#ff7a1f] font-semibold rounded-lg border border-orange-300 hover:bg-orange-50 transition">
-                        Browse Subjects
-                    </button>
+                    <Link href="/about/#working">
+                        <button className="px-7 py-3 cursor-pointer bg-white text-[#ff7a1f] font-semibold rounded-lg border border-orange-300 hover:bg-orange-50 transition">
+                            How it works
+                        </button>
+                    </Link>
                 </div>
 
                 {/* TRUST STATS */}
@@ -83,7 +88,7 @@ function Hero() {
                 </div>
 
                 {/* SOCIAL PROOF */}
-                <p className="mt-10 text-sm text-gray-600">
+                <p className="mt-10 text-sm font-semibold bg-orange-100 text-orange-800 px-4 py-1 rounded-full">
                     Trusted by students from multiple colleges across India
                 </p>
             </div>
