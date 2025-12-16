@@ -61,7 +61,7 @@ export const UpdateNotesDownloadsCount = async (notesId) => {
 }
 
 
-export const AddReview = async(rating, review, notesId) => {
+export const AddReview = async (rating, review, notesId) => {
     try {
         const res = await axiosInstance.post("/api/v1/notes/add-review", {
             rating, review, notesId
@@ -73,11 +73,20 @@ export const AddReview = async(rating, review, notesId) => {
     }
 }
 
-export const fetchReviewsById = async(notesId) => {
+export const fetchReviewsById = async (notesId) => {
     try {
         const res = await axiosInstance.get(`/api/v1/notes/reviews/${notesId}`)
         return res.data.data
     } catch (error) {
         toast.error("Error while fetching the reviews")
+    }
+}
+
+export const countNotesViews = async (notesId) => {
+    try {
+        const res = await axiosInstance.patch(`/api/v1/notes/count-views/${notesId}`)
+        return res.data.data
+    } catch (error) {
+        console.log("Error while updating the views count")
     }
 }

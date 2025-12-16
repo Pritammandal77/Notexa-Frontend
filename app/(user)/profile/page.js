@@ -31,7 +31,6 @@ function Page() {
                 const res = await getPurchasedNotes();
                 setIsLoading(false)
                 setPurchasedNotes(res?.data?.data?.notesPurchased)
-                console.log("purchased notes", res?.data?.data?.notesPurchased)
             } catch (err) {
                 console.error(err);
             }
@@ -133,12 +132,9 @@ function Page() {
                                 {user?.notesPurchased?.length ?? "loading..."}
                             </p>
                         </div>
-
                     </div>
-
                 </div>
-
-
+                
                 {
                     activeTab === "uploaded" && (
                         <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { fetchReviewsById, getNotesById, UpdateNotesDownloadsCount } from "@/utils/notesApi";
+import { countNotesViews, fetchReviewsById, getNotesById, UpdateNotesDownloadsCount } from "@/utils/notesApi";
 import { useParams } from "next/navigation";
 import {
     Download,
@@ -32,6 +32,7 @@ function Page() {
     const [showReview, setShowReview] = useState(false);
     const [currentSlide, setCurrentSlide] = React.useState(0);
     const [Allreviews, setAllReviews] = useState(null);
+    const [isThisNotesPurchasedByCurrUser, setIsThisNotesPurchasedByCurrUser] = useState(false)
 
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev === 1 ? 0 : prev + 1));
@@ -52,10 +53,21 @@ function Page() {
 
 
     useEffect(() => {
+        if (user) {
+            let isNotesPurchasedByUser = user.notesPurchased.find((ids) => ids == id)
+
+            if (isNotesPurchasedByUser != undefined) {
+                setIsThisNotesPurchasedByCurrUser(true)
+            }
+        }
+    }, [user]);
+
+    useEffect(() => {
         async function fetchNote() {
             const res = await getNotesById(id);
             setNotesData(res?.data);
             console.log(res)
+            countNotesViews(id);
         }
         fetchNote();
     }, [id]);
@@ -63,7 +75,6 @@ function Page() {
     useEffect(() => {
         async function HandleFetchReviews() {
             const reviews = await fetchReviewsById(id)
-            console.log("all reviews", reviews)
             setAllReviews(reviews)
         }
         HandleFetchReviews();
@@ -212,7 +223,7 @@ function Page() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Eye className="text-orange-500 w-4 h-4" />
-                            {viewsCount} views
+                            {viewsCount?.length} views
                         </div>
                         <div className="flex items-center gap-2">
                             <Download className="text-orange-500 w-4 h-4" />
@@ -310,12 +321,17 @@ function Page() {
                             <Star className="text-orange-500 w-5 h-5" />
                             Reviews
                         </div>
-                        <div>
-                            <button className="bg-orange-500 hover:bg-orange-600 px-3 py-2 text-white font-semibold rounded-2xl cursor-pointer"
-                                onClick={() => setShowReview(true)}>
-                                Add Review
-                            </button>
-                        </div>
+                        
+                        {
+                            isThisNotesPurchasedByCurrUser &&
+                            <div>
+                                <button className="bg-orange-500 hover:bg-orange-600 px-3 py-2 text-white font-semibold rounded-2xl cursor-pointer"
+                                    onClick={() => setShowReview(true)}>
+                                    Add Review
+                                </button>
+                            </div>
+                        }
+
                     </h2>
 
                     {Allreviews?.length === 0 ? (
