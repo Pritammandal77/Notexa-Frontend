@@ -33,7 +33,7 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
                         <p className="text-sm md:text-md text-gray-700 mt-2">
                             <span className="font-medium">Subject:</span> {subject}
                         </p>
-                        
+
                         {
                             sellerName &&
                             <p className="text-sm md:text-md text-gray-700">
@@ -58,7 +58,9 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
                                         onClick={() => handleDeleteNotes(notesId)}
                                     >Delete notes
                                     </li>
-                                    <li className='border-1 p-2 rounded-b-xl border-orange-300 hover:bg-orange-200 cursor-pointer'>Edit notes</li>
+                                    <Link href={`/notes/${notesId}/edit`}>
+                                        <li className='border-1 p-2 rounded-b-xl border-orange-300 hover:bg-orange-200 cursor-pointer'>Edit notes</li>
+                                    </Link>
                                 </ul>
                             )}
                         </div>

@@ -206,7 +206,7 @@ function Page() {
                 >
                     <div className="flex items-center gap-4 pb-4 border-b border-orange-100">
                         <img
-                            src={seller.profilePicture}
+                            src={seller?.profilePicture}
                             alt={seller.fullName}
                             className="w-16 h-16 rounded-full object-cover border-2 border-orange-400 shadow-md"
                         />

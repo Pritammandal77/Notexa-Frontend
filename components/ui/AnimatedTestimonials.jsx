@@ -47,7 +47,7 @@ export const AnimatedTestimonials = ({
         <div className="mx-auto flex flex-col gap-15 max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
             <div className="flex flex-col items-center gap-3">
                 <h1 className="text-4xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight">
-                    What Our <span className="text-orange-500">Users</span> Say
+                    What <span className="text-orange-500">Students</span> Say About Notexa
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
                     Hear from people who love using Notexa.
@@ -115,10 +115,10 @@ export const AnimatedTestimonials = ({
                         <h3 className="text-2xl font-bold text-black ">
                             {activeTestimonial.name}
                         </h3>
-                        <p className="text-sm text-gray-500 ">
+                        <p className="text-sm text-gray-600 ">
                             {activeTestimonial.designation}
                         </p>
-                        <motion.p className="mt-4 xl:mt-8 text-lg text-gray-500 ">
+                        <motion.p className="mt-4 xl:mt-8 text-lg text-gray-700 ">
                             {activeTestimonial.quote.split(" ").map((word, index) => (
                                 <motion.span
                                     key={index}
