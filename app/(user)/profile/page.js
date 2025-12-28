@@ -10,8 +10,10 @@ import NotesCardSkeleton from '@/components/SkeletonLoaders/NotesCardSkeleton';
 import { getPurchasedNotes } from '@/utils/userApi';
 import NotesCard from '@/components/ui/NotesCard';
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 
 function Page() {
+    const router = useRouter();
 
     const user = useSelector((state) => state.user?.currUser?.user)
     const [userData, setUserData] = useState(null)
@@ -20,6 +22,10 @@ function Page() {
     const [openDropdownId, setOpenDropdownId] = useState(null);
     const [purchasedNotes, setPurchasedNotes] = useState(null);
     const [activeTab, setActiveTab] = useState("uploaded"); // "uploaded" | "purchased"
+
+    // if (!userData) {
+    //     router.push("/")
+    // }
 
     useEffect(() => {
         console.log("user data on dashboard", user)
@@ -134,7 +140,7 @@ function Page() {
                         </div>
                     </div>
                 </div>
-                
+
                 {
                     activeTab === "uploaded" && (
                         <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">

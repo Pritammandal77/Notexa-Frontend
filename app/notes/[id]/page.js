@@ -11,6 +11,7 @@ import {
     ChevronLeft,
     ChevronRight,
     StarIcon,
+    Ellipsis,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -22,6 +23,7 @@ import Image from "next/image";
 import { formatDate } from "@/utils/FormatDate";
 import { IconStarFilled, IconStarsFilled } from "@tabler/icons-react";
 import { addNotesToPurchased } from "@/utils/userApi";
+import { deleteReview } from "@/utils/reviewApi";
 
 
 function Page() {
@@ -33,6 +35,7 @@ function Page() {
     const [currentSlide, setCurrentSlide] = React.useState(0);
     const [Allreviews, setAllReviews] = useState(null);
     const [isThisNotesPurchasedByCurrUser, setIsThisNotesPurchasedByCurrUser] = useState(false)
+    const [openDropdownId, setOpenDropdownId] = useState(null);
 
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev === 1 ? 0 : prev + 1));
@@ -119,6 +122,10 @@ function Page() {
     }
 
     const handlePaymentForBuyingNotes = async () => {
+        if (!user) {
+            toast.error("Please Login to continue...")
+            return
+        }
 
         openPaymentPopup();
 
@@ -173,6 +180,9 @@ function Page() {
         }
     }
 
+    const handleDeleteReview = async (id) => {
+        const res = await deleteReview(id)
+    }
 
     return (
         <div className="min-h-screen h-auto bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-24 pb-16 px-0 md:px-20 xl:px-0">
@@ -321,7 +331,7 @@ function Page() {
                             <Star className="text-orange-500 w-5 h-5" />
                             Reviews
                         </div>
-                        
+
                         {
                             isThisNotesPurchasedByCurrUser &&
                             <div>
@@ -352,7 +362,7 @@ function Page() {
                                                 width={50}
                                                 className="rounded-full"
                                             />
-                                            <div>
+                                            <div className="relative">
                                                 <p className="font-medium text-gray-800">
                                                     {review.user.fullName}
                                                 </p>
@@ -366,12 +376,30 @@ function Page() {
                                                         </span>
                                                     ))}
                                                 </div>
-
                                             </div>
                                         </div>
                                         <p className="text-sm text-gray-700 mt-3 font-semibold">{review.reviewMessage}</p>
                                     </div>
+
                                     <span className="text-xs text-gray-500 ml-2 absolute bottom-2 right-2">{formatDate(review.createdAt)}</span>
+
+                                    <div className='absolute top-2 right-2 flex flex-col'>
+                                        <Ellipsis
+                                            className='cursor-pointer self-end'
+                                            onClick={() => setOpenDropdownId(openDropdownId === review._id ? null : review._id)}
+                                        />
+
+                                        {openDropdownId === review._id && (
+                                            <ul className='bg-orange-100 rounded-2xl'>
+                                                <li className='border-1 p-2 rounded-xl border-orange-300 hover:bg-orange-200 cursor-pointer'
+                                                    onClick={() => handleDeleteReview(review._id)}
+                                                >Delete Review
+                                                </li>
+
+                                            </ul>
+                                        )}
+                                    </div>
+
                                 </div>
                             ))}
                         </div>

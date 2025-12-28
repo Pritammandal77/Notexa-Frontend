@@ -193,7 +193,10 @@ function Header() {
                 <div className="hidden xl:flex items-center gap-10">
                     <Link href="/" className="font-semibold cursor-pointer">Home</Link>
                     <Link href="/allnotes" className="font-semibold cursor-pointer">Notes</Link>
-                    <Link href="/profile" className="font-semibold cursor-pointer">Profile</Link>
+                    {
+                        user &&
+                        <Link href="/profile" className="font-semibold cursor-pointer">Profile</Link>
+                    }
                     <Link href="/about" className="font-semibold cursor-pointer">About</Link>
                     <span
                         className="font-semibold cursor-pointer"
