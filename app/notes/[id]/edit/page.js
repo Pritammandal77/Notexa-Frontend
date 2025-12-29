@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
-
+ 
 function page() {
 
     const user = useSelector((state) => state.user?.currUser?.user)
