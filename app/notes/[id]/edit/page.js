@@ -2,6 +2,7 @@
 import { axiosInstance } from '@/utils/axiosInstance';
 import { getNotesById } from '@/utils/notesApi';
 import { useParams } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
@@ -13,6 +14,7 @@ function page() {
     const { id } = useParams();
     const [OldnotesData, setOldNotesData] = useState(null);
 
+    const router = useRouter();
 
     useEffect(() => {
         async function fetchNote() {
@@ -73,7 +75,7 @@ function page() {
             );
 
             toast.success("Notes Updated successfully!");
-            console.log("Updated:", response.data);
+            router.push("/")
         } catch (error) {
             console.error("Error while updating notes:", error);
             toast.error("Error while updating the notes")
@@ -85,7 +87,7 @@ function page() {
     return (
         <>
             <div className="min-h-screen pt-20 bg-gradient-to-b from-orange-50 to-orange-100 py-10 px-4 flex justify-center">
-                <div className="max-w-screen h-auto w-full bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-3 md:p-8 border border-orange-200">
+                <div className="max-w-screen h-auto w-full xl:w-[60vw] bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-3 md:p-8 border border-orange-200">
                     <h1 className="text-3xl font-bold text-orange-600 mb-2 text-center">
                         Update Notes
                     </h1>

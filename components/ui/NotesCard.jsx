@@ -52,17 +52,19 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
                                 onClick={() => setOpenDropdownId(openDropdownId === notesId ? null : notesId)}
                             />
 
-                            {openDropdownId === notesId && (
-                                <ul className='bg-orange-100 rounded-2xl'>
-                                    <li className='border-1 p-2 rounded-t-xl border-orange-300 hover:bg-orange-200 cursor-pointer'
-                                        onClick={() => handleDeleteNotes(notesId)}
-                                    >Delete notes
-                                    </li>
-                                    <Link href={`/notes/${notesId}/edit`}>
-                                        <li className='border-1 p-2 rounded-b-xl border-orange-300 hover:bg-orange-200 cursor-pointer'>Edit notes</li>
-                                    </Link>
-                                </ul>
-                            )}
+                            {
+                                openDropdownId === notesId && (
+                                    <ul className='bg-orange-100 rounded-2xl'>
+                                        <li className='border-1 p-2 rounded-t-xl border-orange-300 hover:bg-orange-200 cursor-pointer'
+                                            onClick={() => handleDeleteNotes(notesId)}
+                                        >Delete notes
+                                        </li>
+                                        <Link href={`/notes/${notesId}/edit`}>
+                                            <li className='border-1 p-2 rounded-b-xl border-orange-300 hover:bg-orange-200 cursor-pointer'>Edit notes</li>
+                                        </Link>
+                                    </ul>
+                                )
+                            }
                         </div>
                     </div>
 

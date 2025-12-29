@@ -1,11 +1,24 @@
 "use client"
 import NotesCardSkeleton from '@/components/SkeletonLoaders/NotesCardSkeleton';
 import NotesCard from '@/components/ui/NotesCard';
-import React from 'react';
+import { deleteNotes } from '@/utils/notesApi';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 function Page() {
+
     const allNotes = useSelector((state) => state.notes.allNotes);
+    const [openDropdownId, setOpenDropdownId] = useState(null);
+
+    const handleDeleteNotes = async (notesId) => {
+        try {
+            let isDeleted = await deleteNotes(notesId)
+            toast.success("Notes deleted successfully")
+        } catch (error) {
+            console.log("error while deleting notes")
+            toast.error("something went wrong , while deleting the notes")
+        }
+    }
 
     return (
         <>
@@ -32,21 +45,24 @@ function Page() {
                                     subject={notes.subject}
                                     sellerName={notes.seller?.fullName}
                                     notesPrice={notes.price}
+                                    openDropdownId={openDropdownId}
+                                    setOpenDropdownId={setOpenDropdownId}
+                                    handleDeleteNotes={handleDeleteNotes}
                                 />
                             ))}
                         </div>
                     )
-                :
-                <div className='w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 p-4 gap-5'>
-                    <NotesCardSkeleton />
-                    <NotesCardSkeleton />
-                    <NotesCardSkeleton />
-                    <NotesCardSkeleton />
-                    <NotesCardSkeleton />
-                    <NotesCardSkeleton />
-                    <NotesCardSkeleton />
-                    <NotesCardSkeleton />
-                </div>
+                        :
+                        <div className='w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 p-4 gap-5'>
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                            <NotesCardSkeleton />
+                        </div>
                 }
 
             </div>
