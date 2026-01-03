@@ -83,7 +83,6 @@ function page() {
     };
 
 
-
     return (
         <>
             <div className="min-h-screen pt-20 bg-gradient-to-b from-orange-50 to-orange-100 py-10 px-4 flex justify-center">
