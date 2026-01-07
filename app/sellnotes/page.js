@@ -3,6 +3,7 @@ import Loader2 from "@/components/Loader/Loader2/Loader2";
 import PaymentBtn from "@/components/ui/PaymentBtn";
 import { axiosInstance } from "@/utils/axiosInstance";
 import { Ban } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
@@ -12,6 +13,8 @@ function Page() {
     const user = useSelector((state) => state.user?.currUser?.user)
     const userId = user?._id; // from auth context / redux
     const [allowed, setAllowed] = useState(false);
+
+    const router = useRouter();
 
     const [form, setForm] = useState({
         title: "",
@@ -108,8 +111,9 @@ function Page() {
             setIsLoading(false)
 
             toast.success("Notes uploaded successfully!");
-            console.log("Uploaded:", response.data);
+            router.push("/");
         } catch (error) {
+            setIsLoading(false)
             console.error("Error uploading:", error);
             toast.error(error.response?.data?.message || "Upload failed!");
         }
@@ -309,27 +313,24 @@ function Page() {
                     </button> */}
 
 
-                    <div className="xl:p-6">
+                    <div className="">
 
-                        {!allowed && (
+                        {!allowed ?
                             <PaymentBtn userId={userId} onSuccess={() => setAllowed(true)} />
-                        )}
-
-                        <br />
-
-                        <button
-                            disabled={!allowed}
-                            onClick={uploadNotes}
-                            className={`mt-4 px-5 py-2 flex gap-3 rounded cursor-pointer ${allowed ? "bg-green-600 text-white" : "bg-gray-300 text-gray-600"
-                                }`}
-                        >
-                            Upload Notes
-                            {
-                                !allowed &&
-                                <Ban />
-                            }
-                        </button>
-
+                            :
+                            <button
+                                disabled={!allowed}
+                                onClick={uploadNotes}
+                                className={`mt-4 px-5 py-2 flex gap-3 rounded cursor-pointer ${allowed ? "bg-green-600 text-white" : "bg-gray-300 text-gray-600"
+                                    }`}
+                            >
+                                Upload Notes
+                                {
+                                    !allowed &&
+                                    <Ban />
+                                }
+                            </button>
+                        }
                     </div>
 
 

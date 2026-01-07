@@ -160,6 +160,7 @@ function Page() {
                     );
 
                     if (verify.data.success) {
+                        console.log(verify)
                         toast.success("Payment Verified!");
                         handleDownload();
                         UpdateNotesDownloadsCount(id);
@@ -197,14 +198,24 @@ function Page() {
                         {subject} • Class {className}
                     </p>
                 </div>
-
-                <button
-                    onClick={handlePaymentForBuyingNotes}
-                    className="sticky top-30 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl text-white shadow-lg w-full sm:w-auto"
-                >
-                    <Download size={18} />
-                    Get this note
-                </button>
+                {
+                    isThisNotesPurchasedByCurrUser ?
+                        <button
+                            onClick={handleDownload}
+                            className="sticky top-30 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl text-white shadow-lg w-full sm:w-auto"
+                        >
+                            <Download size={18} />
+                            Download Notes
+                        </button>
+                        :
+                        <button
+                            onClick={handlePaymentForBuyingNotes}
+                            className="sticky top-30 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl text-white shadow-lg w-full sm:w-auto"
+                        >
+                            <Download size={18} />
+                            Get this note
+                        </button>
+                }
             </div>
 
             {/* 3 TOP BOXES */}
@@ -251,12 +262,23 @@ function Page() {
                             <span className="text-3xl font-bold text-orange-600">₹{price}</span>
                         </div>
 
-                        <button
-                            onClick={handlePaymentForBuyingNotes}
-                            className="w-full mt-5 py-3 rounded-xl bg-orange-500 text-white font-semibold shadow-md hover:bg-orange-600 transition"
-                        >
-                            Get This Note
-                        </button>
+                        {
+                            isThisNotesPurchasedByCurrUser ?
+                                <button
+                                    onClick={handleDownload}
+                                    className="w-full mt-5 py-3 rounded-xl bg-orange-500 text-white font-semibold shadow-md hover:bg-orange-600 transition"
+                                >
+                                    Download Notes
+                                </button>
+                                :
+                                <button
+                                    onClick={handlePaymentForBuyingNotes}
+                                    className="w-full mt-5 py-3 rounded-xl bg-orange-500 text-white font-semibold shadow-md hover:bg-orange-600 transition"
+                                >
+                                    Get This Note
+                                </button>
+                        }
+
                     </div>
 
                     <div
