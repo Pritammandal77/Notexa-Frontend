@@ -24,6 +24,8 @@ import { formatDate } from "@/utils/FormatDate";
 import { IconStarFilled, IconStarsFilled } from "@tabler/icons-react";
 import { addNotesToPurchased } from "@/utils/userApi";
 import { deleteReview } from "@/utils/reviewApi";
+import Link from "next/link";
+import { createNewTransaction } from "@/utils/payoutApi";
 
 
 function Page() {
@@ -159,12 +161,14 @@ function Page() {
                         }
                     );
 
+                    const paymentId = response.razorpay_payment_id
+
                     if (verify.data.success) {
-                        console.log(verify)
                         toast.success("Payment Verified!");
                         handleDownload();
                         UpdateNotesDownloadsCount(id);
                         addNotesToPurchased(id);
+                        createNewTransaction(id, paymentId)
                     } else {
                         toast.error("Payment failed!");
                     }
@@ -226,11 +230,13 @@ function Page() {
                     className="order-2 xl:order-1 bg-white/80 h-full backdrop-blur-xl border border-orange-200 shadow-xl rounded-2xl p-4 xl:p-6"
                 >
                     <div className="flex items-center gap-4 pb-4 border-b border-orange-100">
-                        <img
-                            src={seller?.profilePicture}
-                            alt={seller.fullName}
-                            className="w-16 h-16 rounded-full object-cover border-2 border-orange-400 shadow-md"
-                        />
+                        <Link href={`/profile/${seller._id}`}>
+                            <img
+                                src={seller?.profilePicture}
+                                alt={seller.fullName}
+                                className="w-16 h-16 rounded-full object-cover border-2 border-orange-400 shadow-md"
+                            />
+                        </Link>
                         <div>
                             <p className="font-bold text-gray-800">{seller.fullName}</p>
                             <p className="text-sm text-gray-500">{seller.email}</p>

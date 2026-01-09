@@ -21,14 +21,13 @@ function Page() {
     const [currUserNotes, setCurrUserNotes] = useState(null)
     const [openDropdownId, setOpenDropdownId] = useState(null);
     const [purchasedNotes, setPurchasedNotes] = useState(null);
-    const [activeTab, setActiveTab] = useState("uploaded"); // "uploaded" | "purchased"
+    const [activeTab, setActiveTab] = useState("uploaded");
 
     // if (!userData) {
     //     router.push("/")
     // }
 
     useEffect(() => {
-        console.log("user data on dashboard", user)
         setUserData(user);
 
         const fetchPurchasedNotes = async () => {
@@ -103,9 +102,14 @@ function Page() {
                         </div>
                     </div>
 
-                    <Link href="/sellnotes">
-                        <button className='w-[90vw] md:w-[85vw] lg:w-[75vw] xl:w-full py-2 lg:py-3 xl:py-2 cursor-pointer bg-orange-500 rounded-2xl text-white font-semibold mt-5'>Sell Notes</button>
-                    </Link>
+                    <div className='flex gap-3 w-[100%]'>
+                        <Link href="/sellnotes" className='w-[50%]'>
+                            <button className='w-[100%]  py-2 lg:py-3 xl:py-2 cursor-pointer bg-orange-500 rounded-2xl text-white font-semibold mt-5'>Sell Notes</button>
+                        </Link>
+                        <Link href="/dashboard" className='w-[50%]'>
+                            <button className='w-[100%]  py-2 lg:py-3 xl:py-2 cursor-pointer bg-orange-500 rounded-2xl text-white font-semibold mt-5'>Dashboard</button>
+                        </Link>
+                    </div>  
 
                     <div className="grid grid-cols-2 w-full gap-3 mt-10">
 

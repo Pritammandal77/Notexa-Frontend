@@ -46,26 +46,30 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
                             ₹{notesPrice}
                         </p>
 
-                        <div className='absolute top-0 right-0 flex flex-col'>
-                            <Ellipsis
-                                className='cursor-pointer self-end'
-                                onClick={() => setOpenDropdownId(openDropdownId === notesId ? null : notesId)}
-                            />
+                        {
+                            setOpenDropdownId &&
+                            <div className='absolute top-0 right-0 flex flex-col'>
+                                <Ellipsis
+                                    className='cursor-pointer self-end'
+                                    onClick={() => setOpenDropdownId(openDropdownId === notesId ? null : notesId)}
+                                />
 
-                            {
-                                openDropdownId === notesId && (
-                                    <ul className='bg-orange-100 rounded-2xl'>
-                                        <li className='border-1 p-2 rounded-t-xl border-orange-300 hover:bg-orange-200 cursor-pointer'
-                                            onClick={() => handleDeleteNotes(notesId)}
-                                        >Delete notes
-                                        </li>
-                                        <Link href={`/notes/${notesId}/edit`}>
-                                            <li className='border-1 p-2 rounded-b-xl border-orange-300 hover:bg-orange-200 cursor-pointer'>Edit notes</li>
-                                        </Link>
-                                    </ul>
-                                )
-                            }
-                        </div>
+                                {
+                                    openDropdownId === notesId && (
+                                        <ul className='bg-orange-100 rounded-2xl'>
+                                            <li className='border-1 p-2 rounded-t-xl border-orange-300 hover:bg-orange-200 cursor-pointer'
+                                                onClick={() => handleDeleteNotes(notesId)}
+                                            >Delete notes
+                                            </li>
+                                            <Link href={`/notes/${notesId}/edit`}>
+                                                <li className='border-1 p-2 rounded-b-xl border-orange-300 hover:bg-orange-200 cursor-pointer'>Edit notes</li>
+                                            </Link>
+                                        </ul>
+                                    )
+                                }
+                            </div>
+                        }
+
                     </div>
 
                     <Link href={`/notes/${notesId}`}>

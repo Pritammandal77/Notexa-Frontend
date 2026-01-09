@@ -33,6 +33,11 @@ export const fetchCurrentUserNotes = async () => {
     }
 }
 
+export const fetchAllNotesByUserId = async (userId) => {
+    const res = axiosInstance.get(`/api/v1/notes/${userId}/all-notes`)
+    return res;
+}
+
 export const deleteNotes = async (notesId) => {
     try {
         const res = await axiosInstance.delete(`api/v1/notes/delete-notes/${notesId}`,

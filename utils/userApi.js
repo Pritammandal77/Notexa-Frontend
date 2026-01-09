@@ -37,7 +37,7 @@ export const logOutUser = async () => {
 
 export const addNotesToPurchased = async (notesId) => {
     try {
-        const res = await axiosInstance.post("/api/v1/me/add-notes-to-purchased",
+        const res = await axiosInstance.post("/api/v1/user/add-notes-to-purchased",
             { notesId },
             {
                 withCredentials: true
@@ -50,6 +50,12 @@ export const addNotesToPurchased = async (notesId) => {
 }
 
 export const getPurchasedNotes = async () => {
-    const res = await axiosInstance.get("/api/v1/me/purchased-notes");
+    const res = await axiosInstance.get("/api/v1/user/purchased-notes");
     return res;
 };
+
+
+export const getUserById = async (id) => {
+    const res = await axiosInstance.get(`/api/v1/user/${id}`)
+    return res;
+}
