@@ -1,35 +1,3 @@
-// "use client"
-
-// import { createOrFetchWallet } from '@/utils/payoutApi';
-// import React, { useEffect, useState } from 'react';
-
-// function page() {
-
-//     const [walletData , setWalletData] = useState(null);
-
-//     useEffect(() => {
-//         const getWallet = async () => {
-//             const res = await createOrFetchWallet()
-//             console.log(res.data.data)
-//             setWalletData(res.data.data)
-//         }
-
-//         getWallet();
-//     }, []);
-
-//     return (
-//         <>
-//             <div className='w-full min-h-screen h-auto'>
-
-//             </div>
-//         </>
-//     );
-// }
-
-// export default page;
-
-
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -45,9 +13,11 @@ import {
     Bar,
 } from "recharts";
 import DashboardSkeleton from "@/components/SkeletonLoaders/DashboardSkeleton";
+import WithDrawMoneyPopup from "@/components/ui/WithDrawMoneyPopup";
 
 export default function Page() {
     const [walletData, setWalletData] = useState(null);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         const getWallet = async () => {
@@ -59,9 +29,6 @@ export default function Page() {
 
     if (!walletData) {
         return (
-            // <div className="min-h-screen flex items-center justify-center text-lg">
-            //     Loading dashboard...
-            // </div>
             <DashboardSkeleton />
         );
     }
@@ -103,104 +70,125 @@ export default function Page() {
     const withdrawHistory = walletData.withdrawHistory || [];
 
     return (
-        <div className="min-h-screen bg-orange-50 p-4 md:p-6 mt-17 xl:px-25">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-4">
-                    <img
-                        src={walletData.user.profilePicture}
-                        className="w-14 h-14 rounded-full"
-                    />
+        <>
+            <div className="min-h-screen bg-orange-50 p-4 md:p-6 mt-17 xl:px-25">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-4">
+                        <img
+                            src={walletData.user.profilePicture}
+                            className="w-14 h-14 rounded-full"
+                        />
+                        <div>
+                            <h1 className="text-2xl font-bold">
+                                {walletData.user.fullName}
+                            </h1>
+                            <p className="text-sm text-gray-600">Dashboard</p>
+                        </div>
+                    </div>
+
                     <div>
-                        <h1 className="text-2xl font-bold">
-                            Welcome, {walletData.user.fullName}
-                        </h1>
-                        <p className="text-sm text-gray-600">Dashboard</p>
+                        <button
+                            className="px-4 py-3 bg-orange-500 text-white rounded-2xl font-semibold cursor-pointer"
+                            onClick={() => setOpen(true)}>
+                            Withdraw Money
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-                {stats.map((item, i) => (
-                    <div
-                        key={i}
-                        className="bg-white rounded-2xl shadow p-6 hover:scale-[1.02] transition"
-                    >
-                        <p className="text-sm md:text-md text-gray-500 mb-1">{item.label}</p>
-                        <h2 className="text-2xl md:text-3xl font-bold text-orange-600">
-                            {item.value}
-                        </h2>
+                {/* Stats Cards */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                    {stats.map((item, i) => (
+                        <div
+                            key={i}
+                            className="bg-white rounded-2xl shadow p-6 hover:scale-[1.02] transition"
+                        >
+                            <p className="text-sm md:text-md text-gray-600 mb-1">{item.label}</p>
+                            <h2 className="text-2xl md:text-3xl font-bold text-orange-600">
+                                {item.value}
+                            </h2>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Charts */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                    {/* Area Chart */}
+                    <div className="bg-white rounded-2xl shadow p-4 md:p-6">
+                        <h3 className="font-semibold mb-4">Wallet Overview</h3>
+                        <ResponsiveContainer width="100%" height={260}>
+                            <AreaChart data={balanceChart}>
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Area
+                                    type="monotone"
+                                    dataKey="amount"
+                                    stroke="#f97316"
+                                    fill="#fed7aa"
+                                />
+                            </AreaChart>
+                        </ResponsiveContainer>
                     </div>
-                ))}
-            </div>
 
-            {/* Charts */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-                {/* Area Chart */}
-                <div className="bg-white rounded-2xl shadow p-4 md:p-6">
-                    <h3 className="font-semibold mb-4">Wallet Overview</h3>
-                    <ResponsiveContainer width="100%" height={260}>
-                        <AreaChart data={balanceChart}>
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Area
-                                type="monotone"
-                                dataKey="amount"
-                                stroke="#f97316"
-                                fill="#fed7aa"
-                            />
-                        </AreaChart>
-                    </ResponsiveContainer>
+                    {/* Bar Chart */}
+                    <div className="bg-white rounded-2xl shadow p-4 xl:p-6">
+                        <h3 className="font-semibold mb-4">Balance Distribution</h3>
+                        <ResponsiveContainer width="100%" height={260}>
+                            <BarChart data={balanceChart}>
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Bar dataKey="amount" fill="#fb923c" radius={[6, 6, 0, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
                 </div>
 
-                {/* Bar Chart */}
-                <div className="bg-white rounded-2xl shadow p-4 xl:p-6">
-                    <h3 className="font-semibold mb-4">Balance Distribution</h3>
-                    <ResponsiveContainer width="100%" height={260}>
-                        <BarChart data={balanceChart}>
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Bar dataKey="amount" fill="#fb923c" radius={[6, 6, 0, 0]} />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </div>
-            </div>
+                {/* Withdraw History */}
+                <div className="bg-white rounded-2xl shadow p-6">
+                    <h3 className="font-semibold mb-4">Withdraw History</h3>
 
-            {/* Withdraw History */}
-            <div className="bg-white rounded-2xl shadow p-6">
-                <h3 className="font-semibold mb-4">Withdraw History</h3>
-
-                {withdrawHistory.length === 0 ? (
-                    <p className="text-gray-500 text-sm">No withdrawals yet.</p>
-                ) : (
-                    <table className="w-full text-sm">
-                        <thead>
-                            <tr className="text-left text-gray-500 border-b">
-                                <th className="py-2">Date</th>
-                                <th className="py-2">Amount</th>
-                                <th className="py-2">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {withdrawHistory.map((item, i) => (
-                                <tr key={i} className="border-b">
-                                    <td className="py-2">
-                                        {new Date(item.date).toLocaleDateString()}
-                                    </td>
-                                    <td className="py-2 text-orange-600 font-semibold">
-                                        ₹{item.amount}
-                                    </td>
-                                    <td className="py-2">{item.status}</td>
+                    {withdrawHistory.length === 0 ? (
+                        <p className="text-gray-500 text-sm">No withdrawals yet.</p>
+                    ) : (
+                        <table className="w-full text-sm">
+                            <thead>
+                                <tr className="text-left text-gray-500 border-b">
+                                    <th className="py-2">Date</th>
+                                    <th className="py-2">Amount</th>
+                                    <th className="py-2">Status</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}
+                            </thead>
+                            <tbody>
+                                {withdrawHistory.map((item, i) => (
+                                    <tr key={i} className="border-b">
+                                        <td className="py-2">
+                                            {new Date(item.date).toLocaleDateString()}
+                                        </td>
+                                        <td className="py-2 text-orange-600 font-semibold">
+                                            ₹{item.amount}
+                                        </td>
+                                        <td className="py-2">{item.status}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                </div>
             </div>
-        </div>
+
+            {
+                open &&
+                <WithDrawMoneyPopup
+                    open={open}
+                    setOpen={setOpen}
+                    availableBalance={walletData.availableBalance}
+                />
+            }
+        </>
+
+
     );
 }
 
