@@ -120,7 +120,7 @@ export function Carousel() {
                         return (
                             <div
                                 key={note._id}
-                                className="min-w-[350px] bg-white border border-orange-100 rounded-xl shadow-md p-3 flex-shrink-0"
+                                className="min-w-[350px] max-w-[370px] h-auto bg-white border border-orange-100 rounded-xl shadow-md p-3 flex-shrink-0"
                             >
                                 <div className="w-full h-40 overflow-hidden rounded-lg">
                                     <Image
@@ -144,7 +144,7 @@ export function Carousel() {
                                 <p className="font-bold text-orange-600 mt-2 text-2xl">₹{note.price}</p>
 
                                 <Link href={`/notes/${note._id}`}>
-                                    <button className="mt-3 w-full bg-orange-500 text-white py-2 rounded-lg cursor-pointer">
+                                    <button className="w-full bg-orange-500 text-white py-2 rounded-lg cursor-pointer">
                                         Read More
                                     </button>
                                 </Link>

@@ -1,14 +1,17 @@
 "use client"
 
 import { createOrFetchWallet } from '@/utils/payoutApi';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function page() {
+
+    const [walletData , setWalletData] = useState(null);
 
     useEffect(() => {
         const getWallet = async () => {
             const res = await createOrFetchWallet()
             console.log(res.data.data)
+            setWalletData(res.data.data)
         }
 
         getWallet();
