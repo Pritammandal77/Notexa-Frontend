@@ -44,6 +44,7 @@ import {
     BarChart,
     Bar,
 } from "recharts";
+import DashboardSkeleton from "@/components/SkeletonLoaders/DashboardSkeleton";
 
 export default function Page() {
     const [walletData, setWalletData] = useState(null);
@@ -58,9 +59,10 @@ export default function Page() {
 
     if (!walletData) {
         return (
-            <div className="min-h-screen flex items-center justify-center text-lg">
-                Loading dashboard...
-            </div>
+            // <div className="min-h-screen flex items-center justify-center text-lg">
+            //     Loading dashboard...
+            // </div>
+            <DashboardSkeleton />
         );
     }
 
@@ -101,7 +103,7 @@ export default function Page() {
     const withdrawHistory = walletData.withdrawHistory || [];
 
     return (
-        <div className="min-h-screen bg-orange-50 p-6 mt-17 xl:px-25">
+        <div className="min-h-screen bg-orange-50 p-4 md:p-6 mt-17 xl:px-25">
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-4">
@@ -113,20 +115,20 @@ export default function Page() {
                         <h1 className="text-2xl font-bold">
                             Welcome, {walletData.user.fullName}
                         </h1>
-                        <p className="text-sm text-gray-600">Seller Dashboard</p>
+                        <p className="text-sm text-gray-600">Dashboard</p>
                     </div>
                 </div>
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                 {stats.map((item, i) => (
                     <div
                         key={i}
                         className="bg-white rounded-2xl shadow p-6 hover:scale-[1.02] transition"
                     >
-                        <p className="text-sm text-gray-500 mb-1">{item.label}</p>
-                        <h2 className="text-2xl font-bold text-orange-600">
+                        <p className="text-sm md:text-md text-gray-500 mb-1">{item.label}</p>
+                        <h2 className="text-2xl md:text-3xl font-bold text-orange-600">
                             {item.value}
                         </h2>
                     </div>
@@ -136,7 +138,7 @@ export default function Page() {
             {/* Charts */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
                 {/* Area Chart */}
-                <div className="bg-white rounded-2xl shadow p-6">
+                <div className="bg-white rounded-2xl shadow p-4 md:p-6">
                     <h3 className="font-semibold mb-4">Wallet Overview</h3>
                     <ResponsiveContainer width="100%" height={260}>
                         <AreaChart data={balanceChart}>
@@ -154,7 +156,7 @@ export default function Page() {
                 </div>
 
                 {/* Bar Chart */}
-                <div className="bg-white rounded-2xl shadow p-6">
+                <div className="bg-white rounded-2xl shadow p-4 xl:p-6">
                     <h3 className="font-semibold mb-4">Balance Distribution</h3>
                     <ResponsiveContainer width="100%" height={260}>
                         <BarChart data={balanceChart}>
