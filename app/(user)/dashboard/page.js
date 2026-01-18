@@ -73,7 +73,7 @@ export default function Page() {
         <>
             <div className="min-h-screen bg-orange-50 p-4 md:p-6 mt-17 xl:px-25">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between mb-8">
                     <div className="flex items-center gap-4">
                         <img
                             src={walletData.user.profilePicture}
@@ -89,7 +89,7 @@ export default function Page() {
 
                     <div>
                         <button
-                            className="px-4 py-3 bg-orange-500 text-white rounded-2xl font-semibold cursor-pointer"
+                            className="px-4 py-3 w-full  bg-orange-500 text-white rounded-2xl font-semibold cursor-pointer"
                             onClick={() => setOpen(true)}>
                             Withdraw Money
                         </button>

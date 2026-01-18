@@ -1,3 +1,4 @@
+import { requestWithdraw } from '@/utils/withdrawApi';
 import { X } from 'lucide-react';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
@@ -8,7 +9,7 @@ function WithDrawMoneyPopup({ open, setOpen, availableBalance }) {
     const [upi, setUpi] = useState("");
     const [confirmUpi, setConfirmUpi] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (amount <= 0) {
@@ -31,6 +32,13 @@ function WithDrawMoneyPopup({ open, setOpen, availableBalance }) {
             upi,
         });
 
+        try {
+            const res = await requestWithdraw(amount, upi)
+            console.log(res)
+        } catch (e) {
+            toast.error("Error while requesting the withdraw")
+        }
+
         // future: API call for withdraw request
         setOpen(false);
         setAmount("");
@@ -49,7 +57,7 @@ function WithDrawMoneyPopup({ open, setOpen, availableBalance }) {
                     {/* Close Button */}
                     <button
                         onClick={() => setOpen(false)}
-                        className="absolute top-4 right-4 text-gray-500 hover:text-black"
+                        className="absolute top-4 right-4 cursor-pointer text-gray-500 hover:text-black"
                     >
                         <X />
                     </button>

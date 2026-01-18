@@ -4,6 +4,7 @@ import NotesCard from '@/components/ui/NotesCard';
 import { deleteNotes } from '@/utils/notesApi';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { toast } from 'sonner';
 
 function Page() {
 

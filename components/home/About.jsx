@@ -2,6 +2,7 @@
 import MotionWrapper from '@/utils/MotionWrapper';
 import ScaleWrapper from '@/utils/ScaleWrapper';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 function About() {
@@ -67,12 +68,11 @@ function About() {
 
                         {/* CTA buttons */}
                         <div className='flex gap-4 pt-4'>
-                            <button className='px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition'>
-                                Explore Notes
-                            </button>
-                            <button className='px-6 py-3 border-2 border-orange-400 text-orange-500 font-semibold rounded-xl hover:bg-orange-50 transition'>
-                                Upload Yours
-                            </button>
+                            <Link href="/allnotes">
+                                <button className='px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition'>
+                                    Explore Notes
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </MotionWrapper>
@@ -81,43 +81,43 @@ function About() {
                 {/* RIGHT SIDE (untouched) */}
                 <div className='w-full xl:w-[45vw] hidden xl:flex items-center justify-center '>
                     <div className="w-[75%] px-2 md:px-0">
-                    <ScaleWrapper>
-                        <div className="relative">
-                            <div
-                                className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
-                                <div className="bg-white rounded-2xl p-8 transform -rotate-6 shadow-xl">
-                                    <div className="text-center flex flex-col items-center">
-                                        <div className="text-7xl mb-6">
-                                            <Image
-                                                src="/notesLogo.png"
-                                                alt="Hero image"
-                                                width={40}
-                                                height={40}
-                                            />
-                                        </div>
-                                        <h3 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
-                                            Get Premium Quality Self Made notes
-                                        </h3>
-                                        <p className="text-gray-600 text-lg mb-6">
-                                            Notes from top students & professionals
-                                        </p>
-                                        <div className="grid grid-cols-2 gap-4 text-center">
-                                            <div>
-                                                <div className="text-sm text-gray-500">
-
-                                                </div>
+                        <ScaleWrapper>
+                            <div className="relative">
+                                <div
+                                    className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+                                    <div className="bg-white rounded-2xl p-8 transform -rotate-6 shadow-xl">
+                                        <div className="text-center flex flex-col items-center">
+                                            <div className="text-7xl mb-6">
+                                                <Image
+                                                    src="/notesLogo.png"
+                                                    alt="Hero image"
+                                                    width={40}
+                                                    height={40}
+                                                />
                                             </div>
-                                            <div>
-                                                <div className="text-sm text-gray-500">
+                                            <h3 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
+                                                Get Premium Quality Self Made notes
+                                            </h3>
+                                            <p className="text-gray-600 text-lg mb-6">
+                                                Notes from top students & professionals
+                                            </p>
+                                            <div className="grid grid-cols-2 gap-4 text-center">
+                                                <div>
+                                                    <div className="text-sm text-gray-500">
 
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-sm text-gray-500">
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </ScaleWrapper>
+                        </ScaleWrapper>
                     </div>
                 </div>
 

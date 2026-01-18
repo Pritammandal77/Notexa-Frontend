@@ -163,26 +163,41 @@ export default function TestimonialsSection() {
     const testimonialsData = [
         {
             src: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=500&auto=format&fit=crop&q=80",
-            name: "Pritam Mandal",
-            designation: "Frontend Developer",
+            name: "Aman Verma",
+            designation: "B.Sc IT Student",
             quote:
-                "Working with modern tools like React and Framer Motion has been a game changer for creating beautiful, dynamic interfaces.",
+                "Notexa notes are very concise and exam-oriented. They helped me revise important topics quickly before exams.",
         },
         {
             src: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500&auto=format&fit=crop&q=80",
-            name: "Hitesh Choudhary",
-            designation: "Educator & YouTuber",
+            name: "Sneha Patil",
+            designation: "Computer Science Student",
             quote:
-                "I love how this testimonial component brings personality and smooth motion together. It feels alive!",
+                "I really like how structured the notes are. Everything is explained clearly without unnecessary content.",
         },
         {
             src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?w=500&auto=format&fit=crop&q=80",
-            name: "Emma Watson",
-            designation: "UI/UX Designer",
+            name: "Rohit Sharma",
+            designation: "Engineering Student",
             quote:
-                "The transitions are so clean and minimal — perfect for modern portfolios and product showcases.",
+                "The concepts are explained in simple language, which makes learning and revision much easier.",
+        },
+        {
+            src: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500&auto=format&fit=crop&q=80",
+            name: "Neha Singh",
+            designation: "BCA Student",
+            quote:
+                "Notexa saved a lot of my study time. I don’t have to search multiple resources anymore.",
+        },
+        {
+            src: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=500&auto=format&fit=crop&q=80",
+            name: "Kunal Mehta",
+            designation: "Final Year Student",
+            quote:
+                "The quality of notes is really good for the price. Definitely worth it for students.",
         },
     ];
+
 
     return <AnimatedTestimonials testimonials={testimonialsData} autoplay={true} />;
 }
