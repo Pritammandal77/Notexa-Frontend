@@ -12,3 +12,9 @@ export const requestWithdraw = async (amount, upiId) => {
     )
     return res;
 }
+
+
+export const fetchAllWithdrawRequests = async () => {
+    const res = axiosInstance.get("/api/v1/withdraw/all-withdraw-requests")
+    return res;
+}

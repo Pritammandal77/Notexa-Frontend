@@ -34,7 +34,9 @@ function WithDrawMoneyPopup({ open, setOpen, availableBalance }) {
 
         try {
             const res = await requestWithdraw(amount, upi)
-            console.log(res)
+            if (res?.data?.data.statusCode == 200) {
+                toast.success("Withdraw Requested successfully")
+            }
         } catch (e) {
             toast.error("Error while requesting the withdraw")
         }
