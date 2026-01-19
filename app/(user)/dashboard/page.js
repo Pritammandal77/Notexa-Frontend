@@ -14,17 +14,25 @@ import {
 } from "recharts";
 import DashboardSkeleton from "@/components/SkeletonLoaders/DashboardSkeleton";
 import WithDrawMoneyPopup from "@/components/ui/WithDrawMoneyPopup";
+import { fetchCurrUserWithdrawReq } from "@/utils/withdrawApi";
+import { formatDate } from "@/utils/FormatDate";
 
 export default function Page() {
     const [walletData, setWalletData] = useState(null);
     const [open, setOpen] = useState(false);
+    const [requestedWithdraws, setRequestedWithdraws] = useState(null)
 
     useEffect(() => {
-        const getWallet = async () => {
+        const callApis = async () => {
             const res = await createOrFetchWallet();
             setWalletData(res.data.data);
+            console.log("wallet", res)
+            const withdrawHistory = await fetchCurrUserWithdrawReq();
+            setRequestedWithdraws(withdrawHistory.data.data)
+            console.log("requested withdraws", withdrawHistory)
         };
-        getWallet();
+        callApis();
+
     }, []);
 
     if (!walletData) {
@@ -67,7 +75,6 @@ export default function Page() {
         },
     ];
 
-    const withdrawHistory = walletData.withdrawHistory || [];
 
     return (
         <>
@@ -149,7 +156,7 @@ export default function Page() {
                 <div className="bg-white rounded-2xl shadow p-6">
                     <h3 className="font-semibold mb-4">Withdraw History</h3>
 
-                    {withdrawHistory.length === 0 ? (
+                    {requestedWithdraws?.length === 0 ? (
                         <p className="text-gray-500 text-sm">No withdrawals yet.</p>
                     ) : (
                         <table className="w-full text-sm">
@@ -161,10 +168,10 @@ export default function Page() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {withdrawHistory.map((item, i) => (
+                                {requestedWithdraws?.map((item, i) => (
                                     <tr key={i} className="border-b">
                                         <td className="py-2">
-                                            {new Date(item.date).toLocaleDateString()}
+                                            {new Date(item.createdAt).toLocaleString()}
                                         </td>
                                         <td className="py-2 text-orange-600 font-semibold">
                                             ₹{item.amount}
