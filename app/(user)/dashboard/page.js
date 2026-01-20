@@ -153,8 +153,8 @@ export default function Page() {
                 </div>
 
                 {/* Withdraw History */}
-                <div className="bg-white rounded-2xl shadow p-6">
-                    <h3 className="font-semibold mb-4">Withdraw History</h3>
+                <div className="bg-white rounded-2xl shadow p-6 xl:px-40">
+                    <h3 className="text-xl md:text-2xl text-orange-500 font-bold mb-4">Withdraw History</h3>
 
                     {requestedWithdraws?.length === 0 ? (
                         <p className="text-gray-500 text-sm">No withdrawals yet.</p>
@@ -170,13 +170,15 @@ export default function Page() {
                             <tbody>
                                 {requestedWithdraws?.map((item, i) => (
                                     <tr key={i} className="border-b">
-                                        <td className="py-2">
+                                        <td className="py-4">
                                             {new Date(item.createdAt).toLocaleString()}
                                         </td>
-                                        <td className="py-2 text-orange-600 font-semibold">
+                                        <td className="py-4 text-orange-600 font-bold">
                                             ₹{item.amount}
                                         </td>
-                                        <td className="py-2">{item.status}</td>
+                                        <td className="py-4">
+                                            <span className={`px-2 py-1 rounded-xl text-gray-200 ${item.status == "pending" ? "bg-red-500" : item.status == "fulfilled" ? "bg-green-600" : "bg-blue-500"}`}>{item.status}</span>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

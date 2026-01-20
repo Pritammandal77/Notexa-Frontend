@@ -41,7 +41,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { fetchAllWithdrawRequests } from "@/utils/withdrawApi";
+import { fetchAllWithdrawRequests, updateWithDrawReqStatus } from "@/utils/withdrawApi";
 import { toast } from "sonner";
 
 const statusStyles = {
@@ -76,23 +76,18 @@ export default function Page() {
     };
 
     const handleChangeStatus = async () => {
-        // try {
-        //     await updateWithdrawStatus({
-        //         withdrawId: selectedWithdraw._id,
-        //         status: newStatus,
-        //     });
+        try {
+            const res = await updateWithDrawReqStatus(newStatus, selectedWithdraw._id);
 
-        //     setWithdrawRequests((prev) =>
-        //         prev.map((w) =>
-        //             w._id === selectedWithdraw._id ? { ...w, status: newStatus } : w
-        //         )
-        //     );
+            console.log("withdraw req updated", res)
 
-        //     toast.success("Withdraw status updated");
-        //     setShowPopup(false);
-        // } catch (err) {
-        //     toast.error("Failed to update status");
-        // }
+            toast.success("Withdraw status updated");
+            setShowPopup(false);
+        } catch (err) {
+            toast.error("Failed to update status");
+            console.log(err)
+        }
+        console.log(newStatus)
     };
 
     return (
@@ -150,6 +145,7 @@ export default function Page() {
                                 onChange={(e) => setNewStatus(e.target.value)}
                                 className="w-full border rounded-lg p-2"
                             >
+                                <option value="pending">Pending</option>
                                 <option value="processing">Processing</option>
                                 <option value="fulfilled">Fulfilled</option>
                                 <option value="rejected">Rejected</option>
