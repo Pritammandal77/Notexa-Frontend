@@ -11,6 +11,8 @@ function ReviewModal({ open, onClose, notesId }) {
     const handleSubmitReview = async () => {
         console.log({ rating, review });
         await AddReview(rating, review, notesId)
+        setRating(0)
+        setReview("")
         onClose();
     }
 

@@ -78,7 +78,7 @@ export default function Page() {
 
     return (
         <>
-            <div className="min-h-screen bg-orange-50 p-4 md:p-6 mt-17 xl:px-25">
+            <div className="min-h-screen h-auto bg-orange-50 p-4 md:p-6 mt-17 xl:px-25 ">
                 {/* Header */}
                 <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between mb-8">
                     <div className="flex items-center gap-4">
@@ -153,7 +153,7 @@ export default function Page() {
                 </div>
 
                 {/* Withdraw History */}
-                <div className="bg-white rounded-2xl shadow p-6 xl:px-40">
+                <div className="bg-white rounded-2xl shadow p-6 xl:px-40 pb-20">
                     <h3 className="text-xl md:text-2xl text-orange-500 font-bold mb-4">Withdraw History</h3>
 
                     {requestedWithdraws?.length === 0 ? (

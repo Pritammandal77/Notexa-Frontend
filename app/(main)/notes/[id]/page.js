@@ -375,7 +375,7 @@ function Page() {
                     {Allreviews?.length === 0 ? (
                         <p className="text-gray-400 text-sm">No reviews yet.</p>
                     ) : (
-                        <div className="space-y-5">
+                        <div className="space-y-5 xl:max-h-100 overflow-y-scroll">
                             {Allreviews?.map((review, index) => (
                                 <div
                                     key={index}

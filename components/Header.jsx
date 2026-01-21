@@ -199,7 +199,7 @@ function Header() {
                     }
                     {
                         user?.role == "admin" &&
-                        <Link href="/admin/payout-requests" className="font-semibold cursor-pointer">Payout Requests</Link>
+                        <Link href="/payout-requests" className="font-semibold cursor-pointer">Payout Requests</Link>
                     }
                     <Link href="/about" className="font-semibold cursor-pointer">About</Link>
                     <span
