@@ -202,6 +202,7 @@ function Header() {
                         <Link href="/payout-requests" className="font-semibold cursor-pointer">Payout Requests</Link>
                     }
                     <Link href="/about" className="font-semibold cursor-pointer">About</Link>
+                    <Link href="/support" className="font-semibold cursor-pointer">Support</Link>
                     <span
                         className="font-semibold cursor-pointer"
                         onClick={() => setIsDialogOpen(!isDialogOpen)}
@@ -295,6 +296,14 @@ function Header() {
                         <li>
                             <Link href="/profile" onClick={() => setIsSidebarOpen(false)}>Profile</Link>
                         </li>
+                        <Link href="/support" onClick={() => setIsSidebarOpen(false)} className="font-semibold cursor-pointer">Support</Link>
+                        {
+                            user?.role == "admin" &&
+                            <Link href="/payout-requests" className="font-semibold cursor-pointer"
+                                onClick={() => setIsSidebarOpen(false)}>
+                                Payout Requests
+                            </Link>
+                        }
                     </ul>
 
                     {
