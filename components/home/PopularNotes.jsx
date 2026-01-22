@@ -1,7 +1,6 @@
 "use client"
 import React from 'react';
 import { Carousel } from '../ui/ImageCarousel';
-import { useSelector } from 'react-redux';
 
 function PopularNotes() {
 

@@ -38,7 +38,7 @@ function page() {
                     {/* Heading */}
                     <div className="mb-12 text-center">
                         <h1 className="text-4xl font-bold text-gray-900">
-                            Need Help?{" "}
+                            Need Help?{" "} <br className='md:hidden' />
                             <span className="text-orange-500">Contact Support</span>
                         </h1>
                         <p className="mt-4 text-gray-600">

@@ -109,7 +109,7 @@ function Page() {
                         <Link href="/dashboard" className='w-[50%]'>
                             <button className='w-[100%]  py-2 lg:py-3 xl:py-2 cursor-pointer bg-orange-500 rounded-2xl text-white font-semibold mt-5'>Dashboard</button>
                         </Link>
-                    </div>  
+                    </div>
 
                     <div className="grid grid-cols-2 w-full gap-3 mt-10">
 
@@ -146,9 +146,8 @@ function Page() {
                 </div>
 
                 {
-                    activeTab === "uploaded" && (
+                    activeTab === "uploaded" && currUserNotes?.size == 0 ? (
                         <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
-
                             <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
                                 Uploaded Notes
                             </div>
@@ -183,11 +182,16 @@ function Page() {
                                 </div>
                             }
                         </div>
+                    ) : (
+                        activeTab === "uploaded" &&
+                        <div className='xl:min-h-screen pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%] flex items-center justify-center'>
+                            <h1 className='text-2xl md:text-3xl font-semibold'>No Notes Uploaded</h1>
+                        </div>
                     )
                 }
 
                 {
-                    activeTab === "purchased" && (
+                    activeTab === "purchased" && purchasedNotes?.size == 0 ? (
                         <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
 
                             <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
@@ -223,6 +227,11 @@ function Page() {
                                     <NotesCardSkeleton />
                                 </div>
                             }
+                        </div>
+                    ) : (
+                        activeTab === "purchased" &&
+                        <div className='xl:min-h-screen pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%] flex items-center justify-center'>
+                            <h1 className='text-2xl md:text-3xl font-semibold'>No Notes Purchased</h1>
                         </div>
                     )
                 }
