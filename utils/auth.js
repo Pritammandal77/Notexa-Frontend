@@ -6,7 +6,7 @@ export async function refreshAccessToken() {
         });
 
         if (res.ok) {
-            console.log("✅ Access token refreshed successfully");
+            console.log("Access token refreshed successfully");
             return true;
         } else {
             console.warn("❌ Failed to refresh token");
@@ -26,7 +26,7 @@ export async function fetchWithAuth(url, options = {}) {
 
     // If access token expired
     if (res.status === 401) {
-        console.log("⚠️ Access token expired, refreshing...");
+        console.log("Access token expired, refreshing...");
         const refreshed = await refreshAccessToken();
 
         if (refreshed) {
@@ -34,7 +34,7 @@ export async function fetchWithAuth(url, options = {}) {
             return fetch(url, { ...options, credentials: 'include' });
         } else {
             // Refresh failed — redirect to login
-            console.log("❌ Refresh failed. Logging out.");
+            console.log("Refresh failed. Logging out.");
             // window.location.href = '/login';
         }
     }
