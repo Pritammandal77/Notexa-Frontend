@@ -13,8 +13,6 @@ function page() {
         message: "",
     });
 
-    const [supportRequests, setSupportRequests] = useState(null)
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -41,19 +39,6 @@ function page() {
         });
     };
 
-    useEffect(() => {
-        const fetchSupportRequests = async () => {
-            try {
-                const res = await fetchAllSupports();
-                setSupportRequests(res)
-                console.log(res)
-            } catch (error) {
-                toast.error("Error while fetching support requests")
-            }
-        }
-
-        fetchSupportRequests();
-    }, []);
 
     return (
         <>

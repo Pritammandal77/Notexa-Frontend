@@ -51,7 +51,7 @@ export default function Page() {
     };
 
     return (
-        <div className="mt-16 min-h-screen px-6 xl:px-20 py-6">
+        <div className="min-h-screen px-2 xl:px-20 xl:py-6 ">
             <h2 className="text-3xl md:text-4xl font-bold mb-10">
                 <span className="text-orange-500">Withdraw</span> Requests
             </h2>
