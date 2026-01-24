@@ -35,7 +35,6 @@ export async function fetchWithAuth(url, options = {}) {
         } else {
             // Refresh failed — redirect to login
             console.log("Refresh failed. Logging out.");
-            // window.location.href = '/login';
         }
     }
 

@@ -1,35 +1,59 @@
 "use client"
-import React, { useState } from 'react';
+import { createNewSupportRequest, fetchAllSupports } from '@/utils/supportApi';
+import React, { useEffect, useState } from 'react';
 import { FaWhatsapp } from "react-icons/fa";
+import { toast } from 'sonner';
 
 function page() {
 
     const [formData, setFormData] = useState({
-        name: "",
+        fullName: "",
         email: "",
         subject: "",
         message: "",
     });
 
+    const [supportRequests, setSupportRequests] = useState(null)
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
 
-        // later: API call / email / database
-        alert("Support request submitted successfully!");
+        try {
+            const res = await createNewSupportRequest(formData)
+            console.log(res.data.data)
+            toast.success("Support request submitted successfully")
+        } catch (error) {
+            console.log(error)
+            toast.error("Something went wrong while submitting the support request")
+        }
 
         setFormData({
-            name: "",
+            fullName: "",
             email: "",
             subject: "",
             message: "",
         });
     };
+
+    useEffect(() => {
+        const fetchSupportRequests = async () => {
+            try {
+                const res = await fetchAllSupports();
+                setSupportRequests(res)
+                console.log(res)
+            } catch (error) {
+                toast.error("Error while fetching support requests")
+            }
+        }
+
+        fetchSupportRequests();
+    }, []);
 
     return (
         <>
@@ -58,8 +82,8 @@ function page() {
                                     </label>
                                     <input
                                         type="text"
-                                        name="name"
-                                        value={formData.name}
+                                        name="fullName"
+                                        value={formData.fullName}
                                         onChange={handleChange}
                                         placeholder="John Doe"
                                         required
