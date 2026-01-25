@@ -23,10 +23,6 @@ function Page() {
     const [purchasedNotes, setPurchasedNotes] = useState(null);
     const [activeTab, setActiveTab] = useState("uploaded");
 
-    // if (!userData) {
-    //     router.push("/")
-    // }
-
     useEffect(() => {
         setUserData(user);
 
@@ -48,7 +44,6 @@ function Page() {
         async function fetchNotes() {
             setIsLoading(true);
             let data = await fetchCurrentUserNotes();
-            console.log("currUser notes", data.data.length)
             setCurrUserNotes(data.data)
             setIsLoading(false)
         }
@@ -146,7 +141,7 @@ function Page() {
                 </div>
 
                 {
-                    activeTab === "uploaded" && currUserNotes?.size == 0 ? (
+                    activeTab === "uploaded" && currUserNotes?.size != 0 ? (
                         <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
                             <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
                                 Uploaded Notes

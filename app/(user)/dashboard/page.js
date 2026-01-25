@@ -26,10 +26,8 @@ export default function Page() {
         const callApis = async () => {
             const res = await createOrFetchWallet();
             setWalletData(res.data.data);
-            console.log("wallet", res)
             const withdrawHistory = await fetchCurrUserWithdrawReq();
             setRequestedWithdraws(withdrawHistory.data.data)
-            console.log("requested withdraws", withdrawHistory)
         };
         callApis();
 

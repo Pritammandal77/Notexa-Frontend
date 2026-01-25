@@ -71,7 +71,6 @@ function Page() {
         async function fetchNote() {
             const res = await getNotesById(id);
             setNotesData(res?.data);
-            console.log(res)
             countNotesViews(id);
         }
         fetchNote();

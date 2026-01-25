@@ -4,7 +4,7 @@ function Footer() {
 
     return (
         <>
-            <footer className="bg-[#fde0c4] py-12 px-4 font-inter ">
+            <footer className="bg-[#1a1a1a] text-white py-12 px-4 font-inter relative">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:w-[90vw]">
                     <div className="space-y-4">
                         <div className="flex items-center space-x-2">
@@ -42,7 +42,7 @@ function Footer() {
 
                     { }
                     <div className="space-y-4">
-                        <h3 className="text-xl font-bold text-black">
+                        <h3 className="text-xl font-bold">
                             Quick Links
                         </h3>
                         <ul className="space-y-3">
@@ -56,15 +56,15 @@ function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="#aboutus"
+                                    href="/allnotes"
                                     className="   hover:text-orange-600 transition-colors duration-300"
                                 >
-                                    Notes
+                                    All Notes
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="#services"
+                                    href="/sellnotes"
                                     className="   hover:text-orange-600 transition-colors duration-300"
                                 >
                                     Sell Notes
@@ -72,18 +72,18 @@ function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="#worksamples"
+                                    href="/dashboard"
                                     className="   hover:text-orange-600 transition-colors duration-300"
                                 >
-                                    Subscriptions
+                                    Dashboard
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="#contactus"
+                                    href="/support"
                                     className="   hover:text-orange-600 transition-colors duration-300"
                                 >
-                                    Contact
+                                    Support
                                 </a>
                             </li>
                         </ul>
@@ -130,20 +130,25 @@ function Footer() {
                             Chandrapur Maharashtra, India
                         </p>
                         <p className="  ">
-                            Email: thetechbanao@gmail.com
+                            Email: notexahub@gmail.com
                         </p>
 
                     </div>
                 </div>
 
                 { }
-                <div className="text-center   text-sm pt-10 mt-10 border-t border-orange-200">
-                    <p>Made with ❤️ by Pritam Mandal</p>
+                <div className="text-center   text-sm pt-10 mt-10 border-t border-gray-800">
+                    <p>Built By Pritam Mandal</p>
                     <p>
-                        &copy; {new Date().getFullYear()} notexa.in All rights reserved.
+                        &copy; {new Date().getFullYear()} Notexa All rights reserved.
                     </p>
                     {/* <p className="mt-1">Designed with <span className="text-red-500">&hearts;</span> by Your Company</p> */}
                 </div>
+
+
+ 
+                <div className="absolute w-[200px] h-[200px] bg-orange-700 opacity-60 rounded-full blur-[150px] top-[10%] left-[10%] z-10" />
+                <div className="absolute w-[200px] h-[200px] bg-orange-700 opacity-60 rounded-full blur-[150px] bottom-[10%] right-[10%]" />
             </footer>
         </>
     );

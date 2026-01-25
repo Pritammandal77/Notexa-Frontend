@@ -20,7 +20,6 @@ function page() {
         const fetchUser = async () => {
             try {
                 const res = await getUserById(id);
-                console.log("Other userData", res);
                 setUserData(res?.data?.data);
             } catch (error) {
                 console.error("Error fetching userData:", error);
@@ -30,7 +29,6 @@ function page() {
         const fetchUserNotes = async () => {
             try {
                 const res = await fetchAllNotesByUserId(id);
-                console.log("all notes of userData ", res)
                 setUserNotes(res.data.data)
             } catch (error) {
                 console.log("error whil fetching the notes")
@@ -50,7 +48,7 @@ function page() {
 
                 <div className="xl:fixed xl:top-0 xl:left-0 w-full h-auto md:h-auto xl:h-screen xl:w-[25%] 
               bg-orange-100 p-3 md:p-4 xl:pt-20 border-b xl:border-b-0 xl:border-r  border-orange-200 z-20 
-               flex flex-col items-center justify-center xl:block md:px-15 lg:px-30 xl:px-4
+               flex flex-col items-center justify-center xl:block md:px-15 lg:px-30 xl:px-4 relative
                   ">
 
                     <div className="self-start flex md:gap-6 gap-3 md:flex-row xl:flex-row ">
@@ -87,7 +85,7 @@ function page() {
                         </div>
                     </div>
 
-                    <div className="social-buttons absolute bottom-7 right-7 flex items-center gap-5">
+                    <div className="social-buttons absolute bottom-1 right-1 lg:bottom-7 lg:right-7 flex items-center gap-5">
                         <div className="socialIcons">
                             <a href="https://www.linkedin.com/in/pritam-mandal-871510281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="social-button linkedin" target="_blank">
                                 <svg viewBox="0 -2 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -117,7 +115,7 @@ function page() {
 
                 </div>
 
-                <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
+                <div className="pt-[20px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
 
                     <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
                         Uploaded Notes

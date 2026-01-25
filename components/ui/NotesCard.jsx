@@ -56,7 +56,7 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
 
                                 {
                                     openDropdownId === notesId && (
-                                        <ul className='bg-orange-100 rounded-2xl'>
+                                        <ul className='bg-orange-100 rounded-2xl animate-[fadeScale_0.25s_ease-out]'>
                                             <li className='border-1 p-2 rounded-t-xl border-orange-300 hover:bg-orange-200 cursor-pointer'
                                                 onClick={() => handleDeleteNotes(notesId)}
                                             >Delete notes
