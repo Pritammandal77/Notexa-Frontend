@@ -199,7 +199,7 @@ function Header() {
                     }
                     {
                         user?.role == "admin" &&
-                        <Link href="/payout-requests" className="font-semibold cursor-pointer">Payout Requests</Link>
+                        <Link href="/payout-requests" className="font-semibold cursor-pointer">Admin</Link>
                     }
                     <Link href="/about" className="font-semibold cursor-pointer">About</Link>
                     <Link href="/support" className="font-semibold cursor-pointer">Support</Link>
@@ -301,7 +301,7 @@ function Header() {
                             user?.role == "admin" &&
                             <Link href="/payout-requests" className="font-semibold cursor-pointer"
                                 onClick={() => setIsSidebarOpen(false)}>
-                                Payout Requests
+                                Admin
                             </Link>
                         }
                     </ul>

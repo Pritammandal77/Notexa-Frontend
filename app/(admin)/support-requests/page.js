@@ -35,7 +35,7 @@
 
 
 "use client";
-import { fetchAllSupports } from "@/utils/supportApi";
+import { fetchAllSupports, updateSupportReqStatus } from "@/utils/supportApi";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -69,11 +69,31 @@ function Page() {
         setSelectedSupport(null);
     };
 
-    const handleStatusChange = () => {
-        // 🔥 here you will call UPDATE STATUS API later
-        toast.success(`Status changed to "${status}"`);
-        closeModal();
+    const handleStatusChange = async () => {
+        if (!selectedSupport) return;
+
+        try {
+            const res = await updateSupportReqStatus(
+                status,
+                selectedSupport._id
+            );
+            console.log(res)
+            toast.success(`Status changed to "${status}"`);
+
+            setSupportRequests(prev =>
+                prev.map(item =>
+                    item._id === selectedSupport._id
+                        ? { ...item, status }
+                        : item
+                )
+            );
+
+            closeModal();
+        } catch (error) {
+            toast.error("Error while updating the status of support requests");
+        }
     };
+
 
     return (
         <>

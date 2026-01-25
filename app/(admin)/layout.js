@@ -21,7 +21,7 @@ function AdminLayout({ children }) {
                 <div className="flex gap-6 rounded-xl bg-white p-3 shadow-md w-fit">
                     <button
                         onClick={() => router.push("/payout-requests")}
-                        className={`rounded-lg px-5 py-2 text-lg font-semibold transitio
+                        className={`rounded-lg px-5 py-2 text-lg font-semibold transition cursor-pointer
                             ${isPayout
                                 ? "bg-orange-100 text-orange-600"
                                 : "text-gray-600 hover:text-orange-500"
@@ -32,8 +32,8 @@ function AdminLayout({ children }) {
 
                     <button
                         onClick={() => router.push("/support-requests")}
-                        className={`rounded-lg px-5 py-2 text-lg font-semibold transition
-                            ${isSupport
+                        className={`rounded-lg px-5 py-2 text-lg font-semibold transition cursor-pointer
+                            ${isSupport 
                                 ? "bg-orange-100 text-orange-600"
                                 : "text-gray-600 hover:text-orange-500"
                             }`}
