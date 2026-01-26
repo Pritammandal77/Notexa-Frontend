@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📘 Notexa (Frontend)
 
-## Getting Started
+Notexa is a modern web application that allows students to **buy, sell, and manage academic notes** in a clean, secure, and structured way.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚩 Problem Statement
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Students often rely on WhatsApp groups, Telegram, or random PDFs to find notes
+- No guarantee of quality, structure, or authenticity
+- Students who create high-quality notes have **no proper platform** to monetize them
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💡 Solution — Notexa
 
-## Learn More
+Notexa solves this by providing:
 
-To learn more about Next.js, take a look at the following resources:
+- A centralized **notes marketplace**
+- Verified users & structured listings
+- Easy note discovery and purchasing
+- A clean, responsive, and user-friendly interface
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💸 Side Income for Students
 
-## Deploy on Vercel
+Notexa also enables students to:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Upload and sell their own notes
+- Earn **side income / pocket money**
+- Monetize academic effort without complex setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ✨ Features (Frontend)
+
+- 🔐 Authentication UI (Google Sign-In supported (Using passport.js))
+- 👤 User Profile Management
+- 📚 Notes Listing & Browsing
+- 🛒 Purchased Notes Section
+- 🧑‍💼 Role-based UI (Admin / User)
+- 📱 Fully Responsive Design
+- 🔔 Toast Notifications & Loaders
+- ⚡ Optimized Images using `next/image`
+- 🛂 Seperate Admin Panel
+
+---
+
+## 🧠 Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Language:** JavaScript
+- **State Management:** Redux Toolkit
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide Icons
+- **Notifications:** Sonner
+- **API Communication:** Axios API
+- **Image Handling:** Next/Image
+## 📁 Project Structure
+
