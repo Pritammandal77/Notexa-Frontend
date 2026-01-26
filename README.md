@@ -57,5 +57,3 @@ Notexa also enables students to:
 - **Notifications:** Sonner
 - **API Communication:** Axios API
 - **Image Handling:** Next/Image
-## 📁 Project Structure
-
