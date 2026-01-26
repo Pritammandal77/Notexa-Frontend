@@ -21,6 +21,7 @@ function page() {
             try {
                 const res = await getUserById(id);
                 setUserData(res?.data?.data);
+                console.log(res)
             } catch (error) {
                 console.error("Error fetching userData:", error);
             }

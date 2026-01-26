@@ -59,3 +59,18 @@ export const getUserById = async (id) => {
     const res = await axiosInstance.get(`/api/v1/user/${id}`)
     return res;
 }
+
+
+export const updateUserProfile = async (formData) => {
+    const res = await axiosInstance.put(
+        "/api/v1/user/update-profile",
+        formData,
+        {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        }
+    );
+    return res;
+};

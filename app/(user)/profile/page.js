@@ -4,7 +4,7 @@ import { deleteNotes, fetchCurrentUserNotes } from '@/utils/notesApi';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Ellipsis } from 'lucide-react';
+import { Edit, Edit2Icon, Ellipsis } from 'lucide-react';
 import { toast } from 'sonner';
 import NotesCardSkeleton from '@/components/SkeletonLoaders/NotesCardSkeleton';
 import { getPurchasedNotes } from '@/utils/userApi';
@@ -16,6 +16,7 @@ function Page() {
     const router = useRouter();
 
     const user = useSelector((state) => state.user?.currUser?.user)
+    const id = user?._id;
     const [userData, setUserData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [currUserNotes, setCurrUserNotes] = useState(null)
@@ -66,7 +67,7 @@ function Page() {
 
                 <div className="xl:fixed xl:top-0 xl:left-0 w-full h-auto md:h-auto xl:h-screen xl:w-[25%] 
               bg-orange-100 p-3 md:p-4 xl:pt-20 border-b xl:border-b-0 xl:border-r  border-orange-200 z-20 
-               flex flex-col items-center justify-center xl:block md:px-15 lg:px-30 xl:px-4
+               flex flex-col items-center justify-center xl:block md:px-15 lg:px-30 xl:px-4 relative
                   ">
 
                     <div className="self-start flex md:gap-6 gap-3 md:flex-row xl:flex-row ">
@@ -137,6 +138,14 @@ function Page() {
                                 {user?.notesPurchased?.length ?? "loading..."}
                             </p>
                         </div>
+                    </div>
+
+                    <div className='absolute top-18 right-3'>
+                        <Link href={`/profile/${id}/update-profile`}>
+                            <button className="text-xl text-black cursor-pointer">
+                                <Edit />
+                            </button>
+                        </Link>
                     </div>
                 </div>
 
@@ -231,7 +240,7 @@ function Page() {
                     )
                 }
 
-            </div >
+            </div>
         </>
     );
 }
