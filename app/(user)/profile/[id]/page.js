@@ -52,31 +52,33 @@ function page() {
                flex flex-col items-center justify-center xl:block md:px-15 lg:px-30 xl:px-4 relative
                   ">
 
-                    <div className="self-start flex md:gap-6 gap-3 md:flex-row xl:flex-row ">
+                    <div className="self-start flex md:gap-6 gap-3 md:flex-row xl:flex-col ">
 
                         {/* Profile Image */}
-                        <div className="relative h-14 w-14 md:h-20 md:w-20">
-                            {userData?.profilePicture && (
-                                <Image
-                                    src={userData.profilePicture}
-                                    alt="Profile"
-                                    fill
-                                    sizes="(max-width: 640px) 100vw,
+                        <div className='flex gap-5'>
+                            <div className="relative h-14 w-14 md:h-20 md:w-20">
+                                {userData?.profilePicture && (
+                                    <Image
+                                        src={userData.profilePicture}
+                                        alt="Profile"
+                                        fill
+                                        sizes="(max-width: 640px) 100vw,
                                             (max-width: 1024px) 50vw,
                                             33vw"
-                                    className="object-cover rounded-full"
-                                />
-                            )}
-                        </div>
+                                        className="object-cover rounded-full"
+                                    />
+                                )}
+                            </div>
 
-                        {/* userData Info */}
-                        <div className="mt-3">
-                            <p className="text-md md:text-lg font-semibold text-gray-800">
-                                {userData?.fullName}
-                            </p>
-                            <p className="text-sm md:text-sm text-gray-600 truncate max-w-[200px]">
-                                {userData?.email}
-                            </p>
+                            {/* userData Info */}
+                            <div className="mt-3">
+                                <p className="text-md md:text-lg font-semibold text-gray-800">
+                                    {userData?.fullName}
+                                </p>
+                                <p className="text-sm md:text-sm text-gray-600 truncate max-w-[200px]">
+                                    {userData?.email}
+                                </p>
+                            </div>
                         </div>
 
                         <div>

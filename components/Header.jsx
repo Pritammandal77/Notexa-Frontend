@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { logOutUser } from "@/utils/userApi";
 import { toast } from "sonner";
-import Loader1 from "./Loader/Loader";
+import Loader1 from "./Loader/Loader1.jsx/Loader1";
 import { fetchWithAuth } from "@/utils/auth";
 import { fetchAllNotes } from "@/utils/notesApi";
 import { setAllNotes } from "@/redux/slices/notesSlice";

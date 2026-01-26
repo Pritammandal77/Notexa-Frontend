@@ -34,6 +34,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { Edit2Icon } from "lucide-react";
 import { updateUserProfile } from "@/utils/userApi";
+import Loader1 from "@/components/Loader/Loader1.jsx/Loader1";
 
 export default function Page() {
     const user = useSelector((state) => state.user?.currUser?.user);
@@ -47,9 +48,8 @@ export default function Page() {
 
     const [profilePreview, setProfilePreview] = useState("");
     const [profileFile, setProfileFile] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-    /* Load existing user data */
     useEffect(() => {
         if (user) {
             setFormData({
@@ -63,7 +63,6 @@ export default function Page() {
         }
     }, [user]);
 
-    /* Input change */
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -80,12 +79,11 @@ export default function Page() {
         setProfilePreview(URL.createObjectURL(file));
     };
 
-    /* Submit */
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            setLoading(true);
+            setIsLoading(true);
 
             const data = new FormData();
             data.append("fullName", formData.fullName);
@@ -104,20 +102,20 @@ export default function Page() {
         } catch (error) {
             toast.error("Failed to update profile");
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-orange-100 to-orange-50 mt-16 px-4 py-10 flex justify-center">
-            <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8">
+        <div className="h-auto bg-gradient-to-b from-orange-100 to-orange-50 mt-16 px-2 md:px-4 py-5 md:py-10 flex justify-center">
+            <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-4 md:p-8 flex flex-col">
 
                 {/* Header */}
-                <h2 className="text-3xl font-bold text-gray-800 mb-8">
+                <h2 className="text-3xl font-bold text-gray-800 mb-8 self-center">
                     <span className="text-orange-500">Update</span> Profile
                 </h2>
 
-                {/* Profile Picture */}
+                {/* P rofile Picture */}
                 <div className="flex items-center gap-6 mb-10">
                     <div className="relative">
                         <img
@@ -211,13 +209,20 @@ export default function Page() {
                     {/* Submit */}
                     <button
                         type="submit"
-                        disabled={loading}
+                        disabled={isLoading}
                         className="w-full bg-orange-500 hover:bg-orange-600 text-white cursor-pointer font-semibold py-3 rounded-lg transition disabled:opacity-60"
                     >
-                        {loading ? "Updating..." : "Update Profile"}
+                        {isLoading ? "Updating..." : "Update Profile"}
                     </button>
                 </form>
             </div>
+
+            {
+                isLoading &&
+                <div className="w-full h-full flex items-center justify-center absolute top-15">
+                    <Loader1 />
+                </div>
+            }
         </div>
     );
 }

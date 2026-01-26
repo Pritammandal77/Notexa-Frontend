@@ -96,6 +96,8 @@ function Page() {
                                 {user?.email}
                             </p>
                         </div>
+
+
                     </div>
 
                     <div className='flex gap-3 w-[100%]'>
@@ -140,13 +142,20 @@ function Page() {
                         </div>
                     </div>
 
-                    <div className='absolute top-18 right-3'>
+                    <div className='absolute top-3 xl:top-18 right-3'>
                         <Link href={`/profile/${id}/update-profile`}>
                             <button className="text-xl text-black cursor-pointer">
                                 <Edit />
                             </button>
                         </Link>
                     </div>
+
+                    <div className='mt-5'>
+                        <p>
+                            {userData?.aboutUser}
+                        </p>
+                    </div>
+
                 </div>
 
                 {
