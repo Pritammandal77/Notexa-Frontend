@@ -33,10 +33,6 @@ function Page() {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    // const handleSampleChange = (e) => {
-    //     const files = Array.from(e.target.files);
-    //     setForm({ ...form, samples: files });
-    // };
 
     const [sampleImages, setSampleImages] = useState([]);
 
@@ -209,7 +205,6 @@ function Page() {
                     </div>
 
                     <div className="flex justify-between">
-                        {/* 📄 Pages Count Field */}
                         <div className="w-[47%]">
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
                                 Pages Count
@@ -304,15 +299,6 @@ function Page() {
                         />
                     </div>
 
-                    {/* <button
-                        type="button"
-                        onClick={uploadNotes}
-                        className="w-full bg-orange-500 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-orange-600 transition"
-                    >
-                        Upload Notes
-                    </button> */}
-
-
                     <div className="">
 
                         {!allowed ?
@@ -332,8 +318,7 @@ function Page() {
                             </button>
                         }
                     </div>
-
-
+                    
                 </form>
             </div>
 

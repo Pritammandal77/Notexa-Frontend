@@ -44,7 +44,6 @@ function page() {
         <>
             <div className="min-h-screen bg-gradient-to-br from-orange-100 to-orange-50 mt-16 px-4 py-16">
                 <div className="mx-auto max-w-3xl">
-                    {/* Heading */}
                     <div className="mb-12 text-center">
                         <h1 className="text-4xl font-bold text-gray-900">
                             Need Help?{" "} <br className='md:hidden' />
@@ -56,10 +55,8 @@ function page() {
                         </p>
                     </div>
 
-                    {/* Card */}
                     <div className="rounded-2xl bg-white p-8 shadow-xl md:p-12">
                         <form onSubmit={handleSubmit} className="grid gap-6">
-                            {/* Name & Email */}
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -92,7 +89,6 @@ function page() {
                                 </div>
                             </div>
 
-                            {/* Subject */}
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-gray-700">
                                     Subject
@@ -108,7 +104,6 @@ function page() {
                                 />
                             </div>
 
-                            {/* Message */}
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-gray-700">
                                     Message
@@ -124,7 +119,6 @@ function page() {
                                 />
                             </div>
 
-                            {/* Submit Button */}
                             <div className="pt-4">
                                 <button
                                     type="submit"
@@ -136,14 +130,12 @@ function page() {
                         </form>
                     </div>
 
-                    {/* Footer Text */}
                     <p className="mt-8 text-center text-md text-gray-500">
                         We usually respond within <span className="font-medium text-orange-600">24 hours</span>.
                     </p>
                 </div>
             </div>
 
-            {/* WhatsApp Floating Button */}
             <a
                 href="https://wa.me/919881228004?text=Hello,%20I%20need%20support%20regarding%20Notexa"
                 target="_blank"

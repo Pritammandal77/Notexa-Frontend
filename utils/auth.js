@@ -2,14 +2,14 @@ export async function refreshAccessToken() {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/refresh`, {
             method: 'POST',
-            credentials: 'include', // important: send cookies
+            credentials: 'include', // send cookies
         });
 
         if (res.ok) {
             console.log("Access token refreshed successfully");
             return true;
         } else {
-            console.warn("❌ Failed to refresh token");
+            console.warn("Failed to refresh token");
             return false;
         }
     } catch (err) {

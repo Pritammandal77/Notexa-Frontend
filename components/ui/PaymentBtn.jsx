@@ -49,7 +49,7 @@ function PaymentBtn({ userId, onSuccess }) {
                     );
 
                     if (verify.data.success) {
-                        console.log(verify)
+                        // console.log(verify)
                         toast.success("Payment Verified!");
                         onSuccess();
                     } else {

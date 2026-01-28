@@ -10,10 +10,8 @@ import {
     Star,
     ChevronLeft,
     ChevronRight,
-    StarIcon,
     Ellipsis,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import { axiosInstance } from "@/utils/axiosInstance";

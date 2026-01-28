@@ -20,7 +20,6 @@ function page() {
         async function fetchNote() {
             const res = await getNotesById(id);
             setOldNotesData(res?.data);
-            console.log("notes data at edit page", res?.data)
         }
         fetchNote();
     }, [id]);
@@ -85,10 +84,10 @@ function page() {
 
     return (
         <>
-            <div className="min-h-screen pt-20 bg-gradient-to-b from-orange-50 to-orange-100 py-10 px-4 flex justify-center">
+            <div className="h-auto pt-20 bg-gradient-to-b from-orange-100 to-orange-50 py-10 px-4 flex justify-center">
                 <div className="max-w-screen h-auto w-full xl:w-[60vw] bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-3 md:p-8 border border-orange-200">
-                    <h1 className="text-3xl font-bold text-orange-600 mb-2 text-center">
-                        Update Notes
+                    <h1 className="text-3xl font-bold mb-2 text-center py-5">
+                       <span className='text-orange-600'>Update </span> Notes
                     </h1>
 
                     <form className="space-y-5">
@@ -190,7 +189,7 @@ function page() {
                                 name="description"
                                 required
                                 placeholder="Write a short description..."
-                                className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none h-24 resize-none"
+                                className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none h-34 resize-none"
                                 onChange={handleChange}
                                 value={form?.description}
                             ></textarea>

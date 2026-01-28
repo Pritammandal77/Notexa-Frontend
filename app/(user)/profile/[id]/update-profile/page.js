@@ -35,10 +35,11 @@ import { toast } from "sonner";
 import { Edit2Icon } from "lucide-react";
 import { updateUserProfile } from "@/utils/userApi";
 import Loader1 from "@/components/Loader/Loader1.jsx/Loader1";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
     const user = useSelector((state) => state.user?.currUser?.user);
-
+    const router = useRouter();
     const [formData, setFormData] = useState({
         fullName: "",
         aboutUser: "",
@@ -99,6 +100,7 @@ export default function Page() {
             console.log("updated data", res)
 
             toast.success("Profile updated successfully");
+            router.push("/")
         } catch (error) {
             toast.error("Failed to update profile");
         } finally {
@@ -115,7 +117,7 @@ export default function Page() {
                     <span className="text-orange-500">Update</span> Profile
                 </h2>
 
-                {/* P rofile Picture */}
+                {/* Profile Picture */}
                 <div className="flex items-center gap-6 mb-10">
                     <div className="relative">
                         <img
