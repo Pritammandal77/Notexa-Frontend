@@ -159,7 +159,7 @@ function Page() {
                 </div>
 
                 {
-                    activeTab === "uploaded" && currUserNotes?.size != 0 ? (
+                    activeTab === "uploaded" && currUserNotes?.length != 0 ? (
                         <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
                             <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
                                 Uploaded Notes
@@ -196,7 +196,7 @@ function Page() {
                             }
                         </div>
                     ) : (
-                        activeTab === "uploaded" &&
+                        activeTab === "uploaded" && currUserNotes?.length == 0 &&
                         <div className='xl:min-h-screen pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%] flex items-center justify-center'>
                             <h1 className='text-2xl md:text-3xl font-semibold'>No Notes Uploaded</h1>
                         </div>
@@ -204,7 +204,7 @@ function Page() {
                 }
 
                 {
-                    activeTab === "purchased" && purchasedNotes?.size == 0 ? (
+                    activeTab === "purchased" && purchasedNotes?.length != 0 ? (
                         <div className="pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
 
                             <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
@@ -242,7 +242,7 @@ function Page() {
                             }
                         </div>
                     ) : (
-                        activeTab === "purchased" &&
+                        activeTab === "purchased" && purchasedNotes?.length == 0 &&
                         <div className='xl:min-h-screen pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%] flex items-center justify-center'>
                             <h1 className='text-2xl md:text-3xl font-semibold'>No Notes Purchased</h1>
                         </div>
