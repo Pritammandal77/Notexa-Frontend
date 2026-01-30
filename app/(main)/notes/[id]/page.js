@@ -106,7 +106,7 @@ function Page() {
     } = notesData;
 
     const handleDownload = () => {
-        window.open(`http://localhost:8000/api/v1/notes/download/${id}`, "_blank");
+        window.open(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/notes/download/${id}`, "_blank");
     };
 
     const openPaymentPopup = () => {
