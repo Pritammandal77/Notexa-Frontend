@@ -128,7 +128,7 @@ function Footer() {
                         </h3>
                         <p className="  ">
                             Chandrapur Maharashtra, India
-                        </p>
+                        </p> 
                         <p className="  ">
                             Email: notexahub@gmail.com
                         </p>
