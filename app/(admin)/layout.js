@@ -13,6 +13,8 @@ function AdminLayout({ children }) {
     const isPayout = pathname.includes("payout-requests");
     const isSupport = pathname.includes("support-requests");
 
+    
+
     return (
         <>
             <Header />

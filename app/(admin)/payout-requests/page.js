@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllWithdrawRequests, updateWithDrawReqStatus } from "@/utils/withdrawApi";
 import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const statusStyles = {
     pending: "bg-red-100 text-red-700",
@@ -16,6 +18,17 @@ export default function Page() {
     const [showPopup, setShowPopup] = useState(false);
     const [selectedWithdraw, setSelectedWithdraw] = useState(null);
     const [newStatus, setNewStatus] = useState("");
+
+    const user = useSelector((state) => state.user?.currUser?.user);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (user && user.role !== "admin") {
+            router.push("/");
+        }
+    }, [user, router]);
+
+    if (!user) return null;
 
     useEffect(() => {
         const fetchData = async () => {
