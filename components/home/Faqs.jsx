@@ -53,7 +53,7 @@ function Faqs() {
 
     return (
         <>
-            <div className='flex flex-col items-center justify-center py-20 p-4 transition-colors duration-500 rounded-t-[140px]'>
+            <div className='flex flex-col items-center justify-center py-20 p-4 transition-colors duration-500 rounded-t-[140px] bg-gradient-to-b from-[#fff8f4] to-orange-100'>
                 <div className='w-full max-w-4xl mx-auto'>
                     <h1 className='text-4xl xl:text-5xl font-extrabold text-black text-center mb-2'>
                         Frequently Asked {" "}

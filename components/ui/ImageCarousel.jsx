@@ -47,7 +47,7 @@ export function Carousel() {
         currentX.current = startX.current;
 
         const c = containerRef.current;
-        c.style.cursor = "grabbing";
+        // c.style.cursor = "grabbing";
     };
 
     const onMove = (e) => {
@@ -67,7 +67,7 @@ export function Carousel() {
     const onUp = () => {
         isDragging.current = false;
         const c = containerRef.current;
-        c.style.cursor = "grab";
+        // c.style.cursor = "grab";
 
         const momentum = () => {
             if (Math.abs(velocity.current) < 0.2) return;
@@ -102,7 +102,7 @@ export function Carousel() {
                 className="flex gap-4 xl:gap-6 px-4 xl:px-14 hide-scrollbar select-none"
                 style={{
                     overflowX: "hidden",
-                    cursor: "grab",
+                    // cursor: "grab",
                     userSelect: "none",
                 }}
                 onMouseDown={onDown}

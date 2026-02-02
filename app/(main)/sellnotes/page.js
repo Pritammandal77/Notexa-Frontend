@@ -255,7 +255,7 @@ function Page() {
                             name="description"
                             required
                             placeholder="Write a short description..."
-                            className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none h-24 resize-none"
+                            className="w-full p-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none h-40 xl:h-30 resize-none"
                             onChange={handleChange}
                         ></textarea>
                     </div>

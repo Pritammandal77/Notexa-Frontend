@@ -2,7 +2,7 @@ export async function refreshAccessToken() {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/refresh`, {
             method: 'POST',
-            credentials: 'include', // send cookies
+            credentials: 'include',
         });
 
         if (res.ok) {
@@ -21,7 +21,7 @@ export async function refreshAccessToken() {
 export async function fetchWithAuth(url, options = {}) {
     const res = await fetch(url, {
         ...options,
-        credentials: 'include', // send cookies
+        credentials: 'include',
     });
 
     // If access token expired
@@ -33,7 +33,6 @@ export async function fetchWithAuth(url, options = {}) {
             // Retry the same request after refreshing
             return fetch(url, { ...options, credentials: 'include' });
         } else {
-            // Refresh failed — redirect to login
             console.log("Refresh failed. Logging out.");
         }
     }

@@ -9,6 +9,14 @@ export const AnimatedTestimonials = ({
     autoplay = false,
 }) => {
     const [active, setActive] = useState(0);
+    const [rotations, setRotations] = useState([]);
+
+    // Precompute random rotations only on client
+    useEffect(() => {
+        setRotations(
+            testimonials.map(() => Math.floor(Math.random() * 21) - 10)
+        );
+    }, [testimonials]);
 
     const handleNext = () => {
         if (testimonials.length > 0) {
@@ -30,8 +38,6 @@ export const AnimatedTestimonials = ({
             return () => clearInterval(interval);
         }
     }, [autoplay, testimonials.length]);
-
-    const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
 
     if (!Array.isArray(testimonials) || testimonials.length === 0) {
         return (
@@ -65,13 +71,13 @@ export const AnimatedTestimonials = ({
                                         opacity: 0,
                                         scale: 0.9,
                                         z: -100,
-                                        rotate: randomRotateY(),
+                                        rotate: rotations[index] ?? 0,
                                     }}
                                     animate={{
                                         opacity: isActive(index) ? 1 : 0.7,
                                         scale: isActive(index) ? 1 : 0.95,
                                         z: isActive(index) ? 0 : -100,
-                                        rotate: isActive(index) ? 0 : randomRotateY(),
+                                        rotate: isActive(index) ? 0 : rotations[index] ?? 0,
                                         zIndex: isActive(index)
                                             ? 40
                                             : testimonials.length + 2 - index,
@@ -81,7 +87,7 @@ export const AnimatedTestimonials = ({
                                         opacity: 0,
                                         scale: 0.9,
                                         z: 100,
-                                        rotate: randomRotateY(),
+                                        rotate: rotations[index] ?? 0,
                                     }}
                                     transition={{
                                         duration: 0.4,
@@ -112,13 +118,13 @@ export const AnimatedTestimonials = ({
                         exit={{ y: -20, opacity: 0 }}
                         transition={{ duration: 0.2, ease: "easeInOut" }}
                     >
-                        <h3 className="text-2xl font-bold text-black ">
+                        <h3 className="text-2xl font-bold text-black">
                             {activeTestimonial.name}
                         </h3>
-                        <p className="text-sm text-gray-600 ">
+                        <p className="text-sm text-gray-600">
                             {activeTestimonial.designation}
                         </p>
-                        <motion.p className="mt-4 xl:mt-8 text-lg text-gray-700 ">
+                        <motion.p className="mt-4 xl:mt-8 text-lg text-gray-700">
                             {activeTestimonial.quote.split(" ").map((word, index) => (
                                 <motion.span
                                     key={index}
@@ -158,46 +164,45 @@ export const AnimatedTestimonials = ({
     );
 };
 
-// 👇 Example Usage
+// Example Usage
 export default function TestimonialsSection() {
     const testimonialsData = [
         {
-            src: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=500&auto=format&fit=crop&q=80",
-            name: "Aman Verma",
-            designation: "B.Sc IT Student",
+            src: "/ayushBiswas.jpeg",
+            name: "Ayush Biswas",
+            designation: "Engineering Student",
             quote:
                 "Notexa notes are very concise and exam-oriented. They helped me revise important topics quickly before exams.",
         },
         {
-            src: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500&auto=format&fit=crop&q=80",
-            name: "Sneha Patil",
+            src: "/prangan.jpeg",
+            name: "Prangan Sarkar",
             designation: "Computer Science Student",
             quote:
                 "I really like how structured the notes are. Everything is explained clearly without unnecessary content.",
         },
         {
-            src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?w=500&auto=format&fit=crop&q=80",
-            name: "Rohit Sharma",
-            designation: "Engineering Student",
+            src: "/praveen.jpeg",
+            name: "Praveen Mandal",
+            designation: "BSc CS Student",
             quote:
                 "The concepts are explained in simple language, which makes learning and revision much easier.",
         },
         {
-            src: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500&auto=format&fit=crop&q=80",
-            name: "Neha Singh",
+            src: "/subhashish.jpeg",
+            name: "Subhashish Roy",
             designation: "BCA Student",
             quote:
                 "Notexa saved a lot of my study time. I don’t have to search multiple resources anymore.",
         },
-        {
-            src: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=500&auto=format&fit=crop&q=80",
-            name: "Kunal Mehta",
-            designation: "Final Year Student",
-            quote:
-                "The quality of notes is really good for the price. Definitely worth it for students.",
-        },
+        // {
+        //     src: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=500&auto=format&fit=crop&q=80",
+        //     name: "Kunal Mehta",
+        //     designation: "Final Year Student",
+        //     quote:
+        //         "The quality of notes is really good for the price. Definitely worth it for students.",
+        // },
     ];
-
 
     return <AnimatedTestimonials testimonials={testimonialsData} autoplay={true} />;
 }
