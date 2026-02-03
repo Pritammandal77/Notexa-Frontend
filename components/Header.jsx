@@ -240,7 +240,12 @@ function Header() {
                 )}
             </div>
 
-            {isLoading && <Loader1 />}
+            {
+                isLoading &&
+                <div className="h-screen w-full z-30 backdrop-blur-xs absolute top-0 right-0 flex items-center justify-center">
+                    <Loader1 />
+                </div>
+            }
         </>
     );
 }

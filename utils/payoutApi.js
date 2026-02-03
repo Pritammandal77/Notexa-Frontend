@@ -11,7 +11,6 @@ export const createNewTransaction = async (notesId, paymentId) => {
                 withCredentials: true
             }
         )
-        console.log(res)
         return res;
     } catch (error) {
         console.log("error while creating the new transaction")
