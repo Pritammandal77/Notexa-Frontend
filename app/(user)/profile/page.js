@@ -54,7 +54,9 @@ function Page() {
     const handleDeleteNotes = async (notesId) => {
         try {
             let isDeleted = await deleteNotes(notesId)
-            toast.success("Notes deleted successfully")
+            if (isDeleted.statusCode == 200) {
+                toast.success("Notes deleted successfully")
+            }
         } catch (error) {
             console.log("error while deleting notes")
             toast.error("something went wrong , while deleting the notes")
@@ -222,12 +224,8 @@ function Page() {
                                         subject={data.subject}
                                         sellerName={data.seller?.fullName}
                                         notesPrice={data.price}
-                                        openDropdownId={openDropdownId}
-                                        setOpenDropdownId={setOpenDropdownId}
-                                        handleDeleteNotes={handleDeleteNotes}
                                     />
                                 ))}
-
                             </div>
 
                             {isLoading &&
