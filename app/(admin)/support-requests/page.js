@@ -1,38 +1,3 @@
-// "use client"
-// import { fetchAllSupports } from '@/utils/supportApi';
-// import React, { useEffect, useState } from 'react';
-// import { toast } from 'sonner';
-
-// function page() {
-//     const [supportRequests, setSupportRequests] = useState(null)
-
-//     useEffect(() => {
-//         const fetchSupportRequests = async () => {
-//             try {
-//                 const res = await fetchAllSupports();
-//                 setSupportRequests(res?.data.data)
-//                 console.log(res)
-//             } catch (error) {
-//                 toast.error("Error while fetching support requests")
-//             }
-//         }
-
-//         fetchSupportRequests();
-//     }, []);
-
-//     return (
-//         <>
-//             <div className="min-h-screen px-6 xl:px-20 xl:py-6 ">
-//                 <h2 className="text-3xl md:text-4xl font-bold mb-10">
-//                     <span className="text-orange-500">Withdraw</span> Requests
-//                 </h2>
-//             </div>
-//         </>
-//     );
-// }
-
-// export default page;
-
 
 "use client";
 import { fetchAllSupports, updateSupportReqStatus } from "@/utils/supportApi";

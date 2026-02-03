@@ -26,7 +26,7 @@ function Page() {
 
     useEffect(() => {
         setUserData(user);
-
+        
         const fetchPurchasedNotes = async () => {
             try {
                 setIsLoading(true)
