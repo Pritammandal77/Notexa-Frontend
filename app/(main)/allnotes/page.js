@@ -46,9 +46,6 @@ function Page() {
                                     subject={notes.subject}
                                     sellerName={notes.seller?.fullName}
                                     notesPrice={notes.price}
-                                    openDropdownId={openDropdownId}
-                                    setOpenDropdownId={setOpenDropdownId}
-                                    handleDeleteNotes={handleDeleteNotes}
                                 />
                             ))}
                         </div>
