@@ -12,7 +12,7 @@ export default function ChatWidget() {
         <>
             <button
                 onClick={() => setOpen(true)}
-                className="fixed bottom-3 right-3 md:bottom-6 md:right-6 flex items-center justify-center font-semibold gap-2 z-50 bg-orange-500 hover:bg-orange-600 
+                className="fixed bottom-3 right-3 md:bottom-6 md:right-6 cursor-pointer flex items-center justify-center font-semibold gap-2 z-50 bg-orange-500 hover:bg-orange-600 
         text-white px-4 py-3 rounded-full shadow-lg transition"
             >
                 {/* Chat with NAI */}

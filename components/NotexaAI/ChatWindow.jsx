@@ -7,7 +7,7 @@ import { Minimize, Scan, X } from "lucide-react";
 
 export default function ChatWindow({ close }) {
 
-    const [messages, setMessages] = useState(null);
+    const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
     const [fullscreen, setFullscreen] = useState(false);
 
@@ -15,7 +15,10 @@ export default function ChatWindow({ close }) {
 
         if (!input.trim()) return;
 
-        const userMessage = { role: "user", content: input };
+        const userMessage = {
+            role: "user",
+            content: input
+        };
 
         setMessages((prev) => [...prev, userMessage]);
 
@@ -52,7 +55,7 @@ export default function ChatWindow({ close }) {
         <div
             className={`
       fixed z-50 bg-white  flex flex-col
-      ${fullscreen ? "w-full h-full right-0 bottom-0 rounded-none " : "shadow-2xl bottom-3 right-3 md:bottom-6 md:right-6 w-[350px] h-[500px] rounded-2xl"} `}
+      ${fullscreen ? "w-full h-full xl:px-50 right-0 bottom-0 rounded-none " : "shadow-2xl bottom-3 right-3 md:bottom-6 md:right-6 w-[350px] h-[500px] rounded-2xl"} `}
         >
 
             {/* Header */}
@@ -69,13 +72,13 @@ export default function ChatWindow({ close }) {
                     >
                         {
                             fullscreen ?
-                                <Minimize size={24} />
+                                <Minimize size={24} className="cursor-pointer" />
                                 :
-                                <Scan size={24} />
+                                <Scan size={24} className="cursor-pointer" />
                         }
                     </button>
 
-                    <button onClick={close}>
+                    <button onClick={close} className="cursor-pointer">
                         <X size={24} />
                     </button>
 
@@ -85,7 +88,7 @@ export default function ChatWindow({ close }) {
             <div className="flex-1 overflow-y-auto p-3 space-y-2">
 
                 {
-                    messages ? (
+                    messages.length > 0  ? (
                         messages.map((msg, i) => (
                             <MessageBubble key={i} msg={msg} />
                         ))
@@ -123,7 +126,7 @@ export default function ChatWindow({ close }) {
 
                 <button
                     onClick={sendMessage}
-                    className="bg-orange-500 hover:bg-orange-600 text-white px-4 rounded-lg"
+                    className="bg-orange-500 hover:bg-orange-600 cursor-pointer text-white px-4 rounded-lg"
                 >
                     Send
                 </button>
