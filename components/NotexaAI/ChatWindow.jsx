@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import MessageBubble from "./MessageBubble";
+import { axiosInstance } from "@/utils/axiosInstance";
+import { Minimize, Scan, X } from "lucide-react";
 
 export default function ChatWindow({ close }) {
 
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState(null);
     const [input, setInput] = useState("");
     const [fullscreen, setFullscreen] = useState(false);
 
@@ -19,69 +21,102 @@ export default function ChatWindow({ close }) {
 
         setInput("");
 
-        const res = await fetch("http://localhost:5000/api/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message: input })
-        });
+        try {
+            const res = await axiosInstance.post(
+                "/api/v1/rag/chat",
+                { message: input }
+            );
 
-        const data = await res.json();
+            const aiMessage = {
+                role: "assistant",
+                content: res.data.reply
+            };
 
-        const aiMessage = {
-            role: "assistant",
-            content: data.reply
-        };
+            setMessages((prev) => [...prev, aiMessage]);
 
-        setMessages((prev) => [...prev, aiMessage]);
+        } catch (error) {
+
+            const errorMessage = {
+                role: "assistant",
+                content: "Sorry, something went wrong."
+            };
+
+            setMessages((prev) => [...prev, errorMessage]);
+
+            console.error(error);
+
+        }
     };
 
     return (
         <div
             className={`
-      fixed z-50 bg-white shadow-xl flex flex-col
-      bottom-6 right-6
-      ${fullscreen
-                    ? "w-full h-full right-0 bottom-0 rounded-none"
-                    : "w-[350px] h-[500px] rounded-2xl"}
-    `}
+      fixed z-50 bg-white  flex flex-col
+      ${fullscreen ? "w-full h-full right-0 bottom-0 rounded-none " : "shadow-2xl bottom-3 right-3 md:bottom-6 md:right-6 w-[350px] h-[500px] rounded-2xl"} `}
         >
 
             {/* Header */}
-            <div className="bg-orange-500 text-white p-3 flex justify-between items-center">
+            <div className={`bg-orange-500 text-white p-4 flex justify-between items-center text-[18px]
+                ${fullscreen ? " " : "rounded-t-2xl"}`}>
 
                 <h2 className="font-semibold">Notexa AI</h2>
 
-                <div className="flex gap-2">
+                <div className="flex gap-5">
 
                     <button
                         onClick={() => setFullscreen(!fullscreen)}
                         className="text-sm"
                     >
-                        ⛶
+                        {
+                            fullscreen ?
+                                <Minimize size={24} />
+                                :
+                                <Scan size={24} />
+                        }
                     </button>
 
-                    <button onClick={close}>✕</button>
+                    <button onClick={close}>
+                        <X size={24} />
+                    </button>
 
                 </div>
             </div>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto p-3 space-y-2">
 
-                {messages.map((msg, i) => (
-                    <MessageBubble key={i} msg={msg} />
-                ))}
+                {
+                    messages ? (
+                        messages.map((msg, i) => (
+                            <MessageBubble key={i} msg={msg} />
+                        ))
+                    ) : (
+                        <div className="flex flex-col items-center justify-center text-center w-full h-full px-6">
+
+                            <h1 className="text-lg font-semibold text-gray-800">
+                                Welcome to Notexa AI
+                            </h1>
+
+                            <p className="text-sm text-gray-500 mt-2">
+                                Ask anything about Notexa, buying or selling notes, pricing, or how the platform works.
+                            </p>
+
+                        </div>
+                    )
+                }
 
             </div>
 
             {/* Input */}
-            <div className="p-3 border-t flex gap-2">
+            <div className="p-3 border-t border-gray-300 flex gap-2">
 
                 <input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            sendMessage();
+                        }
+                    }}
                     placeholder="Ask about Notexa..."
                     className="flex-1 border rounded-lg px-3 py-2 outline-none"
                 />
@@ -92,9 +127,7 @@ export default function ChatWindow({ close }) {
                 >
                     Send
                 </button>
-
             </div>
-
         </div>
     );
 }
