@@ -51,7 +51,7 @@ function page() {
                flex flex-col items-center justify-center xl:block md:px-15 lg:px-30 xl:px-4 relative
                   ">
 
-                    <div className="self-start flex md:gap-6 gap-3 flex-col xl:flex-col ">
+                    <div className="self-start flex md:gap-6 gap-3 flex-col xl:flex-col w-full">
 
                         {/* Profile Image */}
                         <div className='flex gap-5'>
@@ -80,8 +80,8 @@ function page() {
                             </div>
                         </div>
 
-                        <div>
-                            <p>
+                        <div className='mt-5 bg-orange-50 p-2 w-full rounded-2xl'>
+                            <p className="whitespace-pre-line">
                                 {userData?.aboutUser}
                             </p>
                         </div>
@@ -165,7 +165,7 @@ function page() {
                 </div>
 
                 {/* for mobile screens */}
-                <div className="social-buttons absolute bottom-5 right-5 lg:bottom-7 lg:right-7 flex md:hidden md:items-center gap-5">
+                <div className="social-buttons fixed bottom-5 right-5 lg:bottom-7 lg:right-7 flex md:hidden md:items-center gap-5">
                     <div className="socialIcons">
                         {
                             userData?.instagramLink &&
