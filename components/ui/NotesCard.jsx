@@ -1,9 +1,24 @@
 import { Ellipsis } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPrice, openDropdownId, setOpenDropdownId, handleDeleteNotes }) {
+
+    const [showModal, setShowModal] = useState(false);
+    const [selectedNoteId, setSelectedNoteId] = useState(null);
+
+    const handleDeleteClick = (id) => {
+        setSelectedNoteId(id);
+        setShowModal(true);
+    };
+
+    const confirmDelete = () => {
+        handleDeleteNotes(selectedNoteId);
+        setShowModal(false);
+    };
+
     return (
         <>
             <div
@@ -57,9 +72,11 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
                                 {
                                     openDropdownId === notesId && (
                                         <ul className='bg-orange-100 rounded-2xl animate-[fadeScale_0.25s_ease-out]'>
-                                            <li className='border-1 p-2 rounded-t-xl border-orange-300 hover:bg-orange-200 cursor-pointer'
-                                                onClick={() => handleDeleteNotes(notesId)}
-                                            >Delete notes
+                                            <li
+                                                className="border p-2 rounded-t-xl border-orange-300 hover:bg-orange-200 cursor-pointer"
+                                                onClick={() => handleDeleteClick(notesId)}
+                                            >
+                                                Delete notes
                                             </li>
                                             <Link href={`/notes/${notesId}/edit`}>
                                                 <li className='border-1 p-2 rounded-b-xl border-orange-300 hover:bg-orange-200 cursor-pointer'>Edit notes</li>
@@ -80,6 +97,12 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
                     </Link>
                 </div>
             </div>
+
+            <DeleteConfirmModal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                onConfirm={confirmDelete}
+            />
         </>
     );
 }

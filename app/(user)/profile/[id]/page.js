@@ -123,7 +123,7 @@ function page() {
 
                 </div>
 
-                <div className="pt-[20px] xl:pt-20 pb-14 ml-0 xl:ml-[25%]">
+                <div className="pt-[20px] xl:pt-20 pb-14 ml-0 xl:ml-[25%] ">
 
                     <div className="px-4 md:px-6 text-2xl md:text-3xl font-bold text-orange-600 mb-6">
                         Uploaded Notes
@@ -145,7 +145,7 @@ function page() {
                                     />
                                 ))
                                 :
-                                <div className='xl:min-h-screen pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%] flex items-center justify-center'>
+                                <div className='xl:min-h-[80vh] w-[90vw] xl:w-[50vw] pt-[90px] xl:pt-20 pb-14 ml-0 xl:ml-[25%] flex items-center justify-center'>
                                     <h1 className='text-2xl md:text-3xl font-semibold'>No Notes Uploaded</h1>
                                 </div>
                         }
