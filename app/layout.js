@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Providers } from "./provider";
 import { Toaster } from "sonner";
+import ChatWidget from "@/components/NotexaAI/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
         <Providers>
           {children}
           <Toaster richColors position="top-center" />
+          <ChatWidget />
         </Providers>
       </body>
     </html>
