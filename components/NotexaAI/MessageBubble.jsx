@@ -7,7 +7,7 @@ export default function MessageBubble({ msg }) {
 
       <div
         className={`
-        max-w-[80%] px-3 py-2 rounded-xl text-sm
+        max-w-[80%] px-3 py-2 rounded-xl text-sm whitespace-pre-line
         ${isUser
             ? "bg-orange-500 text-white"
             : "bg-gray-100 text-gray-800"}
