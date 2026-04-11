@@ -132,22 +132,24 @@ export function Carousel() {
                                     />
                                 </div>
 
-                                <h2 className="text-2xl font-bold mt-3 text-orange-500">
-                                    {note.title}
-                                </h2>
+                                <div className="flex flex-col gap-2">
+                                    <h2 className="text-2xl font-bold text-orange-500">
+                                        {note.title}
+                                    </h2>
 
-                                <p className="text-md text-gray-600">Subject: {note.subject}</p>
-                                <p className="text-md text-gray-600">
-                                    Seller: {note?.seller?.fullName}
-                                </p>
+                                    <p className="text-md text-gray-600">Subject: {note.subject}</p>
+                                    <p className="text-md text-gray-600">
+                                        Seller: {note?.seller?.fullName}
+                                    </p>
 
-                                <p className="font-bold text-orange-600 mt-2 text-2xl">₹{note.price}</p>
+                                    <p className="font-bold text-orange-600 not-only-of-type:text-2xl">₹{note.price}</p>
 
-                                <Link href={`/notes/${note._id}`}>
-                                    <button className="w-full bg-orange-500 text-white py-2 rounded-lg cursor-pointer">
-                                        Read More
-                                    </button>
-                                </Link>
+                                    <Link href={`/notes/${note._id}`}>
+                                        <button className="w-full bg-orange-500 text-white py-2 rounded-lg cursor-pointer">
+                                            Read More
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         );
                     })}

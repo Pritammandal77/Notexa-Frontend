@@ -152,11 +152,14 @@ function Page() {
                         </Link>
                     </div>
 
-                    <div className='mt-5 bg-orange-50 p-2 rounded-2xl'>
-                        <p className="whitespace-pre-line">
-                            {userData?.aboutUser}
-                        </p>
-                    </div>
+                    {
+                        userData?.aboutUser &&
+                        <div className='mt-5 bg-orange-50 p-2 rounded-2xl'>
+                            <p className="whitespace-pre-line">
+                                {userData?.aboutUser}
+                            </p>
+                        </div>
+                    }
 
                     <div className="hidden social-buttons absolute bottom-1 right-1 lg:bottom-7 lg:right-7 md:flex md:items-center gap-5">
                         <div className="socialIcons">
