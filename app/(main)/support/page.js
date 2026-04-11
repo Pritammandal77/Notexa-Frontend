@@ -20,7 +20,6 @@ function page() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
 
         try {
             const res = await createNewSupportRequest(formData)
@@ -140,7 +139,7 @@ function page() {
                 href="https://wa.me/919881228004?text=Hello,%20I%20need%20support%20regarding%20Notexa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 text-white shadow-lg transition hover:bg-green-600 hover:scale-105"
+                className="fixed bottom-6 left-6 z-50 flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 text-white shadow-lg transition hover:bg-green-600 hover:scale-105"
             >
                 <FaWhatsapp size={22} />
                 <span className="hidden sm:block font-medium">

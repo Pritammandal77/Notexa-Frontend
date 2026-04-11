@@ -19,10 +19,13 @@ export async function refreshAccessToken() {
 }
 
 export async function fetchWithAuth(url, options = {}) {
-    const res = await fetch(url, {
-        ...options,
-        credentials: 'include',
-    });
+    const res = await fetch(
+        url,
+        {
+            ...options,
+            credentials: 'include',
+        }
+    );
 
     // If access token expired
     if (res.status === 401) {

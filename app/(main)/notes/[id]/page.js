@@ -337,10 +337,10 @@ function Page() {
             </div>
 
             {/* 2 BOTTOM BOXES */}
-            <div className="max-w-7xl relative mx-auto grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-5 xl:gap-10 mt-5 xl:mt-14 p-3 xl:p-0">
+           <div className="max-w-7xl relative mx-auto grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-5 xl:gap-10 mt-5 xl:mt-14 p-3 xl:p-0 items-start">
 
                 <div
-                    className="bg-white hidden xl:inline rounded-2xl xl:shadow-xl xl:border xl:border-orange-200 p-8"
+                    className="bg-white hidden h-auto xl:inline rounded-2xl xl:shadow-xl xl:border xl:border-orange-200 p-8"
                 >
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">About This Note</h2>
                     <p className="text-gray-600 leading-relaxed whitespace-pre-line">
@@ -349,7 +349,7 @@ function Page() {
                 </div>
 
                 <div
-                    className="bg-white rounded-2xl shadow-xl border border-orange-200 xl:border-orange-200 p-8"
+                    className="bg-white h-auto rounded-2xl shadow-xl border border-orange-200 xl:border-orange-200 p-8"
                 >
                     <h2 className="font-semibold text-gray-800 mb-6 flex items-center justify-between gap-2">
                         <div className="text-2xl flex items-center justify-center gap-2">
@@ -372,7 +372,7 @@ function Page() {
                     {Allreviews?.length === 0 ? (
                         <p className="text-gray-400 text-sm">No reviews yet.</p>
                     ) : (
-                        <div className="space-y-5 xl:max-h-100 overflow-y-scroll">
+                        <div className="space-y-5 xl:max-h-100 overflow-y-scroll bg-green-400">
                             {Allreviews?.map((review, index) => (
                                 <div
                                     key={index}
