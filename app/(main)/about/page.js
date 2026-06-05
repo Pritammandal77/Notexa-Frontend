@@ -6,7 +6,6 @@ import { motion, useInView } from 'framer-motion';
 import Working from '@/components/home/Working';
 import { BookOpen, CheckCircle, FileText, GraduationCap, IndianRupee, NotebookPen, ShieldCheck, Trophy } from 'lucide-react';
 
-// ─── Animation Variants ───────────────────────────────────────────────────────
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: (i = 0) => ({
@@ -35,7 +34,7 @@ const scaleIn = {
     }),
 };
 
-// ─── Reusable InView Section Wrapper ─────────────────────────────────────────
+// Reusable InView Section Wrapper 
 function InViewSection({ children, className = '' }) {
     const ref = useRef(null);
     // Changed once: false to re-trigger layout updates multi-way
@@ -49,7 +48,7 @@ function InViewSection({ children, className = '' }) {
     );
 }
 
-// ─── Stats Data ───────────────────────────────────────────────────────────────
+// Stats Data
 const stats = [
     {
         value: '100+',
@@ -73,7 +72,7 @@ const stats = [
     },
 ];
 
-// ─── Why Notexa Points ────────────────────────────────────────────────────────
+// Why Notexa Points
 const highlights = [
     {
         icon: <CheckCircle className="text-orange-500" size={24} />,
@@ -97,7 +96,7 @@ const highlights = [
     },
 ];
 
-// ─── Testimonials ─────────────────────────────────────────────────────────────
+// Testimonials
 const testimonials = [
     { name: 'Ayush Biswas', role: 'Engineering Student', text: 'Notexa notes are very concise and exam-oriented. They helped me revise important topics quickly before exams.', img: '/ayushBiswas.jpeg' },
     { name: 'Prangan Sarkar', role: 'College Student', text: 'I earned ₹2,400 in my first month just by uploading notes I already had. Incredible platform!', img: '/prangan.jpeg' },
@@ -105,7 +104,7 @@ const testimonials = [
     { name: 'Subhashish Roy', role: 'Science Student', text: 'Clean, affordable, and actually useful. Notexa is my go-to before every exam season.', img: '/subhashish.jpeg' },
 ];
 
-// ─── Main About Component ─────────────────────────────────────────────────────
+// Main About Component
 function page() {
     const [dots, setDots] = useState([]);
 
@@ -123,14 +122,13 @@ function page() {
     return (
         <div className="bg-orange-50 font-sans overflow-x-hidden pt-15">
 
-            {/* ── HERO SECTION ─────────────────────────────────────────────────────── */}
+            {/*HERO SECTION */}
             <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-orange-50 to-orange-100 px-6">
                 {/* Background blobs */}
                 <div className="absolute top-[-80px] left-[-80px] w-[400px] h-[400px] bg-orange-200 rounded-full blur-[100px] opacity-50 pointer-events-none" />
                 <div className="absolute bottom-[-60px] right-[-60px] w-[350px] h-[350px] bg-orange-300 rounded-full blur-[100px] opacity-40 pointer-events-none" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-100 rounded-full blur-[120px] opacity-60 pointer-events-none" />
 
-                {/* Floating decorative dots */}
                 {/* Floating decorative dots */}
                 {dots.map((dot) => (
                     <motion.div
@@ -219,7 +217,7 @@ function page() {
                 </motion.div>
             </section>
 
-            {/* ── STATS BANNER ─────────────────────────────────────────────────────── */}
+            {/*STATS BANNER */}
             <section className="py-14 bg-white border-y border-orange-100">
                 <div className="max-w-5xl mx-auto px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -249,7 +247,7 @@ function page() {
                 </div>
             </section>
 
-            {/* ── WHY NOTEXA ───────────────────────────────────────────────────────── */}
+            {/* WHY NOTEXA */}
             <section className="py-24 px-6 bg-gradient-to-b from-orange-50 to-white" id="why">
                 <div className="max-w-5xl mx-auto">
                     {/* Section header */}
@@ -298,7 +296,7 @@ function page() {
                 </div>
             </section>
 
-            {/* ── MISSION SECTION ──────────────────────────────────────────────────── */}
+            {/* MISSION SECTION */}
             <section className="py-24 px-6 bg-white overflow-hidden">
                 <div className="max-w-5xl mx-auto flex flex-col xl:flex-row gap-16 items-center">
                     {/* Left: text */}
@@ -383,7 +381,7 @@ function page() {
 
             <Working />
 
-            {/* ── TESTIMONIALS ─────────────────────────────────────────────────────── */}
+            {/* TESTIMONIALS */}
             <section className="py-24 px-6 bg-white">
                 <div className="max-w-5xl mx-auto">
                     {/* Section header */}
@@ -438,7 +436,7 @@ function page() {
                 </div>
             </section>
 
-            {/* ── CTA SECTION ──────────────────────────────────────────────────────── */}
+            {/* CTA SECTION */}
             {(() => {
                 const ref = useRef(null);
                 const inView = useInView(ref, { once: false, margin: '-80px' });
