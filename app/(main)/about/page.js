@@ -1,11 +1,10 @@
-
-
 "use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Working from '@/components/home/Working';
+import { BookOpen, CheckCircle, FileText, GraduationCap, IndianRupee, NotebookPen, ShieldCheck, Trophy } from 'lucide-react';
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
 const fadeUp = {
@@ -13,18 +12,18 @@ const fadeUp = {
     visible: (i = 0) => ({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 1.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
     }),
 };
 
 const fadeLeft = {
     hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const fadeRight = {
     hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const scaleIn = {
@@ -32,14 +31,15 @@ const scaleIn = {
     visible: (i = 0) => ({
         opacity: 1,
         scale: 1,
-        transition: { duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 1, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
     }),
 };
 
 // ─── Reusable InView Section Wrapper ─────────────────────────────────────────
 function InViewSection({ children, className = '' }) {
     const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: '-80px' });
+    // Changed once: false to re-trigger layout updates multi-way
+    const inView = useInView(ref, { once: false, margin: '-80px' });
     return (
         <div ref={ref} className={className} data-inview={inView}>
             {React.Children.map(children, (child) =>
@@ -51,26 +51,50 @@ function InViewSection({ children, className = '' }) {
 
 // ─── Stats Data ───────────────────────────────────────────────────────────────
 const stats = [
-    { value: '100+', label: 'Handwritten Notes', icon: '📝' },
-    { value: '5K+', label: 'Students Helped', icon: '🎓' },
-    { value: '20+', label: 'Subjects Covered', icon: '📚' },
-    { value: '₹29', label: 'Starting Price', icon: '💰' },
+    {
+        value: '100+',
+        label: 'Handwritten Notes',
+        icon: <NotebookPen className="text-orange-500" size={24} />
+    },
+    {
+        value: '5K+',
+        label: 'Students Helped',
+        icon: <GraduationCap className="text-orange-500" size={24} />
+    },
+    {
+        value: '20+',
+        label: 'Subjects Covered',
+        icon: <BookOpen className="text-orange-500" size={24} />
+    },
+    {
+        value: '₹29',
+        label: 'Starting Price',
+        icon: <IndianRupee className="text-orange-500" size={22} />
+    },
 ];
 
 // ─── Why Notexa Points ────────────────────────────────────────────────────────
 const highlights = [
-    { icon: '✅', title: 'Affordable', desc: 'Premium notes starting at just ₹29 — budget-friendly for every student.' },
-    { icon: '🏆', title: 'Topper-Made', desc: 'Notes created by top-scoring students who\'ve studied the exact same topics.' },
-    { icon: '🔒', title: 'Verified Quality', desc: 'Every note is reviewed before publishing — no low-effort content.' },
-    { icon: '📄', title: 'Multiple Formats', desc: 'Handwritten or typed notes — whatever suits your learning style.' },
-];
-
-// ─── How It Works ─────────────────────────────────────────────────────────────
-const steps = [
-    { step: '01', title: 'Create Your Notes', desc: 'Write neat, well-organized notes in your own style. Your clarity is what makes them valuable.', icon: '✍️' },
-    { step: '02', title: 'Convert to PDF', desc: 'Scan or capture your notes and convert them into clean, shareable PDF files.', icon: '📲' },
-    { step: '03', title: 'List on Notexa', desc: 'Upload your PDFs, add details, and list them for thousands of students to discover.', icon: '🚀' },
-    { step: '04', title: 'Earn Every Sale', desc: 'Earn 70% of ₹29 on every download — your notes work for you while you sleep.', icon: '💸' },
+    {
+        icon: <CheckCircle className="text-orange-500" size={24} />,
+        title: 'Affordable',
+        desc: 'Premium notes starting at just ₹29 — budget-friendly for every student.'
+    },
+    {
+        icon: <Trophy className="text-orange-500" size={24} />,
+        title: 'Topper-Made',
+        desc: "Notes created by top-scoring students who've studied the exact same topics."
+    },
+    {
+        icon: <ShieldCheck className="text-orange-500" size={24} />,
+        title: 'Verified Quality',
+        desc: 'Every note is reviewed before publishing — no low-effort content.'
+    },
+    {
+        icon: <FileText className="text-orange-500" size={24} />,
+        title: 'Multiple Formats',
+        desc: 'Handwritten or typed notes — whatever suits your learning style.'
+    },
 ];
 
 // ─── Testimonials ─────────────────────────────────────────────────────────────
@@ -83,8 +107,21 @@ const testimonials = [
 
 // ─── Main About Component ─────────────────────────────────────────────────────
 function page() {
+    const [dots, setDots] = useState([]);
+
+    useEffect(() => {
+        // Generate random values only on the client side to avoid hydration errors
+        const generatedDots = [...Array(6)].map((_, i) => ({
+            id: i,
+            top: `${Math.floor(Math.random() * 70) + 10}%`,   // Keeps them between 10% and 80% height
+            left: `${Math.floor(Math.random() * 84) + 8}%`,   // Keeps them away from strict screen edges
+            duration: 3 + Math.random() * 3,                  // Randomizes floating speed between 3s and 6s
+            delay: Math.random() * 2,                         // Randomizes starting offsets
+        }));
+        setDots(generatedDots);
+    }, []);
     return (
-        <div className="bg-orange-50 font-sans overflow-x-hiddenp pt-15">
+        <div className="bg-orange-50 font-sans overflow-x-hidden pt-15">
 
             {/* ── HERO SECTION ─────────────────────────────────────────────────────── */}
             <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-orange-50 to-orange-100 px-6">
@@ -94,16 +131,22 @@ function page() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-100 rounded-full blur-[120px] opacity-60 pointer-events-none" />
 
                 {/* Floating decorative dots */}
-                {[...Array(6)].map((_, i) => (
+                {/* Floating decorative dots */}
+                {dots.map((dot) => (
                     <motion.div
-                        key={i}
+                        key={dot.id}
                         className="absolute w-3 h-3 rounded-full bg-orange-400 opacity-30"
                         style={{
-                            top: `${15 + i * 13}%`,
-                            left: `${8 + i * 14}%`,
+                            top: dot.top,
+                            left: dot.left,
                         }}
-                        animate={{ y: [0, -12, 0], opacity: [0.3, 0.6, 0.3] }}
-                        transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+                        animate={{ y: [0, -15, 0], opacity: [0.2, 0.6, 0.2] }}
+                        transition={{
+                            duration: dot.duration,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                            delay: dot.delay
+                        }}
                     />
                 ))}
 
@@ -176,14 +219,14 @@ function page() {
                 </motion.div>
             </section>
 
-
             {/* ── STATS BANNER ─────────────────────────────────────────────────────── */}
             <section className="py-14 bg-white border-y border-orange-100">
                 <div className="max-w-5xl mx-auto px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {stats.map((s, i) => {
                             const ref = useRef(null);
-                            const inView = useInView(ref, { once: true });
+                            // Set once: false to toggle states backwards on exit
+                            const inView = useInView(ref, { once: false });
                             return (
                                 <motion.div
                                     key={s.label}
@@ -206,14 +249,13 @@ function page() {
                 </div>
             </section>
 
-
             {/* ── WHY NOTEXA ───────────────────────────────────────────────────────── */}
             <section className="py-24 px-6 bg-gradient-to-b from-orange-50 to-white" id="why">
                 <div className="max-w-5xl mx-auto">
                     {/* Section header */}
                     {(() => {
                         const ref = useRef(null);
-                        const inView = useInView(ref, { once: true, margin: '-80px' });
+                        const inView = useInView(ref, { once: false, margin: '-80px' });
                         return (
                             <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={fadeUp} className="text-center mb-16">
                                 <span className="text-orange-500 font-semibold text-sm uppercase tracking-widest">Why Choose Us</span>
@@ -230,7 +272,7 @@ function page() {
                     <div className="grid md:grid-cols-2 gap-6">
                         {highlights.map((h, i) => {
                             const ref = useRef(null);
-                            const inView = useInView(ref, { once: true, margin: '-60px' });
+                            const inView = useInView(ref, { once: false, margin: '-60px' });
                             return (
                                 <motion.div
                                     key={h.title}
@@ -256,14 +298,13 @@ function page() {
                 </div>
             </section>
 
-
             {/* ── MISSION SECTION ──────────────────────────────────────────────────── */}
             <section className="py-24 px-6 bg-white overflow-hidden">
                 <div className="max-w-5xl mx-auto flex flex-col xl:flex-row gap-16 items-center">
                     {/* Left: text */}
                     {(() => {
                         const ref = useRef(null);
-                        const inView = useInView(ref, { once: true, margin: '-80px' });
+                        const inView = useInView(ref, { once: false, margin: '-80px' });
                         return (
                             <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={fadeLeft} className="flex-1">
                                 <span className="text-orange-500 font-semibold text-sm uppercase tracking-widest">Our Mission</span>
@@ -296,7 +337,7 @@ function page() {
                     {/* Right: decorative card */}
                     {(() => {
                         const ref = useRef(null);
-                        const inView = useInView(ref, { once: true, margin: '-80px' });
+                        const inView = useInView(ref, { once: false, margin: '-80px' });
                         return (
                             <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={fadeRight} className="flex-1 flex justify-center">
                                 <div className="relative w-full max-w-sm">
@@ -340,16 +381,15 @@ function page() {
                 </div>
             </section>
 
-
             <Working />
-
 
             {/* ── TESTIMONIALS ─────────────────────────────────────────────────────── */}
             <section className="py-24 px-6 bg-white">
                 <div className="max-w-5xl mx-auto">
+                    {/* Section header */}
                     {(() => {
                         const ref = useRef(null);
-                        const inView = useInView(ref, { once: true, margin: '-80px' });
+                        const inView = useInView(ref, { once: false, margin: '-80px' });
                         return (
                             <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={fadeUp} className="text-center mb-16">
                                 <span className="text-orange-500 font-semibold text-sm uppercase tracking-widest">Testimonials</span>
@@ -363,7 +403,7 @@ function page() {
                     <div className="grid md:grid-cols-2 gap-6">
                         {testimonials.map((t, i) => {
                             const ref = useRef(null);
-                            const inView = useInView(ref, { once: true, margin: '-40px' });
+                            const inView = useInView(ref, { once: false, margin: '-40px' });
                             return (
                                 <motion.div
                                     key={t.name}
@@ -375,9 +415,7 @@ function page() {
                                     whileHover={{ y: -4 }}
                                     className="bg-orange-50 border border-orange-100 rounded-3xl p-7 relative overflow-hidden"
                                 >
-                                    {/* Quote decoration */}
                                     <div className="absolute top-4 right-6 text-7xl text-orange-100 font-serif leading-none select-none">"</div>
-
                                     <p className="text-gray-700 text-base leading-relaxed mb-6 relative z-10">"{t.text}"</p>
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full overflow-hidden bg-orange-200 flex items-center justify-center">
@@ -400,14 +438,12 @@ function page() {
                 </div>
             </section>
 
-
             {/* ── CTA SECTION ──────────────────────────────────────────────────────── */}
             {(() => {
                 const ref = useRef(null);
-                const inView = useInView(ref, { once: true, margin: '-80px' });
+                const inView = useInView(ref, { once: false, margin: '-80px' });
                 return (
                     <section ref={ref} className="py-24 px-6 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 relative overflow-hidden">
-                        {/* Background decoration */}
                         <div className="absolute top-[-60px] right-[-60px] w-80 h-80 bg-white rounded-full opacity-5" />
                         <div className="absolute bottom-[-40px] left-[-40px] w-60 h-60 bg-white rounded-full opacity-5" />
 
