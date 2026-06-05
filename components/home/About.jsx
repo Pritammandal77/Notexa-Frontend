@@ -1,133 +1,134 @@
-"use client";
-import MotionWrapper from '@/utils/MotionWrapper';
-import ScaleWrapper from '@/utils/ScaleWrapper';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+// "use client";
+// import MotionWrapper from '@/utils/MotionWrapper';
+// import ScaleWrapper from '@/utils/ScaleWrapper';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import React from 'react';
 
-function About() {
+// function About() {
 
-    return (
-        <>
-            <div className='flex flex-col xl:flex-row justify-center pt-10 xl:pt-15 xl:py-30 pb-20 xl:pb-30 relative bg-gradient-to-b from-white via-orange-100 to-orange-100'>
-                <MotionWrapper direction='-x'>
-                    <div className='w-full xl:w-[45vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
-                        {/* Background decorative circles */}
+//     return (
+//         <>
+//             <div className='flex flex-col xl:flex-row justify-center pt-10 xl:pt-15 xl:py-30 pb-20 xl:pb-30 relative bg-gradient-to-b from-white via-orange-100 to-orange-100'>
+//                 <MotionWrapper direction='-x'>
+//                     <div className='w-full xl:w-[45vw] flex flex-col justify-center px-10 md:px-20 space-y-3 relative overflow-hidden'>
+//                         {/* Background decorative circles */}
 
-                        {/* Heading */}
-                        <h1 className='text-4xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
-                            Empowering Students <br />
-                            <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600'>
-                                Through Notes
-                            </span>
-                        </h1>
+//                         {/* Heading */}
+//                         <h1 className='text-4xl md:text-5xl font-extrabold font-playfair text-gray-800 leading-tight'>
+//                             Empowering Students <br />
+//                             <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600'>
+//                                 Through Notes
+//                             </span>
+//                         </h1>
 
-                        {/* Tagline */}
-                        <p className='text-lg md:text-xl text-gray-700 leading-relaxed'>
-                            Notexa connects learners and toppers by creating a single platform
-                            where premium quality handwritten notes meet accessibility and affordability.
-                        </p>
-
-
-                        {/* Highlights */}
-                        <div className="mt-6">
-                            <h4 className="text-xl font-semibold text-gray-800 mb-3 font-playfair">
-                                Why Notexa?
-                            </h4>
-                            <ul className="space-y-3">
-                                <li className="flex items-center gap-3 group">
-                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                        <span className="font-semibold">Affordable</span> notes starting at just ₹29
-                                    </span>
-                                </li>
-
-                                <li className="flex items-center gap-3 group">
-                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                        Created by <span className="font-semibold">toppers & students</span> like you
-                                    </span>
-                                </li>
-
-                                <li className="flex items-center gap-3 group">
-                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                        <span className="font-semibold">Verified & high-quality</span> content
-                                    </span>
-                                </li>
-
-                                <li className="flex items-center gap-3 group">
-                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
-                                    <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
-                                        Available in <span className="font-semibold">handwritten or typed</span> formats
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
+//                         {/* Tagline */}
+//                         <p className='text-lg md:text-xl text-gray-700 leading-relaxed'>
+//                             Notexa connects learners and toppers by creating a single platform
+//                             where premium quality handwritten notes meet accessibility and affordability.
+//                         </p>
 
 
-                        {/* CTA buttons */}
-                        <div className='flex gap-4 pt-4'>
-                            <Link href="/allnotes">
-                                <button className='px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition'>
-                                    Explore Notes
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                </MotionWrapper>
+//                         {/* Highlights */}
+//                         <div className="mt-6">
+//                             <h4 className="text-xl font-semibold text-gray-800 mb-3 font-playfair">
+//                                 Why Notexa?
+//                             </h4>
+//                             <ul className="space-y-3">
+//                                 <li className="flex items-center gap-3 group">
+//                                     <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+//                                     <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+//                                         <span className="font-semibold">Affordable</span> notes starting at just ₹29
+//                                     </span>
+//                                 </li>
+
+//                                 <li className="flex items-center gap-3 group">
+//                                     <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+//                                     <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+//                                         Created by <span className="font-semibold">toppers & students</span> like you
+//                                     </span>
+//                                 </li>
+
+//                                 <li className="flex items-center gap-3 group">
+//                                     <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+//                                     <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+//                                         <span className="font-semibold">Verified & high-quality</span> content
+//                                     </span>
+//                                 </li>
+
+//                                 <li className="flex items-center gap-3 group">
+//                                     <div className="h-2 w-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 group-hover:scale-125 transition-transform"></div>
+//                                     <span className="text-gray-700 group-hover:text-orange-600 transition-colors">
+//                                         Available in <span className="font-semibold">handwritten or typed</span> formats
+//                                     </span>
+//                                 </li>
+//                             </ul>
+//                         </div>
 
 
-                {/* RIGHT SIDE (untouched) */}
-                <div className='w-full xl:w-[45vw] hidden xl:flex items-center justify-center '>
-                    <div className="w-[75%] px-2 md:px-0">
-                        <ScaleWrapper>
-                            <div className="relative">
-                                <div
-                                    className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
-                                    <div className="bg-white rounded-2xl p-8 transform -rotate-6 shadow-xl">
-                                        <div className="text-center flex flex-col items-center">
-                                            <div className="text-7xl mb-6">
-                                                <Image
-                                                    src="/notesLogo.png"
-                                                    alt="Hero image"
-                                                    width={40}
-                                                    height={40}
-                                                />
-                                            </div>
-                                            <h3 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
-                                                Get Premium Quality Self Made notes
-                                            </h3>
-                                            <p className="text-gray-600 text-lg mb-6">
-                                                Notes from top students & professionals
-                                            </p>
-                                            <div className="grid grid-cols-2 gap-4 text-center">
-                                                <div>
-                                                    <div className="text-sm text-gray-500">
-
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="text-sm text-gray-500">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ScaleWrapper>
-                    </div>
-                </div>
-
-                <div className='absolute top-20 left-20 w-60 h-60 bg-orange-200 rounded-full blur-3xl opacity-40 -z-10'></div>
-                <div className='absolute bottom-10 right-40 w-72 h-72 bg-orange-300 rounded-full blur-3xl opacity-30 -z-10'></div>
-            </div>
+//                         {/* CTA buttons */}
+//                         <div className='flex gap-4 pt-4'>
+//                             <Link href="/allnotes">
+//                                 <button className='px-6 py-3 cursor-pointer bg-orange-500 text-white font-semibold rounded-xl shadow-md hover:bg-orange-600 transition'>
+//                                     Explore Notes
+//                                 </button>
+//                             </Link>
+//                         </div>
+//                     </div>
+//                 </MotionWrapper>
 
 
-        </>
-    );
-}
+//                 {/* RIGHT SIDE (untouched) */}
+//                 <div className='w-full xl:w-[45vw] hidden xl:flex items-center justify-center '>
+//                     <div className="w-[75%] px-2 md:px-0">
+//                         <ScaleWrapper>
+//                             <div className="relative">
+//                                 <div
+//                                     className="bg-gradient-to-br from-orange-300 to-orange-400 rounded-3xl p-8 transform rotate-3 shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+//                                     <div className="bg-white rounded-2xl p-8 transform -rotate-6 shadow-xl">
+//                                         <div className="text-center flex flex-col items-center">
+//                                             <div className="text-7xl mb-6">
+//                                                 <Image
+//                                                     src="/notesLogo.png"
+//                                                     alt="Hero image"
+//                                                     width={40}
+//                                                     height={40}
+//                                                 />
+//                                             </div>
+//                                             <h3 className="text-3xl font-playfair font-bold text-gray-800 mb-4">
+//                                                 Get Premium Quality Self Made notes
+//                                             </h3>
+//                                             <p className="text-gray-600 text-lg mb-6">
+//                                                 Notes from top students & professionals
+//                                             </p>
+//                                             <div className="grid grid-cols-2 gap-4 text-center">
+//                                                 <div>
+//                                                     <div className="text-sm text-gray-500">
 
-export default About;
+//                                                     </div>
+//                                                 </div>
+//                                                 <div>
+//                                                     <div className="text-sm text-gray-500">
+
+//                                                     </div>
+//                                                 </div>
+//                                             </div>
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                         </ScaleWrapper>
+//                     </div>
+//                 </div>
+
+//                 <div className='absolute top-20 left-20 w-60 h-60 bg-orange-200 rounded-full blur-3xl opacity-40 -z-10'></div>
+//                 <div className='absolute bottom-10 right-40 w-72 h-72 bg-orange-300 rounded-full blur-3xl opacity-30 -z-10'></div>
+//             </div>
+
+
+//         </>
+//     );
+// }
+
+// export default About;
+
