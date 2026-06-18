@@ -52,7 +52,6 @@ function Page() {
 
     const [currentNotes, setCurrentNotes] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    console.log(currentNotes)
 
     const [searchText, setSearchText] = useState("");
     const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -84,7 +83,6 @@ function Page() {
                 // Converts "Web Development" -> "web-development"
                 params.category = selectedCategory.toLowerCase().replace(/\s+/g, '-');
             }
-            console.log("parameters", params)
             const results = await getSearchedNotes(params);
             if (requestId === requestIdRef.current) {
                 setCurrentNotes(results);
