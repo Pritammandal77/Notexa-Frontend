@@ -41,7 +41,7 @@ function NotesCard({ notesId, notesSample1, title, subject, sellerName, notesPri
                 <div className="mt-4 flex flex-col justify-between flex-1">
 
                     <div className='relative'>
-                        <h2 className="text-xl md:text-2xl font-bold text-orange-500">
+                        <h2 className="text-xl md:text-2xl font-bold text-orange-500 truncate">
                             {title}
                         </h2>
 

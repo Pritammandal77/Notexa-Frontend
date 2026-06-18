@@ -94,3 +94,14 @@ export const countNotesViews = async (notesId) => {
         console.log("Error while updating the views count")
     }
 }
+
+
+export const getSearchedNotes = async (filters = {}) => {
+  try {
+    const res = await axiosInstance.get('/api/v1/notes/search', { params: filters });
+    return res.data.data;
+  } catch (error) {
+    console.error("Error fetching searched notes:", error);
+    throw error;
+  }
+};
